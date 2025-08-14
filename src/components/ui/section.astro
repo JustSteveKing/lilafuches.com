@@ -1,0 +1,19 @@
+---
+import clsx from "clsx";
+
+interface Props {
+    id: string;
+    title: string;
+    class?: string;
+}
+
+const {
+    id,
+    title,
+    class: className = "",
+} = Astro.props as Props;
+---
+
+<section id={id} title={title} aria-labelledby={`${title}-title`} class={clsx(className, "px-4 py-12 w-full")}>
+    <slot />
+</section>

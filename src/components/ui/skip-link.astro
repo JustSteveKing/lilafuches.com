@@ -1,0 +1,15 @@
+---
+interface Props {
+    href: string;
+}
+
+const {
+    href = 'main-content'
+} = Astro.props as Props;
+---
+
+<a href={href}
+   class="sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-white text-blue-700 px-4 py-2 rounded shadow transition"
+>
+    Skip to main content
+</a>
