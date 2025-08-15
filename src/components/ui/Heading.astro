@@ -1,0 +1,13 @@
+---
+const { level = 1, class: className = "", ...rest } = Astro.props;
+let Tag = `h${level}`;
+---
+
+<Fragment>
+  {Tag === 'h1' && <h1 class={className} {...rest}><slot /></h1>}
+  {Tag === 'h2' && <h2 class={className} {...rest}><slot /></h2>}
+  {Tag === 'h3' && <h3 class={className} {...rest}><slot /></h3>}
+  {Tag === 'h4' && <h4 class={className} {...rest}><slot /></h4>}
+  {Tag === 'h5' && <h5 class={className} {...rest}><slot /></h5>}
+  {Tag === 'h6' && <h6 class={className} {...rest}><slot /></h6>}
+</Fragment>

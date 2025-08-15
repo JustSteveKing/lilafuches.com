@@ -1,38 +1,37 @@
 ---
 import Layout from "@/layouts/Layout.astro";
-import { Container, Section } from "@/components";
+import {
+	Card,
+	Container,
+	Heading,
+	Section,
+	Text,
+} from "@/components";
+import { Image } from "astro:assets";
+
+import { siteContent } from "@/utils/siteContent";
+import { Icon } from 'astro-icon/components';
 ---
 
-<Layout>
+<Layout title="Home Page" description="Home Page Description">
 	<Section id={"hero"} class={"pb-20"} title={"hero"}>
 		<Container>
-			<div
-				class="container py-12 mx-auto mt-px max-w-md text-left sm:max-w-xl sm:px-4 sm:py-12 md:max-w-none md:text-center"
-			>
-				<h1
-					class="text-4xl font-semibold tracking-tight text-left text-gray-900 leading-tighter text-balance sm:mx-auto sm:text-center sm:text-5xl md:max-w-3xl md:text-6xl lg:text-7xl"
-				>
-					Developer Content That <span class="text-blue-400"
-						>Drives Results</span
-					>
-				</h1>
-				<div
-					class="mx-auto mt-5 max-w-[80ch] text-gray-400 sm:text-center md:mt-8 md:text-2xl lg:max-w-lg"
-				>
-					From bite-sized tutorials to in-depth workshops, we create
-					technical content that gets developers excited - and helps
-					your product grow. Build real developer engagement with
-					content, workshops, and strategies that actually work.
-				</div>
-				<div
-					class="flex flex-col justify-center items-center mt-8 space-y-4 font-semibold text-center sm:flex-row sm:space-x-4 sm:space-y-0"
-				>
+			<div class="container py-12 mx-auto mt-px max-w-md text-left sm:max-w-xl sm:px-4 sm:py-12 md:max-w-none md:text-center">
+				<Heading level={1} class="text-4xl font-semibold tracking-tight text-left leading-tighter text-balance sm:mx-auto sm:text-center sm:text-5xl md:max-w-3xl md:text-6xl lg:text-7xl">
+					{siteContent.hero.title.main} <span class="pl-4 text-blue-400">{siteContent.hero.title.highlight}</span>
+				</Heading>
+				<Text class="mx-auto mt-5 max-w-[80ch] sm:text-center md:mt-8 md:text-2xl lg:max-w-lg">
+					{siteContent.hero.subtitle}
+				</Text>
+				<div class="flex flex-col justify-center items-center mt-8 space-y-4 font-semibold text-center sm:flex-row sm:space-x-4 sm:space-y-0">
 					<span class="inline-flex relative w-full sm:w-auto">
-						<a
-							href="#_"
-							class="inline-flex justify-center items-center px-6 py-3 w-full text-base leading-6 text-white bg-gray-900 rounded-full border border-transparent inset-shadow-xs inset-shadow-white/30 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 sm:w-auto md:px-9 md:py-4"
-						>
-							Let's Talk
+						<a href={siteContent.hero.primaryCTA.href} class="inline-flex justify-center items-center px-6 py-3 w-full text-base leading-6 text-white bg-gray-900 rounded-full border border-transparent inset-shadow-xs inset-shadow-white/30 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 sm:w-auto md:px-9 md:py-4">
+							{siteContent.hero.primaryCTA.text}
+						</a>
+					</span>
+					<span class="inline-flex relative w-full sm:w-auto">
+						<a href={siteContent.hero.secondaryCTA.href} class="inline-flex justify-center items-center px-6 py-3 w-full text-base leading-6 text-gray-900 bg-white rounded-full border border-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 sm:w-auto md:px-9 md:py-4">
+							{siteContent.hero.secondaryCTA.text}
 						</a>
 					</span>
 				</div>
@@ -40,120 +39,24 @@ import { Container, Section } from "@/components";
 		</Container>
 	</Section>
 
-	<Section id={"services"} title={"services"}>
+	<Section id={siteContent.services.id} title={siteContent.services.title}>
 		<Container>
 			<div class="mb-12 text-center">
-				<h2 class="mb-4 text-3xl font-black md:text-5xl">What We Do</h2>
-				<p class="mx-auto max-w-2xl text-xl text-gray-400">
-					Developer Relations is more than just writing docs. It's
-					about building genuine connections through valuable content.
-				</p>
+				<Heading level={2} class="mb-4 text-3xl font-black md:text-5xl">{siteContent.services.title}</Heading>
+				<Text class="mx-auto max-w-2xl text-xl">
+					{siteContent.services.subtitle}
+				</Text>
 			</div>
 			<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-				<div
-					class="glass hover:border-primary/50 cursor-pointer rounded-xl border border-border p-6 transition-all"
-				>
-					<div
-						class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent"
-					>
-						<svg
-							class="h-6 w-6 text-slate-900"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-							></path>
-						</svg>
-					</div>
-					<h3 class="mb-2 text-xl font-bold">Written Content</h3>
-					<p class="text-sm text-gray-400">
-						Technical blogs, tutorials, and documentation that
-						developers actually want to read.
-					</p>
-				</div>
-				<div
-					class="glass hover:border-primary/50 cursor-pointer rounded-xl border border-border p-6 transition-all"
-				>
-					<div
-						class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent"
-					>
-						<svg
-							class="h-6 w-6 text-slate-900"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-							></path>
-						</svg>
-					</div>
-					<h3 class="mb-2 text-xl font-bold">Written Content</h3>
-					<p class="text-sm text-gray-400">
-						Technical blogs, tutorials, and documentation that
-						developers actually want to read.
-					</p>
-				</div>
-				<div
-					class="glass hover:border-primary/50 cursor-pointer rounded-xl border border-border p-6 transition-all"
-				>
-					<div
-						class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent"
-					>
-						<svg
-							class="h-6 w-6 text-slate-900"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-							></path>
-						</svg>
-					</div>
-					<h3 class="mb-2 text-xl font-bold">Written Content</h3>
-					<p class="text-sm text-gray-400">
-						Technical blogs, tutorials, and documentation that
-						developers actually want to read.
-					</p>
-				</div>
-				<div
-					class="glass hover:border-primary/50 cursor-pointer rounded-xl border border-border p-6 transition-all"
-				>
-					<div
-						class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent"
-					>
-						<svg
-							class="h-6 w-6 text-slate-900"
-							fill="none"
-							stroke="currentColor"
-							viewBox="0 0 24 24"
-						>
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-							></path>
-						</svg>
-					</div>
-					<h3 class="mb-2 text-xl font-bold">Written Content</h3>
-					<p class="text-sm text-gray-400">
-						Technical blogs, tutorials, and documentation that
-						developers actually want to read.
-					</p>
-				</div>
+				{siteContent.services.items.map(service => (
+					<Card class="glass hover:border-primary/50 cursor-pointer rounded-xl border border-border p-6 transition-all">
+						<div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent">
+							<Icon name={service.icon} class="h-6 w-6" />
+						</div>
+						<Heading level={3} class="mb-2 text-xl font-bold">{service.title}</Heading>
+						<Text class="text-sm">{service.description}</Text>
+					</Card>
+				))}
 			</div>
 		</Container>
 	</Section>
@@ -170,12 +73,12 @@ import { Container, Section } from "@/components";
 					<h2 class="mb-6 text-3xl font-black md:text-4xl">
 						We Speak Your Language
 					</h2>
-					<p class="mb-6 text-lg text-gray-300">
+					<p class="mb-6 text-lg">
 						Led by Steve McDougall, known in the community as
 						"JustSteveKing" and "The API Guy", we understand what
 						developers need because we are developers.
 					</p>
-					<p class="mb-8 text-lg text-gray-300">
+					<p class="mb-8 text-lg">
 						We don't just create content – we craft experiences that
 						developers actually want to engage with, from RESTful
 						API tutorials to advanced architectural patterns.
@@ -207,11 +110,11 @@ import { Container, Section } from "@/components";
 								<span class="font-mono text-sm text-green-400">
 									GET
 								</span>
-								<span class="text-xs text-gray-500">
+								<span class="text-xs">
 									200 OK
 								</span>
 							</div>
-							<code class="text-sm text-gray-300">
+							<code class="text-sm">
 								/api/developers/engagement
 							</code>
 						</div>
@@ -222,11 +125,11 @@ import { Container, Section } from "@/components";
 								<span class="font-mono text-sm text-yellow-400">
 									POST
 								</span>
-								<span class="text-xs text-gray-500">
+								<span class="text-xs">
 									201 Created
 								</span>
 							</div>
-							<code class="text-sm text-gray-300">
+							<code class="text-sm">
 								/api/content/technical-blogs
 							</code>
 						</div>
@@ -237,11 +140,11 @@ import { Container, Section } from "@/components";
 								<span class="font-mono text-sm text-blue-400">
 									PUT
 								</span>
-								<span class="text-xs text-gray-500">
+								<span class="text-xs">
 									200 OK
 								</span>
 							</div>
-							<code class="text-sm text-gray-300">
+							<code class="text-sm">
 								/api/workshops/hands-on-training
 							</code>
 						</div>
@@ -252,11 +155,11 @@ import { Container, Section } from "@/components";
 								<span class="font-mono text-sm text-purple-400">
 									PATCH
 								</span>
-								<span class="text-xs text-gray-500">
+								<span class="text-xs">
 									204 NO CONTENT
 								</span>
 							</div>
-							<code class="text-sm text-gray-300">
+							<code class="text-sm">
 								/api/devrel/strategy
 							</code>
 						</div>
@@ -272,7 +175,7 @@ import { Container, Section } from "@/components";
 				<h2 class="mb-4 text-3xl font-black md:text-5xl">
 					Meet The Team
 				</h2>
-				<p class="mx-auto max-w-2xl text-xl text-gray-400">
+				<p class="mx-auto max-w-2xl text-xl">
 					A husband and wife team passionate about building better
 					developer experiences
 				</p>
@@ -283,9 +186,10 @@ import { Container, Section } from "@/components";
 					<div
 						class="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary"
 					>
-						<img
+						<Image
 							src="/images/steve.png"
 							alt="Steve McDougall"
+							format={"webp"}
 							height={400}
 							width={400}
 							decoding="async"
@@ -293,10 +197,10 @@ import { Container, Section } from "@/components";
 						/>
 					</div>
 					<h3 class="mb-2 text-2xl font-bold">Steve McDougall</h3>
-					<p class="mb-4 font-mono text-sm text-primary">
+					<p class="mb-4 font-mono text-sm">
 						The API Guy • JustSteveKing
 					</p>
-					<p class="mb-6 text-gray-300">
+					<p class="mb-6">
 						Technical content creator, API enthusiast, and developer
 						advocate with years of experience building and teaching.
 						Steve leads our technical content strategy and delivers
@@ -305,6 +209,7 @@ import { Container, Section } from "@/components";
 					<div class="flex space-x-4">
 						<a
 							href="#"
+							title="twitter" aria-labelledby="twitter"
 							class="transition-colors text-gray-400 hover:text-primary"
 						>
 							<svg
@@ -324,9 +229,10 @@ import { Container, Section } from "@/components";
 					<div
 						class="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary"
 					>
-						<img
+						<Image
 							src="/images/amy.png"
 							alt="Amy McDougall"
+							format={"webp"}
 							height={400}
 							width={400}
 							decoding="async"
@@ -337,7 +243,7 @@ import { Container, Section } from "@/components";
 					<p class="mb-4 font-mono text-sm text-primary">
 						Operations Mastermind
 					</p>
-					<p class="mb-6 text-gray-300">
+					<p class="mb-6">
 						The operational backbone of Lila Fuches, Amy ensures
 						everything runs smoothly behind the scenes. From project
 						management to client relations, she makes sure our
@@ -346,6 +252,7 @@ import { Container, Section } from "@/components";
 					<div class="flex space-x-4">
 						<a
 							href="#"
+							title="twitter" aria-labelledby="twitter"
 							class="transition-colors text-gray-400 hover:text-primary"
 						>
 							<svg
@@ -370,7 +277,7 @@ import { Container, Section } from "@/components";
 				<h2 class="mb-4 text-3xl font-black md:text-5xl">
 					Content That Converts
 				</h2>
-				<p class="mx-auto max-w-2xl text-xl text-gray-400">
+				<p class="mx-auto max-w-2xl text-xl ">
 					From quick tutorials to deep-dive workshops, we create
 					content that drives developer adoption
 				</p>
@@ -384,12 +291,12 @@ import { Container, Section } from "@/components";
 						<span class="font-mono text-xs text-green-400">
 							Blog Post
 						</span>
-						<span class="text-xs text-gray-500">5 min read</span>
+						<span class="text-xs">5 min read</span>
 					</div>
 					<h3 class="mb-2 text-lg font-bold">
 						Building RESTful APIs with Laravel
 					</h3>
-					<p class="mb-4 text-sm text-gray-400">
+					<p class="mb-4 text-sm ">
 						A comprehensive guide to building scalable, maintainable
 						APIs that developers love to work with.
 					</p>
@@ -426,12 +333,12 @@ import { Container, Section } from "@/components";
 						<span class="font-mono text-xs text-green-400">
 							Blog Post
 						</span>
-						<span class="text-xs text-gray-500">5 min read</span>
+						<span class="text-xs">5 min read</span>
 					</div>
 					<h3 class="mb-2 text-lg font-bold">
 						Building RESTful APIs with Laravel
 					</h3>
-					<p class="mb-4 text-sm text-gray-400">
+					<p class="mb-4 text-sm ">
 						A comprehensive guide to building scalable, maintainable
 						APIs that developers love to work with.
 					</p>
@@ -468,12 +375,12 @@ import { Container, Section } from "@/components";
 						<span class="font-mono text-xs text-green-400">
 							Blog Post
 						</span>
-						<span class="text-xs text-gray-500">5 min read</span>
+						<span class="text-xs">5 min read</span>
 					</div>
 					<h3 class="mb-2 text-lg font-bold">
 						Building RESTful APIs with Laravel
 					</h3>
-					<p class="mb-4 text-sm text-gray-400">
+					<p class="mb-4 text-sm ">
 						A comprehensive guide to building scalable, maintainable
 						APIs that developers love to work with.
 					</p>
@@ -520,13 +427,13 @@ import { Container, Section } from "@/components";
 						class="bg-gradient-to-r from-primary to-accent bg-clip-text mb-2 text-4xl font-black text-transparent"
 					>
 						<span
-							class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+							class="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent"
 						>
 							100%
 						</span>
 					</div>
 
-					<p class="text-gray-400">Developer-First Approach</p>
+					<p class="">Developer-First Approach</p>
 				</div>
 
 				<div class="text-center">
@@ -534,13 +441,13 @@ import { Container, Section } from "@/components";
 						class="bg-gradient-to-r from-primary to-accent bg-clip-text mb-2 text-4xl font-black text-transparent"
 					>
 						<span
-							class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+							class="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent"
 						>
 							500+
 						</span>
 					</div>
 
-					<p class="text-gray-400">Pieces of Content Created</p>
+					<p class="">Pieces of Content Created</p>
 				</div>
 
 				<div class="text-center">
@@ -548,13 +455,13 @@ import { Container, Section } from "@/components";
 						class="bg-gradient-to-r from-primary to-accent bg-clip-text mb-2 text-4xl font-black text-transparent"
 					>
 						<span
-							class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+							class="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent"
 						>
 							50k+
 						</span>
 					</div>
 
-					<p class="text-gray-400">Developers Reached</p>
+					<p class="">Developers Reached</p>
 				</div>
 
 				<div class="text-center">
@@ -562,19 +469,19 @@ import { Container, Section } from "@/components";
 						class="bg-gradient-to-r from-primary to-accent bg-clip-text mb-2 text-4xl font-black text-transparent"
 					>
 						<span
-							class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+							class="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent"
 						>
 							12+
 						</span>
 					</div>
 
-					<p class="text-gray-400">Years of Experience</p>
+					<p class="">Years of Experience</p>
 				</div>
 			</div>
 		</Container>
 	</Section>
 
-	<Section id="contact" title={"contact"}>
+	<Section id="contact" title={"contact"} class="text-center">
 		<Container>
 			<div class="glass border-border/30 rounded-2xl border p-12">
 				<h2 class="mb-6 text-3xl font-black md:text-5xl">

@@ -5,6 +5,16 @@ import {
 	Navigation,
 	SkipLink
 } from "@/components";
+
+interface Props {
+    title: string;
+    description: string;
+};
+
+const {
+    title,
+    description,
+} = Astro.props as Props;
 ---
 
 <!DOCTYPE html>
@@ -13,28 +23,25 @@ import {
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Site Title</title>
+    <title>{title}</title>
 
     <!-- Basic SEO -->
-    <meta name="description" content="{{ $metaDescription ?? 'Default site description' }}">
+    <meta name="description" content={description}>
     <meta name="keywords" content="{{ $metaKeywords ?? 'keyword1, keyword2, keyword3' }}">
-    <link rel="canonical" href="{{ url()->current() }}">
+    <link rel="canonical" href={Astro.url}>
 
     <!-- Open Graph & Facebook -->
-    <meta property="og:title" content="{{ $title }}">
-    <meta property="og:description" content="{{ $metaDescription ?? 'Default site description' }}">
+    <meta property="og:title" content={title}>
+    <meta property="og:description" content={description}>
     <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:image" content="{{ $metaImage ?? asset('/images/open-graph.png') }}">
+    <meta property="og:url" content={Astro.url}>
+    <meta property="og:image" content={new URL('/images/open-graph.png', Astro.url).href}>
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ $title }}">
-    <meta name="twitter:description" content="{{ $metaDescription ?? 'Default site description' }}">
-    <meta name="twitter:image" content="{{ $metaImage ?? asset('/images/open-graph.png') }}">
-
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=inter:400,500,600" rel="stylesheet"/>
+    <meta name="twitter:title" content={title}>
+    <meta name="twitter:description" content={description}>
+    <meta name="twitter:image" content={new URL('/images/open-graph.png', Astro.url).href}>
 </head>
 <body class="relative min-h-screen font-sans antialiased bg-slate-50 dark:bg-slate-900 text-slate-900 dark:text-slate-50">
     <SkipLink href="main-content" />

@@ -1,14 +1,17 @@
 // Blocks
-import Logo from "./blocks/logo.astro";
+import Logo from "./blocks/Logo.astro";
 
 // Layout
-import Footer from "./layout/footer.astro";
-import Navigation from "./layout/navigation.astro";
+import Footer from "./layout/Footer.astro";
+import Navigation from "./layout/Navigation.astro";
 
 // UI
-import Container from "./ui/container.astro";
-import Section from "./ui/section.astro";
-import SkipLink from "./ui/skip-link.astro";
+import Card from "./ui/Card.astro";
+import Container from "./ui/Container.astro";
+import Heading from "./ui/Heading.astro";
+import Section from "./ui/Section.astro";
+import SkipLink from "./ui/SkipLink.astro";
+import Text from "./ui/Text.astro";
 
 export {
     // Blocks
@@ -19,7 +22,10 @@ export {
     Navigation,
 
     // UI
+    Card,
     Container,
+    Heading,
     Section,
     SkipLink,
+    Text,
 };
