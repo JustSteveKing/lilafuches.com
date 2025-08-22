@@ -1,9 +1,9 @@
 // Blocks
-import Logo from "./blocks/Logo.astro";
+export { default as Logo } from "./blocks/Logo.astro";
 
 // Layout
-import Footer from "./layout/Footer.astro";
-import Navigation from "./layout/Navigation.astro";
+export { default as Footer } from "./layout/Footer.astro";
+export { default as Navigation } from "./layout/Navigation.astro";
 
 // UI Components
 export { default as ApiEndpointCard } from "./ui/ApiEndpointCard.astro";
@@ -20,12 +20,3 @@ export { default as TeamMemberCard } from "./ui/TeamMemberCard.astro";
 export { default as TestimonialGrid } from "./ui/TestimonialGrid.astro";
 export { default as Text } from "./ui/Text.astro";
 export { default as ThemeToggle } from "./ui/ThemeToggle.astro";
-
-export {
-    // Blocks
-    Logo,
-
-    // Layout
-    Footer,
-    Navigation,
-};
