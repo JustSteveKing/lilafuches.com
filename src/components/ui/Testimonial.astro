@@ -1,0 +1,30 @@
+---
+import Text from "./Text.astro";
+
+interface Props {
+  quote: string;
+  author: string;
+  company: string;
+  role: string;
+  class?: string;
+}
+
+const { quote, author, company, role, class: className = "" } = Astro.props as Props;
+---
+
+<blockquote class={`bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-xl p-8 border border-white/10 ${className}`} role="complementary">
+  <div class="flex items-start mb-6">
+    <div class="text-4xl text-primary/40 mr-4 leading-none">"</div>
+    <Text class="text-lg italic leading-relaxed text-gray-300">
+      {quote}
+    </Text>
+  </div>
+  <footer class="flex items-center">
+    <div>
+      <cite class="not-italic">
+        <div class="font-semibold text-white">{author}</div>
+        <div class="text-sm text-gray-400">{role}, {company}</div>
+      </cite>
+    </div>
+  </footer>
+</blockquote>

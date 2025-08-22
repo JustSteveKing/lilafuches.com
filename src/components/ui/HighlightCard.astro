@@ -1,0 +1,51 @@
+---
+import Heading from "./Heading.astro";
+import Text from "./Text.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  class?: string;
+}
+
+const { title, description, class: className = "" } = Astro.props as Props;
+
+// Generate a subtle color based on the title hash for variety
+const colors = ['blue', 'green', 'purple', 'yellow'] as const;
+type ColorType = typeof colors[number];
+const titleHash = title.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+const colorIndex = titleHash % colors.length;
+const color: ColorType = colors[colorIndex];
+
+const colorClasses: Record<ColorType, { border: string; title: string; glow: string }> = {
+  blue: {
+    border: "border-l-blue-500/40",
+    title: "text-blue-400",
+    glow: "shadow-blue-500/10"
+  },
+  green: {
+    border: "border-l-green-500/40", 
+    title: "text-green-400",
+    glow: "shadow-green-500/10"
+  },
+  purple: {
+    border: "border-l-purple-500/40",
+    title: "text-purple-400", 
+    glow: "shadow-purple-500/10"
+  },
+  yellow: {
+    border: "border-l-yellow-500/40",
+    title: "text-yellow-400",
+    glow: "shadow-yellow-500/10"
+  }
+};
+---
+
+<div class={`py-4 ${colorClasses[color].border} pl-4 ${colorClasses[color].glow} transition-all duration-300 hover:shadow-lg hover:${colorClasses[color].glow.replace('/10', '/20')} group ${className}`} role="article">
+  <Heading level={4} class={`text-lg font-semibold mb-2 ${colorClasses[color].title} drop-shadow-sm group-hover:brightness-110 transition-all duration-300`}>
+    {title}
+  </Heading>
+  <Text class="text-sm text-foreground/70 leading-relaxed group-hover:text-foreground/85 transition-colors duration-300">
+    {description}
+  </Text>
+</div>

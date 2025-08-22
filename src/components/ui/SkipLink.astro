@@ -1,15 +1,18 @@
 ---
 interface Props {
     href: string;
+    class?: string;
 }
 
 const {
-    href = 'main-content'
+    href = '#main-content',
+    class: className = ''
 } = Astro.props as Props;
 ---
 
-<a href={href}
-   class="sr-only focus:not-sr-only absolute top-2 left-2 z-50 bg-white text-blue-700 px-4 py-2 rounded shadow transition"
+<a 
+  href={href}
+  class={`skip-link ${className}`}
 >
-    Skip to main content
+  Skip to main content
 </a>

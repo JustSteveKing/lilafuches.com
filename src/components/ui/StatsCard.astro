@@ -1,0 +1,89 @@
+---
+import Heading from "@/components/ui/Heading.astro";
+import Text from "@/components/ui/Text.astro";
+
+interface Props {
+  number: string;
+  label: string;
+  index?: number;
+}
+
+const { number, label, index = 0 } = Astro.props as Props;
+
+// Generate unique colors for each stat - consistent with other components
+const colors = [
+  {
+    gradient: "from-blue-500 to-blue-600",
+    border: "hover:border-blue-500/50",
+    glow: "hover:shadow-blue-500/20",
+    bg: "hover:bg-blue-500/5",
+    accent: "text-blue-400",
+    icon: "🚀",
+    iconBg: "bg-blue-500/10 border-blue-500/20"
+  },
+  {
+    gradient: "from-green-500 to-green-600",
+    border: "hover:border-green-500/50", 
+    glow: "hover:shadow-green-500/20",
+    bg: "hover:bg-green-500/5",
+    accent: "text-green-400",
+    icon: "📚",
+    iconBg: "bg-green-500/10 border-green-500/20"
+  },
+  {
+    gradient: "from-purple-500 to-purple-600",
+    border: "hover:border-purple-500/50",
+    glow: "hover:shadow-purple-500/20",
+    bg: "hover:bg-purple-500/5",
+    accent: "text-purple-400",
+    icon: "👥",
+    iconBg: "bg-purple-500/10 border-purple-500/20"
+  },
+  {
+    gradient: "from-yellow-500 to-yellow-600",
+    border: "hover:border-yellow-500/50",
+    glow: "hover:shadow-yellow-500/20",
+    bg: "hover:bg-yellow-500/5",
+    accent: "text-yellow-400",
+    icon: "⭐",
+    iconBg: "bg-yellow-500/10 border-yellow-500/20"
+  }
+];
+
+const colorIndex = index % colors.length;
+const color = colors[colorIndex];
+---
+
+<article 
+  class={`glass text-center p-8 rounded-xl border border-border/50 ${color.border} ${color.glow} ${color.bg} hover:shadow-xl transition-all duration-300 hover:scale-105 group relative overflow-hidden`}
+  role="figure"
+  aria-labelledby={`stat-label-${label.replace(/\s+/g, '-').toLowerCase()}`}
+>
+  {/* Subtle background gradient */}
+  <div class="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-300 bg-gradient-to-br from-current to-transparent pointer-events-none"></div>
+  
+  {/* Icon container */}
+  <div class={`w-16 h-16 mx-auto mb-6 rounded-2xl ${color.iconBg} border flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:border-opacity-40 relative z-10`}>
+    <span class="text-2xl transition-transform duration-300 group-hover:scale-110">
+      {color.icon}
+    </span>
+  </div>
+  
+  <div class="relative z-10">
+    <Heading 
+      level={3} 
+      class={`bg-gradient-to-r ${color.gradient} bg-clip-text text-5xl font-black text-transparent transition-all duration-300 group-hover:scale-105 mb-3`}
+      aria-label={`Statistic: ${number}`}
+    >
+      {number}
+    </Heading>
+    
+    <Text 
+      id={`stat-label-${label.replace(/\s+/g, '-').toLowerCase()}`} 
+      role="caption"
+      class="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors duration-300 leading-relaxed max-w-xs mx-auto"
+    >
+      {label}
+    </Text>
+  </div>
+</article>

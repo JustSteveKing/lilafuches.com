@@ -1,0 +1,69 @@
+---
+import Heading from "@/components/ui/Heading.astro";
+import Text from "@/components/ui/Text.astro";
+import { Image } from "astro:assets";
+
+interface Props {
+    name: string;
+    avatar: string;
+    role: string;
+    description: string;
+    socialLinks?: { url: string; platform: string }[];
+}
+
+const { name, avatar, role, description, socialLinks = [] } = Astro.props as Props;
+
+// Generate a unique color based on the name hash
+const colors = [
+  {
+    gradient: "from-blue-500 to-blue-600",
+    border: "hover:border-blue-500/50",
+    glow: "hover:shadow-blue-500/20",
+    accent: "text-blue-400",
+    roleGlow: "bg-blue-500/10 text-blue-400 border-blue-500/30"
+  },
+  {
+    gradient: "from-green-500 to-green-600", 
+    border: "hover:border-green-500/50",
+    glow: "hover:shadow-green-500/20",
+    accent: "text-green-400",
+    roleGlow: "bg-green-500/10 text-green-400 border-green-500/30"
+  },
+  {
+    gradient: "from-purple-500 to-purple-600",
+    border: "hover:border-purple-500/50", 
+    glow: "hover:shadow-purple-500/20",
+    accent: "text-purple-400",
+    roleGlow: "bg-purple-500/10 text-purple-400 border-purple-500/30"
+  },
+  {
+    gradient: "from-yellow-500 to-yellow-600",
+    border: "hover:border-yellow-500/50",
+    glow: "hover:shadow-yellow-500/20", 
+    accent: "text-yellow-400",
+    roleGlow: "bg-yellow-500/10 text-yellow-400 border-yellow-500/30"
+  }
+];
+
+const nameHash = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
+const colorIndex = nameHash % colors.length;
+const color = colors[colorIndex];
+---
+
+<article class={`glass ${color.border} ${color.glow} group hover:shadow-xl rounded-xl border border-border/50 p-8 flex flex-col items-center transition-all duration-300 hover:scale-105`}>
+  <figure class={`mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br ${color.gradient} overflow-hidden shadow-lg group-hover:shadow-xl transition-all duration-300 ring-2 ring-white/10 group-hover:ring-white/20`}>
+    <Image src={avatar} alt={name} height={80} width={80} loading="lazy" decoding="async" class="size-24 object-cover" />
+  </figure>
+  <Heading level={3} class={`mb-2 text-2xl font-bold group-hover:${color.accent} transition-colors duration-300`}>{name}</Heading>
+  <div class={`mb-4 px-3 py-1 rounded-full border ${color.roleGlow} font-mono text-sm transition-all duration-300`}>
+    {role}
+  </div>
+  <Text class="mb-6 text-center group-hover:text-foreground/90 transition-colors duration-300">{description}</Text>
+  <nav class="flex space-x-4" aria-label={`Social links for ${name}`}>
+    {socialLinks.map((link: { url: string; platform: string }) => (
+      <a href={link.url} target="_blank" rel="noopener" aria-label={link.platform} class={`transition-all duration-300 text-gray-400 hover:${color.accent} hover:scale-110 font-medium`}>
+        {link.platform}
+      </a>
+    ))}
+  </nav>
+</article>

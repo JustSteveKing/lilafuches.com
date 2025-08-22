@@ -7,494 +7,325 @@ import {
 	Section,
 	Text,
 } from "@/components";
-import { Image } from "astro:assets";
+import ResourceCard from "@/components/ui/ResourceCard.astro";
+import TeamMemberCard from "@/components/ui/TeamMemberCard.astro";
+import ApiEndpointCard from "@/components/ui/ApiEndpointCard.astro";
+import StatsCard from "@/components/ui/StatsCard.astro";
+import Button from "@/components/ui/Button.astro";
+import ClientLogo from "@/components/ui/ClientLogo.astro";
+import Testimonial from "@/components/ui/Testimonial.astro";
+import TestimonialGrid from "@/components/ui/TestimonialGrid.astro";
+import HighlightCard from "@/components/ui/HighlightCard.astro";
 
 import { siteContent } from "@/utils/siteContent";
 import { Icon } from 'astro-icon/components';
+
+// Define brand colors for each client
+const brandColors: Record<string, string> = {
+	'Permit.io': '#FF953F',
+	'Warp': '', // Special case - handled in component for theme adaptivity
+	'Hookdeck': '#04C',
+	'Sevalla': '#F97316', 
+	'Tighten': '#FFBC01',
+	'Zuplo': '#FF24BD'
+};
+
+// Additional structured data for homepage
+const homepageStructuredData = {
+	"@context": "https://schema.org",
+	"@type": "WebPage",
+	"name": siteContent.site.title,
+	"description": siteContent.site.description,
+	"url": "https://lilafuches.com/",
+	"mainEntity": {
+		"@type": "Organization",
+		"name": "Lila Fuches",
+		"description": siteContent.site.description,
+		"url": "https://lilafuches.com/",
+		"foundingDate": "2019",
+		"serviceType": [
+			"Developer Relations",
+			"Technical Content Creation", 
+			"Developer Workshops",
+			"API Documentation"
+		],
+		"areaServed": "Global"
+	},
+	"breadcrumb": {
+		"@type": "BreadcrumbList",
+		"itemListElement": [
+			{
+				"@type": "ListItem",
+				"position": 1,
+				"name": "Home",
+				"item": "https://lilafuches.com/"
+			}
+		]
+	}
+};
 ---
 
-<Layout title="Home Page" description="Home Page Description">
-	<Section id={"hero"} class={"pb-20"} title={"hero"}>
+<Layout 
+	title={siteContent.site.title} 
+	description={siteContent.site.description}
+	keywords={siteContent.site.keywords}
+>
+	<!-- Additional homepage structured data -->
+	<script type="application/ld+json" set:html={JSON.stringify(homepageStructuredData)} slot="head"></script>
+	<Section id={"Hero"} class={"animate-in fade-in pb-20 relative"} title={"hero"}>
 		<Container>
-			<div class="container py-12 mx-auto mt-px max-w-md text-left sm:max-w-xl sm:px-4 sm:py-12 md:max-w-none md:text-center">
-				<Heading level={1} class="text-4xl font-semibold tracking-tight text-left leading-tighter text-balance sm:mx-auto sm:text-center sm:text-5xl md:max-w-3xl md:text-6xl lg:text-7xl">
-					{siteContent.hero.title.main} <span class="pl-4 text-blue-400">{siteContent.hero.title.highlight}</span>
+			{/* Background decorative elements with extended reach */}
+			<div class="absolute inset-0 -z-10">
+				{/* Extended background that flows beyond section boundaries */}
+				<div class="absolute -top-40 -bottom-40 -left-20 -right-20 bg-gradient-to-b from-transparent via-blue-500/8 to-transparent"></div>
+				
+				{/* Large floating gradient orbs */}
+				<div class="absolute -top-32 left-0 w-[600px] h-[600px] bg-gradient-to-br from-blue-500/15 via-blue-500/8 to-transparent rounded-full blur-3xl"></div>
+				<div class="absolute -bottom-32 right-0 w-[700px] h-[700px] bg-gradient-to-tl from-purple-500/15 via-purple-500/8 to-transparent rounded-full blur-3xl"></div>
+				
+				{/* Central atmospheric glow */}
+				<div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[1200px] h-[800px] bg-gradient-radial from-blue-500/5 via-purple-500/3 to-transparent rounded-full blur-3xl"></div>
+				
+				{/* Smooth transitions */}
+				<div class="absolute -top-20 left-0 right-0 h-40 bg-gradient-to-b from-background via-background/80 to-transparent"></div>
+				<div class="absolute -bottom-20 left-0 right-0 h-40 bg-gradient-to-t from-background via-background/60 to-transparent"></div>
+			</div>
+			
+			<header class="container py-12 mx-auto mt-px max-w-md text-left sm:max-w-xl sm:px-4 sm:py-12 md:max-w-none md:text-center relative z-10">
+				{/* Enhanced badge with hover effects */}
+				<div class="bg-gradient-to-r from-blue-500/20 to-purple-500/20 text-blue-400 mb-8 inline-block rounded-full px-4 py-2 font-mono text-sm border border-blue-500/30 backdrop-blur-sm hover:border-blue-500/50 hover:bg-blue-500/30 transition-all duration-300 hover:scale-105 group" role="banner">
+					<span class="relative z-10">{siteContent.hero.badge}</span>
+				</div>
+				
+				{/* Enhanced heading with gradient effects */}
+				<Heading level={1} class="text-4xl font-semibold tracking-tight text-left leading-tighter text-balance sm:mx-auto sm:text-center sm:text-5xl md:max-w-3xl md:text-6xl lg:text-7xl mb-6 group">
+					<span class="text-foreground group-hover:bg-gradient-to-r group-hover:from-blue-600 group-hover:to-purple-600 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-500">
+						{siteContent.hero.title.main}
+					</span>
+					<span class="bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent pl-4 animate-pulse">
+						{siteContent.hero.title.highlight}
+					</span>
 				</Heading>
-				<Text class="mx-auto mt-5 max-w-[80ch] sm:text-center md:mt-8 md:text-2xl lg:max-w-lg">
+				
+				{/* Enhanced subtitle */}
+				<Text class="mx-auto mt-6 max-w-[80ch] sm:text-center md:mt-8 md:text-2xl lg:max-w-lg text-muted-foreground hover:text-foreground transition-colors duration-300" role="doc-subtitle">
 					{siteContent.hero.subtitle}
 				</Text>
-				<div class="flex flex-col justify-center items-center mt-8 space-y-4 font-semibold text-center sm:flex-row sm:space-x-4 sm:space-y-0">
-					<span class="inline-flex relative w-full sm:w-auto">
-						<a href={siteContent.hero.primaryCTA.href} class="inline-flex justify-center items-center px-6 py-3 w-full text-base leading-6 text-white bg-gray-900 rounded-full border border-transparent inset-shadow-xs inset-shadow-white/30 hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 sm:w-auto md:px-9 md:py-4">
-							{siteContent.hero.primaryCTA.text}
-						</a>
-					</span>
-					<span class="inline-flex relative w-full sm:w-auto">
-						<a href={siteContent.hero.secondaryCTA.href} class="inline-flex justify-center items-center px-6 py-3 w-full text-base leading-6 text-gray-900 bg-white rounded-full border border-gray-900 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-800 focus:ring-offset-2 sm:w-auto md:px-9 md:py-4">
-							{siteContent.hero.secondaryCTA.text}
-						</a>
-					</span>
-				</div>
-			</div>
+				
+				{/* Enhanced CTA buttons */}
+				<nav class="flex flex-col justify-center items-center mt-10 space-y-4 font-semibold text-center sm:flex-row sm:space-x-6 sm:space-y-0" aria-label="Primary navigation actions">
+					<Button 
+						variant="primary" 
+						size="lg" 
+						href={siteContent.hero.primaryCTA.href} 
+						aria-describedby="hero-description"
+						class="transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25 relative overflow-hidden group"
+					>
+						<span class="relative z-10">{siteContent.hero.primaryCTA.text}</span>
+						<div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+					</Button>
+					<Button 
+						variant="secondary" 
+						size="lg" 
+						href={siteContent.hero.secondaryCTA.href} 
+						aria-describedby="hero-description"
+						class="transition-all duration-300 hover:scale-105 hover:shadow-lg border-blue-500/30 hover:border-blue-500/50 text-blue-400 hover:text-blue-300 hover:bg-blue-500/10"
+					>
+						{siteContent.hero.secondaryCTA.text}
+					</Button>
+				</nav>
+				<p id="hero-description" class="sr-only">
+					Navigate to our contact section or view our content showcase to learn more about our developer relations services.
+				</p>
+			</header>
 		</Container>
 	</Section>
 
-	<Section id={siteContent.services.id} title={siteContent.services.title}>
+	<Section id={siteContent.services.id} title={siteContent.services.title} class={"animate-in fade-in"}>
 		<Container>
-			<div class="mb-12 text-center">
+			<header class="mb-12 text-center">
 				<Heading level={2} class="mb-4 text-3xl font-black md:text-5xl">{siteContent.services.title}</Heading>
 				<Text class="mx-auto max-w-2xl text-xl">
 					{siteContent.services.subtitle}
 				</Text>
+			</header>
+			<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4" role="list" aria-label="Our services">
+				{siteContent.services.items.map((service, index) => {
+					const colors = [
+						{ 
+							gradient: "from-blue-500 to-blue-600", 
+							border: "hover:border-blue-500/50", 
+							glow: "hover:shadow-blue-500/20",
+							text: "group-hover:text-blue-400"
+						},
+						{ 
+							gradient: "from-green-500 to-green-600", 
+							border: "hover:border-green-500/50", 
+							glow: "hover:shadow-green-500/20",
+							text: "group-hover:text-green-400"
+						},
+						{ 
+							gradient: "from-purple-500 to-purple-600", 
+							border: "hover:border-purple-500/50", 
+							glow: "hover:shadow-purple-500/20",
+							text: "group-hover:text-purple-400"
+						},
+						{ 
+							gradient: "from-yellow-500 to-yellow-600", 
+							border: "hover:border-yellow-500/50", 
+							glow: "hover:shadow-yellow-500/20",
+							text: "group-hover:text-yellow-400"
+						}
+					];
+					const color = colors[index % colors.length];
+					
+					return (
+						<Card class={`glass ${color.border} ${color.glow} group hover:shadow-xl cursor-pointer rounded-xl border border-border p-6 transition-all duration-300 hover:scale-105`} role="listitem">
+							<div class={`mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br ${color.gradient} shadow-lg group-hover:shadow-xl transition-all duration-300`} aria-hidden="true">
+								<Icon name={service.icon} class="h-6 w-6 text-white drop-shadow-sm" />
+							</div>
+							<Heading level={3} class={`mb-2 text-xl font-bold transition-colors duration-300 ${color.text}`}>{service.title}</Heading>
+							<Text class="text-sm group-hover:text-foreground/85 transition-colors duration-300">{service.description}</Text>
+						</Card>
+					);
+				})}
 			</div>
-			<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-				{siteContent.services.items.map(service => (
-					<Card class="glass hover:border-primary/50 cursor-pointer rounded-xl border border-border p-6 transition-all">
-						<div class="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent">
-							<Icon name={service.icon} class="h-6 w-6" />
-						</div>
-						<Heading level={3} class="mb-2 text-xl font-bold">{service.title}</Heading>
-						<Text class="text-sm">{service.description}</Text>
-					</Card>
+		</Container>
+	</Section>
+
+	<Section id="approach" title={siteContent.approach.title} class={"animate-in fade-in"}>
+		<Container>
+			<div class="grid items-center gap-12 lg:grid-cols-2">
+				<article>
+					<div class="bg-primary/20 text-primary mb-4 inline-block rounded px-3 py-1 font-mono text-sm" role="banner">
+						{siteContent.approach.badge}
+					</div>
+					<Heading level={2} class="mb-6 text-3xl font-black md:text-4xl">{siteContent.approach.title}</Heading>
+					<Text class="mb-6 text-lg">{siteContent.approach.subtitle}</Text>
+					<Text class="mb-8 text-lg">{siteContent.approach.description}</Text>
+					
+					<div class="grid gap-4 md:grid-cols-1" role="list" aria-label="Our approach highlights">
+						{siteContent.approach.highlights.map((highlight, index) => (
+							<div role="listitem">
+								<HighlightCard 
+									title={highlight.title}
+									description={highlight.description}
+								/>
+							</div>
+						))}
+					</div>
+				</article>
+				<aside aria-label="API endpoint examples">
+					<div class="space-y-4" role="list">
+						{siteContent.approach.apiEndpoints.map((endpoint, index) => (
+							<div role="listitem">
+								<ApiEndpointCard 
+									method={endpoint.method}
+									endpoint={endpoint.endpoint}
+									status={endpoint.status}
+									color={endpoint.color as "green" | "yellow" | "blue" | "purple"}
+								/>
+							</div>
+						))}
+					</div>
+				</aside>
+			</div>
+		</Container>
+	</Section>
+
+	<Section id={siteContent.about.id} title={siteContent.about.title} class={"animate-in fade-in"}>
+		<Container>
+			<header class="mb-12 text-center">
+				<Heading level={2} class="mb-4 text-3xl font-black md:text-5xl">{siteContent.about.title}</Heading>
+				<Text class="mx-auto max-w-prose text-xl">{siteContent.about.subtitle}</Text>
+			</header>
+			<div class="mx-auto grid max-w-4xl gap-8 md:grid-cols-2" role="list" aria-label="Team members">
+				{siteContent.about.team.map((member, index) => (
+					<div role="listitem">
+						<TeamMemberCard {...member} />
+					</div>
 				))}
 			</div>
 		</Container>
 	</Section>
 
-	<Section id="cta" title={"cta"}>
+	<Section id={siteContent.clients.id} title={siteContent.clients.title} class={"animate-in fade-in"}>
 		<Container>
-			<div class="grid items-center gap-12 lg:grid-cols-2">
-				<div>
-					<div
-						class="bg-primary/20 text-primary mb-4 inline-block rounded px-3 py-1 font-mono text-sm"
-					>
-						THE API GUY
-					</div>
-					<h2 class="mb-6 text-3xl font-black md:text-4xl">
-						We Speak Your Language
-					</h2>
-					<p class="mb-6 text-lg">
-						Led by Steve McDougall, known in the community as
-						"JustSteveKing" and "The API Guy", we understand what
-						developers need because we are developers.
-					</p>
-					<p class="mb-8 text-lg">
-						We don't just create content – we craft experiences that
-						developers actually want to engage with, from RESTful
-						API tutorials to advanced architectural patterns.
-					</p>
-					<div class="flex items-center space-x-6">
-						<a
-							href="#"
-							class="text-primary hover:text-accent flex items-center transition-colors"
-						>
-							<svg
-								class="mr-2 h-5 w-5"
-								fill="currentColor"
-								viewBox="0 0 24 24"
-							>
-								<path
-									d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
-								></path>
-							</svg>
-							@JustSteveKing
-						</a>
-					</div>
-				</div>
-				<div>
-					<div class="space-y-4">
-						<div
-							class="bg-card-bg border border-border font-mono rounded-lg p-4"
-						>
-							<div class="mb-2 flex items-center justify-between">
-								<span class="font-mono text-sm text-green-400">
-									GET
-								</span>
-								<span class="text-xs">
-									200 OK
-								</span>
-							</div>
-							<code class="text-sm">
-								/api/developers/engagement
-							</code>
-						</div>
-						<div
-							class="bg-card-bg border border-border font-mono rounded-lg p-4"
-						>
-							<div class="mb-2 flex items-center justify-between">
-								<span class="font-mono text-sm text-yellow-400">
-									POST
-								</span>
-								<span class="text-xs">
-									201 Created
-								</span>
-							</div>
-							<code class="text-sm">
-								/api/content/technical-blogs
-							</code>
-						</div>
-						<div
-							class="bg-card-bg border border-border font-mono rounded-lg p-4"
-						>
-							<div class="mb-2 flex items-center justify-between">
-								<span class="font-mono text-sm text-blue-400">
-									PUT
-								</span>
-								<span class="text-xs">
-									200 OK
-								</span>
-							</div>
-							<code class="text-sm">
-								/api/workshops/hands-on-training
-							</code>
-						</div>
-						<div
-							class="bg-card-bg border border-border font-mono rounded-lg p-4"
-						>
-							<div class="mb-2 flex items-center justify-between">
-								<span class="font-mono text-sm text-purple-400">
-									PATCH
-								</span>
-								<span class="text-xs">
-									204 NO CONTENT
-								</span>
-							</div>
-							<code class="text-sm">
-								/api/devrel/strategy
-							</code>
-						</div>
-					</div>
-				</div>
-			</div>
-		</Container>
-	</Section>
-
-	<Section id="about" title={"about"}>
-		<Container>
-			<div class="mb-12 text-center">
-				<h2 class="mb-4 text-3xl font-black md:text-5xl">
-					Meet The Team
-				</h2>
-				<p class="mx-auto max-w-2xl text-xl">
-					A husband and wife team passionate about building better
-					developer experiences
-				</p>
-			</div>
-
-			<div class="mx-auto grid max-w-4xl gap-8 md:grid-cols-2">
-				<div class="glass rounded-xl border border-border p-8">
-					<div
-						class="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary"
-					>
-						<Image
-							src="/images/steve.png"
-							alt="Steve McDougall"
-							format={"webp"}
-							height={400}
-							width={400}
-							decoding="async"
-							class="size-18"
+			<header class="mb-12 text-center">
+				<Heading level={2} class="mb-4 text-3xl font-black md:text-5xl">{siteContent.clients.title}</Heading>
+				<Text class="mx-auto max-w-prose text-xl">
+					{siteContent.clients.subtitle}
+				</Text>
+			</header>
+			
+			<div class="grid gap-6 md:grid-cols-3 lg:grid-cols-6 mb-12" role="list" aria-label="Client logos">
+				{siteContent.clients.logos.map((client, index) => (
+					<div role="listitem">
+						<ClientLogo 
+							name={client.name}
+							logo={client.logo}
+							alt={client.alt}
+							website={client.website}
+							color={brandColors[client.name]}
 						/>
 					</div>
-					<h3 class="mb-2 text-2xl font-bold">Steve McDougall</h3>
-					<p class="mb-4 font-mono text-sm">
-						The API Guy • JustSteveKing
-					</p>
-					<p class="mb-6">
-						Technical content creator, API enthusiast, and developer
-						advocate with years of experience building and teaching.
-						Steve leads our technical content strategy and delivers
-						workshops that developers rave about.
-					</p>
-					<div class="flex space-x-4">
-						<a
-							href="#"
-							title="twitter" aria-labelledby="twitter"
-							class="transition-colors text-gray-400 hover:text-primary"
-						>
-							<svg
-								class="h-5 w-5"
-								fill="currentColor"
-								viewBox="0 0 24 24"
-							>
-								<path
-									d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
-								></path>
-							</svg>
-						</a>
-					</div>
-				</div>
+				))}
+			</div>
 
-				<div class="glass rounded-xl border border-border p-8">
-					<div
-						class="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-primary to-secondary"
-					>
-						<Image
-							src="/images/amy.png"
-							alt="Amy McDougall"
-							format={"webp"}
-							height={400}
-							width={400}
-							decoding="async"
-							class="size-18"
-						/>
-					</div>
-					<h3 class="mb-2 text-2xl font-bold">Amy McDougall</h3>
-					<p class="mb-4 font-mono text-sm text-primary">
-						Operations Mastermind
-					</p>
-					<p class="mb-6">
-						The operational backbone of Lila Fuches, Amy ensures
-						everything runs smoothly behind the scenes. From project
-						management to client relations, she makes sure our
-						content delivers on time and exceeds expectations
-					</p>
-					<div class="flex space-x-4">
-						<a
-							href="#"
-							title="twitter" aria-labelledby="twitter"
-							class="transition-colors text-gray-400 hover:text-primary"
-						>
-							<svg
-								class="h-5 w-5"
-								fill="currentColor"
-								viewBox="0 0 24 24"
-							>
-								<path
-									d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"
-								></path>
-							</svg>
-						</a>
-					</div>
-				</div>
+			<div class="max-w-6xl mx-auto">
+				<TestimonialGrid 
+					testimonials={[siteContent.clients.testimonial, ...siteContent.clients.alternateTestimonials]}
+					columns={2}
+				/>
 			</div>
 		</Container>
 	</Section>
 
-	<Section id="content" title={"content"}>
+	<Section id="statistics" title={siteContent.statistics.title} class={"animate-in fade-in"}>
 		<Container>
-			<div class="mb-12 text-center">
-				<h2 class="mb-4 text-3xl font-black md:text-5xl">
-					Content That Converts
-				</h2>
-				<p class="mx-auto max-w-2xl text-xl ">
-					From quick tutorials to deep-dive workshops, we create
-					content that drives developer adoption
+			<header class="mb-12 text-center">
+				<Heading level={2} class="mb-4 text-3xl font-black md:text-5xl">{siteContent.statistics.title}</Heading>
+			</header>
+			<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4" role="list" aria-label="Company statistics">
+				{siteContent.statistics.stats.map((stat, index) => (
+					<div role="listitem">
+						<StatsCard {...stat} index={index} />
+					</div>
+				))}
+			</div>
+		</Container>
+	</Section>
+
+	<Section id={siteContent.cta.id} title={siteContent.cta.title} class={"animate-in fade-in"}>
+		<Container>
+			<div class="glass rounded-2xl border border-border/50 hover:border-blue-500/50 hover:shadow-blue-500/20 hover:bg-blue-500/5 p-12 text-center transition-all duration-300 hover:scale-[1.02] group relative overflow-hidden" role="region" aria-labelledby="cta-heading">
+				{/* Subtle background gradient */}
+				<div class="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-300 bg-gradient-to-br from-blue-500 to-blue-600 pointer-events-none"></div>
+				
+				{/* Icon accent */}
+				<div class="w-20 h-20 mx-auto mb-8 rounded-3xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:border-blue-500/40 relative z-10">
+					<span class="text-3xl transition-transform duration-300 group-hover:scale-110">🚀</span>
+				</div>
+				
+				<div class="relative z-10 mb-8">
+					<Heading level={2} id="cta-heading" class="bg-gradient-to-r from-blue-500 to-blue-600 bg-clip-text text-3xl font-black md:text-5xl text-transparent transition-all duration-300 group-hover:scale-105 mb-6">{siteContent.cta.title}</Heading>
+					<Text class="text-xl text-muted-foreground group-hover:text-foreground transition-colors duration-300 max-w-2xl mx-auto">{siteContent.cta.subtitle}</Text>
+				</div>
+				
+				<nav class="flex flex-col justify-center gap-4 sm:flex-row relative z-10" aria-label="Contact actions">
+					<Button 
+						variant="primary" 
+						size="lg" 
+						href={siteContent.cta.primaryButton.href}
+						aria-describedby="cta-description"
+						class="transition-all duration-300 hover:scale-105 hover:shadow-lg"
+					>
+						{siteContent.cta.primaryButton.text}
+					</Button>
+				</nav>
+				<p id="cta-description" class="sr-only">
+					Contact us to discuss your developer relations needs or book a hands-on workshop for your team.
 				</p>
-			</div>
-
-			<div class="grid gap-8 md:grid-cols-3">
-				<div
-					class="rounded-xl border border-border bg-gradient-to-br from-slate-900 to-slate-800 p-6"
-				>
-					<div class="mb-4 flex items-center justify-between">
-						<span class="font-mono text-xs text-green-400">
-							Blog Post
-						</span>
-						<span class="text-xs">5 min read</span>
-					</div>
-					<h3 class="mb-2 text-lg font-bold">
-						Building RESTful APIs with Laravel
-					</h3>
-					<p class="mb-4 text-sm ">
-						A comprehensive guide to building scalable, maintainable
-						APIs that developers love to work with.
-					</p>
-					<div class="flex items-center justify-between">
-						<div class="flex items-center">
-							<div class="flex -space-x-2">
-								<span
-									class="inline-block rounded px-2 py-1 text-xs bg-primary/20"
-								>
-									PHP
-								</span>
-								<span
-									class="inline-block rounded px-2 py-1 text-xs bg-primary/20"
-								>
-									Laravel
-								</span>
-							</div>
-							<span
-								class="live-indicator mr-2 h-2 w-2 rounded-full bg-red-500"
-							></span>
-							<span class="text-xs text-red-500">LIVE</span>
-							<span class="text-cyan-400 text-xs">
-								20 Spots left
-							</span>
-						</div>
-						<span class="text-primary text-sm">→</span>
-					</div>
-				</div>
-
-				<div
-					class="rounded-xl border border-border bg-gradient-to-br from-slate-900 to-slate-800 p-6"
-				>
-					<div class="mb-4 flex items-center justify-between">
-						<span class="font-mono text-xs text-green-400">
-							Blog Post
-						</span>
-						<span class="text-xs">5 min read</span>
-					</div>
-					<h3 class="mb-2 text-lg font-bold">
-						Building RESTful APIs with Laravel
-					</h3>
-					<p class="mb-4 text-sm ">
-						A comprehensive guide to building scalable, maintainable
-						APIs that developers love to work with.
-					</p>
-					<div class="flex items-center justify-between">
-						<div class="flex items-center">
-							<div class="flex -space-x-2">
-								<span
-									class="inline-block rounded px-2 py-1 text-xs bg-primary/20"
-								>
-									PHP
-								</span>
-								<span
-									class="inline-block rounded px-2 py-1 text-xs bg-primary/20"
-								>
-									Laravel
-								</span>
-							</div>
-							<span
-								class="live-indicator mr-2 h-2 w-2 rounded-full bg-red-500"
-							></span>
-							<span class="text-xs text-red-500">LIVE</span>
-							<span class="text-cyan-400 text-xs">
-								20 Spots left
-							</span>
-						</div>
-						<span class="text-primary text-sm">→</span>
-					</div>
-				</div>
-
-				<div
-					class="rounded-xl border border-border bg-gradient-to-br from-slate-900 to-slate-800 p-6"
-				>
-					<div class="mb-4 flex items-center justify-between">
-						<span class="font-mono text-xs text-green-400">
-							Blog Post
-						</span>
-						<span class="text-xs">5 min read</span>
-					</div>
-					<h3 class="mb-2 text-lg font-bold">
-						Building RESTful APIs with Laravel
-					</h3>
-					<p class="mb-4 text-sm ">
-						A comprehensive guide to building scalable, maintainable
-						APIs that developers love to work with.
-					</p>
-					<div class="flex items-center justify-between">
-						<div class="flex items-center">
-							<div class="flex -space-x-2">
-								<span
-									class="inline-block rounded px-2 py-1 text-xs bg-primary/20"
-								>
-									PHP
-								</span>
-								<span
-									class="inline-block rounded px-2 py-1 text-xs bg-primary/20"
-								>
-									Laravel
-								</span>
-							</div>
-							<span
-								class="live-indicator mr-2 h-2 w-2 rounded-full bg-red-500"
-							></span>
-							<span class="text-xs text-red-500">LIVE</span>
-							<span class="text-cyan-400 text-xs">
-								20 Spots left
-							</span>
-						</div>
-						<span class="text-primary text-sm">→</span>
-					</div>
-				</div>
-			</div>
-		</Container>
-	</Section>
-
-	<Section id="why" title={"why"}>
-		<Container>
-			<div class="mb-12 text-center">
-				<h2 class="mb-4 text-3xl font-black md:text-5xl">
-					Why Developers Trust Us
-				</h2>
-			</div>
-
-			<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-				<div class="text-center">
-					<div
-						class="bg-gradient-to-r from-primary to-accent bg-clip-text mb-2 text-4xl font-black text-transparent"
-					>
-						<span
-							class="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent"
-						>
-							100%
-						</span>
-					</div>
-
-					<p class="">Developer-First Approach</p>
-				</div>
-
-				<div class="text-center">
-					<div
-						class="bg-gradient-to-r from-primary to-accent bg-clip-text mb-2 text-4xl font-black text-transparent"
-					>
-						<span
-							class="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent"
-						>
-							500+
-						</span>
-					</div>
-
-					<p class="">Pieces of Content Created</p>
-				</div>
-
-				<div class="text-center">
-					<div
-						class="bg-gradient-to-r from-primary to-accent bg-clip-text mb-2 text-4xl font-black text-transparent"
-					>
-						<span
-							class="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent"
-						>
-							50k+
-						</span>
-					</div>
-
-					<p class="">Developers Reached</p>
-				</div>
-
-				<div class="text-center">
-					<div
-						class="bg-gradient-to-r from-primary to-accent bg-clip-text mb-2 text-4xl font-black text-transparent"
-					>
-						<span
-							class="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent"
-						>
-							12+
-						</span>
-					</div>
-
-					<p class="">Years of Experience</p>
-				</div>
-			</div>
-		</Container>
-	</Section>
-
-	<Section id="contact" title={"contact"} class="text-center">
-		<Container>
-			<div class="glass border-border/30 rounded-2xl border p-12">
-				<h2 class="mb-6 text-3xl font-black md:text-5xl">
-					Ready to Create Better Content?
-				</h2>
-				<p class="mb-8 text-xl text-gray-300">
-					Let's create content that developers actually want to engage
-					with.
-				</p>
-				<div class="flex flex-col justify-center gap-4 sm:flex-row">
-					<a href="#"> Get In Touch </a>
-					<a href="#"> Book a Workshop </a>
-				</div>
 			</div>
 		</Container>
 	</Section>

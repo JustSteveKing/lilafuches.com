@@ -1,0 +1,74 @@
+---
+import Card from "@/components/ui/Card.astro";
+
+interface Props {
+    method: string;
+    endpoint: string;
+    status: string;
+    color: 'green' | 'yellow' | 'blue' | 'purple';
+}
+
+const { method, endpoint, status, color } = Astro.props;
+const colorClasses: Record<Props['color'], string> = {
+  green: "text-green-400",
+  yellow: "text-yellow-400", 
+  blue: "text-blue-400",
+  purple: "text-purple-400",
+};
+
+const glowClasses: Record<Props['color'], string> = {
+  green: "shadow-green-500/20",
+  yellow: "shadow-yellow-500/20",
+  blue: "shadow-blue-500/20", 
+  purple: "shadow-purple-500/20",
+};
+
+const borderClasses: Record<Props['color'], string> = {
+  green: "border-green-500/30",
+  yellow: "border-yellow-500/30",
+  blue: "border-blue-500/30",
+  purple: "border-purple-500/30",
+};
+
+const statusCode = status.split(' ')[0];
+const statusText = status.split(' ').slice(1).join(' ');
+---
+
+<Card class={`bg-gray-900/95 border-gray-700/50 ${borderClasses[color]} rounded-lg overflow-hidden font-mono text-sm shadow-lg ${glowClasses[color]} transition-all duration-300 hover:shadow-xl hover:${glowClasses[color].replace('/20', '/30')}`}>
+  <!-- Terminal Header -->
+  <div class={`bg-gray-800/80 px-4 py-2 border-b ${borderClasses[color]} flex items-center justify-between`}>
+    <div class="flex items-center space-x-2">
+      <div class="flex space-x-1">
+        <div class="w-2.5 h-2.5 rounded-full bg-red-500"></div>
+        <div class="w-2.5 h-2.5 rounded-full bg-yellow-500"></div>
+        <div class="w-2.5 h-2.5 rounded-full bg-green-500"></div>
+      </div>
+      <span class="text-gray-400 text-xs">terminal</span>
+    </div>
+    <span class="text-gray-500 text-xs">HTTP/1.1</span>
+  </div>
+  
+  <!-- Terminal Content -->
+  <div class="p-4 space-y-2">
+    <!-- Request Line -->
+    <div class="text-gray-300">
+      <span class="text-gray-500">$</span>
+      <span class="ml-2">curl -X</span>
+      <span class={`ml-1 font-semibold ${colorClasses[color]}`}>{method}</span>
+      <span class="ml-1 text-blue-300">{endpoint}</span>
+    </div>
+    
+    <!-- Response -->
+    <div class="mt-3 space-y-1">
+      <div class="text-gray-500 text-xs">← Response</div>
+      <div class="flex items-center space-x-2">
+        <span class={`font-semibold ${colorClasses[color]} drop-shadow-sm`}>HTTP/1.1 {statusCode}</span>
+        <span class="text-gray-400">{statusText}</span>
+      </div>
+      <div class="text-gray-500 text-xs">
+        <div>Content-Type: application/json</div>
+        <div class={`${colorClasses[color]}/60`}>X-Response-Time: {Math.floor(Math.random() * 100 + 10)}ms</div>
+      </div>
+    </div>
+  </div>
+</Card>

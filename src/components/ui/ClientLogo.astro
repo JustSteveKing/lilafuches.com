@@ -1,0 +1,60 @@
+---
+interface Props {
+    name: string;
+    logo: string;
+    alt: string;
+    website: string;
+    color?: string;
+    class?: string;
+}
+
+const {
+    name,
+    logo,
+    alt,
+    website,
+    color,
+    class: className = "",
+} = Astro.props as Props;
+
+// Generate hover styles based on client name
+const getHoverClasses = (clientName: string) => {
+    const lowerName = clientName.toLowerCase();
+    
+    switch (lowerName) {
+        case 'permit.io':
+            return 'hover:border-[#FF953F]/50 hover:shadow-[#FF953F]/20 hover:bg-[#FF953F]/5';
+        case 'warp':
+            return 'hover:border-gray-700/50 hover:shadow-gray-700/20 hover:bg-gray-700/5 dark:hover:border-gray-300/50 dark:hover:shadow-gray-300/20 dark:hover:bg-gray-300/5';
+        case 'hookdeck':
+            return 'hover:border-[#04C]/50 hover:shadow-[#04C]/20 hover:bg-[#04C]/5';
+        case 'sevalla':
+            return 'hover:border-[#F97316]/50 hover:shadow-[#F97316]/20 hover:bg-[#F97316]/5';
+        case 'tighten':
+            return 'hover:border-[#FFBC01]/50 hover:shadow-[#FFBC01]/20 hover:bg-[#FFBC01]/5';
+        case 'zuplo':
+            return 'hover:border-[#FF24BD]/50 hover:shadow-[#FF24BD]/20 hover:bg-[#FF24BD]/5';
+        default:
+            return 'hover:border-white/20 hover:shadow-white/10 hover:bg-white/8';
+    }
+};
+
+const hoverClasses = getHoverClasses(name);
+---
+
+<a
+    href={website}
+    target="_blank"
+    rel="noopener noreferrer"
+    class={`group flex items-center justify-center p-6 rounded-lg bg-white/5 border border-white/10 ${hoverClasses} transition-all duration-300 hover:scale-105 hover:shadow-xl ${className}`}
+    aria-label={`Visit ${name} website`}
+    title={`Visit ${name} website.`}
+>
+    <img
+        src={logo}
+        alt={alt}
+        class="h-8 w-auto opacity-50 transition-all duration-300 group-hover:opacity-80 group-hover:scale-110 logo-filter"
+        loading="lazy"
+        decoding="async"
+    />
+</a>

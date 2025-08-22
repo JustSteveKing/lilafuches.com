@@ -1,0 +1,63 @@
+---
+import Card from "@/components/ui/Card.astro";
+import Heading from "@/components/ui/Heading.astro";
+import Text from "@/components/ui/Text.astro";
+
+interface Props {
+    type: string;
+    duration: string;
+    title: string;
+    description: string;
+    tags?: string[];
+    color: string;
+    status?: string;
+    availability?: string;
+}
+
+const {
+    type,
+    duration,
+    title,
+    description,
+    tags = [],
+    color,
+    status,
+    availability,
+    ...rest
+} = Astro.props as Props;
+---
+
+<Card
+    class={`rounded-xl border border-border bg-gradient-to-br from-slate-900 to-slate-800 p-6 space-y-4`}
+    role="article"
+    aria-labelledby={`resource-title-${title.replace(/\s+/g, '-').toLowerCase()}`}
+>
+    <div class="mb-4 flex items-center justify-between">
+        <span class={`font-mono text-xs text-${color}-400`} aria-label={`Content type: ${type}`}>{type}</span>
+        <span class="text-xs" aria-label={`Duration: ${duration}`}>{duration}</span>
+    </div>
+    <Heading level={3} id={`resource-title-${title.replace(/\s+/g, '-').toLowerCase()}`} class="mb-2 text-lg font-bold">{title}</Heading>
+    <Text class="mb-4 text-sm text-gray-800">{description}</Text>
+    <div class="flex items-center justify-between">
+        <div class="flex items-center">
+            {tags.length > 0 && (
+                <div class="flex -space-x-2" role="list" aria-label="Technologies used">
+                    {tags.map((tag: string) => (
+                        <span class="inline-block rounded px-2 py-1 text-xs bg-primary/20" role="listitem">
+                            {tag}
+                        </span>
+                    ))}
+                </div>
+            )}
+            {status && (
+                <div class="flex items-center" aria-live="polite">
+                    <span class="live-indicator mr-2 h-2 w-2 rounded-full bg-red-500" aria-hidden="true" />
+                    <span class="text-xs text-red-500" aria-label={`Status: ${status}`}>{status}</span>
+                </div>
+            )}
+            {availability && (
+                <span class="text-cyan-400 text-xs" aria-label={`Availability: ${availability}`}>{availability}</span>
+            )}
+        </div>
+    </div>
+</Card>

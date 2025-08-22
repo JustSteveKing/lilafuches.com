@@ -10,16 +10,69 @@ export const siteContent = {
     companyName: "Lila Fuches",
     tagline: "Creating more engaging content",
     email: "hello@lilafuches.com",
+    url: "https://lilafuches.com",
+    keywords: "developer relations, devrel, technical content, API tutorials, developer workshops, technical writing, developer advocacy, Laravel, PHP, API design",
+    author: "Steve McDougall & Amy McDougall",
+    themeColor: "#0f172a", // slate-900
+    twitterHandle: "@JustSteveKing",
+  },
+
+  // Structured data for SEO
+  structuredData: {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Lila Fuches",
+    "url": "https://lilafuches.com",
+    "logo": "https://lilafuches.com/images/logo.png",
+    "description": "We help companies build authentic developer relations through content that resonates, workshops that deliver value, and strategies that actually work.",
+    "email": "hello@lilafuches.com",
+    "foundingDate": "2019",
+    "founder": [
+      {
+        "@type": "Person",
+        "name": "Steve McDougall",
+        "jobTitle": "Technical Content Creator & API Expert",
+        "sameAs": [
+          "https://x.com/JustSteveKing",
+          "https://github.com/JustSteveKing",
+          "https://youtube.com/juststeveking"
+        ]
+      },
+      {
+        "@type": "Person", 
+        "name": "Amy McDougall",
+        "jobTitle": "Operations Lead"
+      }
+    ],
+    "areaServed": "Global",
+    "serviceType": [
+      "Developer Relations",
+      "Technical Content Creation",
+      "Developer Workshops",
+      "API Documentation",
+      "Technical Writing"
+    ],
+    "knowsAbout": [
+      "API Design",
+      "Laravel",
+      "PHP",
+      "Developer Experience",
+      "Technical Writing",
+      "Developer Advocacy"
+    ]
+  },
+
+  company: {
+    name: "Lila Fuches Limited.",
+    founded: 2019
   },
 
   // Navigation
   navigation: {
-    logo: "LF",
     menuItems: [
       { label: "Services", href: "#services" },
       { label: "Content", href: "#content" },
       { label: "About", href: "#about" },
-      { label: "Workshops", href: "#workshops" },
     ],
   },
 
@@ -36,8 +89,8 @@ export const siteContent = {
       href: "#contact",
     },
     secondaryCTA: {
-      text: "See Our Work",
-      href: "#content",
+      text: "See Our Clients",
+      href: "#clients",
     },
     codeSnippet: {
       code: `GET /content           → 200 OK: "engaging"
@@ -79,22 +132,24 @@ GET /results           → 200 OK: "measurable"
     ],
   },
 
-  // API Guy section
-  apiGuy: {
-    badge: "THE API GUY",
+  // Company approach section
+  approach: {
+    badge: "OUR APPROACH",
     title: "We Speak Your Language",
-    subtitle: "Led by Steve McDougall, known in the community as \"JustSteveKing\" and \"The API Guy\", we understand what developers need because we are developers.",
-    description: "We don't just create content – we craft experiences that developers actually want to engage with, from RESTful API tutorials to advanced architectural patterns.",
-    socialLinks: [
+    subtitle: "As developers ourselves, we understand what the community needs. Our team combines deep technical expertise with proven content strategies.",
+    description: "We don't just create content – we craft experiences that developers actually want to engage with. From RESTful API tutorials to advanced architectural patterns, we help companies build authentic relationships with the developer community.",
+    highlights: [
       {
-        platform: "Twitter",
-        username: "@JustSteveKing",
-        url: "https://twitter.com/JustSteveKing",
+        title: "Developer-First Mindset",
+        description: "Every piece of content is created by developers, for developers",
       },
       {
-        platform: "GitHub",
-        username: "GitHub",
-        url: "https://github.com/JustSteveKing",
+        title: "Technical Accuracy",
+        description: "We ensure all content is technically sound and up-to-date",
+      },
+      {
+        title: "Community Understanding",
+        description: "Deep knowledge of developer pain points and preferences",
       },
     ],
     apiEndpoints: [
@@ -129,24 +184,24 @@ GET /results           → 200 OK: "measurable"
   about: {
     id: "about",
     title: "Meet The Team",
-    subtitle: "A husband and wife team passionate about building better developer experiences",
+    subtitle: "A dedicated team of developers and content strategists passionate about building better developer experiences",
     team: [
       {
         name: "Steve McDougall",
         avatar: "/images/steve.png",
-        role: "The API Guy • JustSteveKing",
-        description: "Technical content creator, API enthusiast, and developer advocate with years of experience building and teaching. Steve leads our technical content strategy and delivers workshops that developers rave about.",
+        role: "Co-Founder & Technical Lead",
+        description: "Technical content strategist and developer advocate with years of experience building and teaching. Steve leads our technical content strategy and ensures everything we create resonates with developers.",
         socialLinks: [
-          { platform: "twitter", url: "#" },
-          { platform: "github", url: "#" },
+          { platform: "twitter", url: "https://twitter.com/JustSteveKing" },
+          { platform: "github", url: "https://github.com/JustSteveKing" },
           { platform: "linkedin", url: "#" },
         ],
       },
       {
         name: "Amy McDougall",
         avatar: "/images/amy.png",
-        role: "Operations Lead",
-        description: "The operational backbone of Lila Fuches, Amy ensures everything runs smoothly behind the scenes. From project management to client relations, she makes sure our content delivers on time and exceeds expectations.",
+        role: "Co-Founder & Operations Lead",
+        description: "The strategic backbone of Lila Fuches, Amy ensures seamless project delivery and client success. From content planning to client relations, she makes sure our strategies exceed expectations.",
         socialLinks: [
           { platform: "linkedin", url: "#" },
         ],
@@ -154,81 +209,81 @@ GET /results           → 200 OK: "measurable"
     ],
   },
 
-  // Content showcase section
-  contentShowcase: {
-    id: "content",
-    title: "Content That Converts",
-    subtitle: "From quick tutorials to deep-dive workshops, we create content that drives developer adoption",
-    examples: [
+  // Client showcase section
+  clients: {
+    id: "clients",
+    title: "Trusted by Industry Leaders",
+    subtitle: "We've helped companies of all sizes build better developer relationships and create content that drives results",
+    logos: [
       {
-        type: "BLOG POST",
-        duration: "5 min read",
-        title: "Building RESTful APIs with Laravel",
-        description: "A comprehensive guide to building scalable, maintainable APIs that developers love to work with.",
-        tags: ["PHP", "Laravel"],
-        color: "green",
-        codeExample: {
-          code: `<?php
-class APIController extends Controller {
-    public function index() {
-        return User::with('posts')
-            ->paginate(15);
-    }
-    
-    public function store(Request $request) {
-        $validated = $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users'
-        ]);
-        
-        return User::create($validated);
-    }
-}`,
-          lang: "php"
-        }
+        name: "Permit.io",
+        logo: "/images/clients/permit.svg",
+        alt: "Permit.io authorization platform logo",
+        website: "https://permit.io?ref=lilafuches"
       },
       {
-        type: "VIDEO",
-        duration: "45 min",
-        title: "Event-Driven Architecture Explained",
-        description: "Live coding session breaking down complex architectural patterns into digestible pieces.",
-        status: "LIVE",
-        color: "red",
-        codeExample: {
-          code: `// Event-driven architecture example
-class EventDispatcher {
-    private listeners = new Map();
-    
-    on(event, callback) {
-        if (!this.listeners.has(event)) {
-            this.listeners.set(event, []);
-        }
-        this.listeners.get(event).push(callback);
-    }
-    
-    emit(event, data) {
-        const callbacks = this.listeners.get(event) || [];
-        callbacks.forEach(callback => callback(data));
-    }
-}
-
-// Usage
-const dispatcher = new EventDispatcher();
-dispatcher.on('user.created', (user) => {
-    console.log(\`Welcome \${user.name}!\`);
-});`,
-          lang: "javascript"
-        }
+        name: "Warp",
+        logo: "/images/clients/warp.svg", 
+        alt: "Warp terminal logo",
+        website: "https://warp.dev?ref=lilafuches"
       },
       {
-        type: "WORKSHOP",
-        duration: "2 days",
-        title: "API Design Masterclass",
-        description: "Hands-on workshop teaching teams how to design and implement production-ready APIs.",
-        availability: "20 spots left",
-        color: "cyan",
+        name: "Hookdeck",
+        logo: "/images/clients/hookdeck.svg",
+        alt: "Hookdeck webhook infrastructure logo", 
+        website: "https://hookdeck.com?ref=lilafuches"
       },
+      {
+        name: "Sevalla",
+        logo: "/images/clients/sevalla.svg",
+        alt: "Sevalla hosting platform logo",
+        website: "https://sevalla.com?ref=lilafuches"
+      },
+      {
+        name: "Tighten",
+        logo: "/images/clients/tighten.svg",
+        alt: "Tighten Co. logo",
+        website: "https://tighten.com?ref=lilafuches"
+      },
+      {
+        name: "Zuplo",
+        logo: "/images/clients/zuplo.svg",
+        alt: "Zuplo API management platform logo",
+        website: "https://zuplo.com?ref=lilafuches"
+      }
     ],
+    testimonial: {
+      quote: "We came for the APIs but we stayed for the clean code, robust systems architecture and deep knowledge of Laravel conventions. The team made our code faster, more stable and easier to maintain ourselves in the future.",
+      author: "Peter Thomson",
+      company: "Icehouse Ventures",
+      role: "Chief Technology Officer",
+      avatar: "https://github.com/peterjthomson.png"
+    },
+    
+    // Additional testimonials for future use
+    alternateTestimonials: [
+      {
+        quote: "The team was fantastic to work with. Their deep understanding of Laravel, both technically and culturally, made them the perfect partners to collaborate with.",
+        author: "Phil Leggetter",
+        company: "Hookdeck",
+        role: "Head of Developer Relations",
+        avatar: "https://github.com/leggetter.png"
+      },
+      {
+        quote: "Lila Fuches brings knowledge and passion to the community, with easy to follow content that adds real value to any company that works with them.",
+        author: "Steven Tey",
+        company: "Dub.co",
+        role: "Founder",
+        avatar: "https://github.com/steven-tey.png"
+      },
+      {
+        quote: "The team are awesome writers and communicators who can take complex problems and communicate them in a way that anyone can understand.",
+        author: "Eric Barnes",
+        company: "Laravel News",
+        role: "Founder/Editor",
+        avatar: "https://github.com/ericlbarnes.png"
+      }
+    ]
   },
 
   // Statistics section
@@ -237,19 +292,19 @@ dispatcher.on('user.created', (user) => {
     stats: [
       {
         number: "100%",
-        label: "Developer-First Approach",
+        label: "Developer-First Content Strategy",
       },
       {
-        number: "500+",
-        label: "Pieces of Content Created",
+        number: "1000+",
+        label: "Technical Articles & Tutorials Published",
       },
       {
-        number: "50k+",
-        label: "Developers Reached",
+        number: "100k+",
+        label: "Developers Reached Globally",
       },
       {
-        number: "10+",
-        label: "Years of Experience",
+        number: "15+",
+        label: "Years Combined Developer Experience",
       },
     ],
   },
@@ -261,12 +316,8 @@ dispatcher.on('user.created', (user) => {
     subtitle: "Let's create content that developers actually want to engage with.",
     primaryButton: {
       text: "Get In Touch",
-      href: "mailto:hello@lilafuches.com",
-    },
-    secondaryButton: {
-      text: "Book a Workshop",
-      href: "#workshops",
-    },
+      href: "https://juststeveking.link/cal",
+    }
   },
 
   // Footer

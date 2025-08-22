@@ -1,47 +1,106 @@
 ---
 import { Logo } from "@/components";
+import ThemeToggle from "@/components/ui/ThemeToggle.astro";
+import { siteContent } from "@/utils/siteContent";
 ---
 
-<section x-data="{ showMenu: false }" class="fixed px-6 w-full backdrop-blur-md z-50">
+<section 
+  x-data="{ showMenu: false }" 
+  x-effect="document.body.classList.toggle('overflow-hidden', showMenu)" 
+  class="fixed top-0 left-0 right-0 z-50 px-6 glass-nav"
+>
     <div class="mx-auto max-w-7xl">
-        <nav class="relative z-50 h-24 select-none">
-            <div class="flex overflow-hidden relative flex-wrap justify-between items-center mx-auto h-24 font-medium sm:px-4 md:overflow-visible md:px-2 lg:justify-center lg:px-0">
-                <div class="flex justify-start items-center pr-4 w-1/4 h-full">
-                    <a href="/" title="Home Page" aria-labelledby="home" class="flex items-center md:py-0">
-                        <Logo class="h-12 w-auto" />
+        <nav class="relative z-50 h-20 select-none" role="navigation" aria-label="Main navigation">
+            <div class="flex overflow-hidden relative flex-wrap justify-between items-center mx-auto h-20 font-medium sm:px-4 md:overflow-visible md:px-2">
+                <!-- Logo -->
+                <div class="flex justify-start items-center pr-4 h-full">
+                    <a 
+                      href="/" 
+                      title="Lila Fuches - Home" 
+                      aria-label="Lila Fuches home page"
+                      class="flex items-center focus-ring rounded-lg p-1 -m-1"
+                    >
+                        <Logo class="h-10 w-auto" />
                     </a>
                 </div>
-                <!-- Mobile Menu -->
-                <div x-transition class="fixed top-0 left-0 z-40 justify-between items-start px-3 py-4 w-full h-full bg-gray-900 bg-opacity-50 md:relative md:w-3/4 md:items-center md:bg-transparent md:p-0" :class="{ 'hidden md:flex': !showMenu, 'md:flex': showMenu }">
-                    <div class="overflow-hidden flex-col w-full h-auto bg-white rounded-lg md:h-full md:relative md:flex md:flex-row md:overflow-visible md:rounded-none md:bg-transparent">
-                        <a href="/" title="Home Page" aria-labelledby="home" class="inline-flex items-center px-3 w-auto h-16 text-xl font-bold leading-none text-gray-900 md:hidden">
-                            <Logo class="h-12 w-auto" />
+
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex flex-1 justify-center items-center space-x-8">
+                    {siteContent.navigation.menuItems.map(item => (
+                        <a 
+                          href={item.href} 
+                          class="text-foreground hover:text-primary transition-colors duration-200 font-medium focus-ring rounded-lg px-3 py-2"
+                        >
+                            {item.label}
                         </a>
-                        <div class="flex flex-col justify-center items-start w-full font-semibold text-center md:space-x-6 md:mt-0 md:w-2/3 md:flex-row md:items-center lg:space-x-8">
-                            <a href="#_" class="inline-block py-2 mx-0 ml-4 w-full text-left text-black md:mx-2 md:ml-0 md:w-auto md:px-0 md:text-center lg:mx-3">Home</a>
-                            <a href="#_" class="inline-block py-2 mx-0 ml-4 w-full text-left text-gray-500 hover:text-black md:mx-2 md:w-auto md:px-0 md:text-center lg:mx-3">Features</a>
-                            <a href="#_" class="inline-block py-2 mx-0 ml-4 w-full text-left text-gray-500 hover:text-black md:mx-2 md:w-auto md:px-0 md:text-center lg:mx-3">Blog</a>
-                            <a href="#_" class="inline-block py-2 mx-0 ml-4 w-full text-left text-gray-500 hover:text-black md:mx-2 md:w-auto md:px-0 md:text-center lg:mx-3">Contact</a>
-                        </div>
-                        <div class="flex flex-col flex-shrink-0 justify-end items-start pt-4 w-full font-semibold md:ml-16 md:w-1/3 md:flex-row md:items-center md:py-0 lg:ml-0">
-                            <a href="#" class="flex-shrink-0 px-5 py-3 mr-0 w-full text-gray-700 hover:text-black md:mr-2 md:w-auto md:px-3 lg:mr-3">Sign In</a>
-                            <a href="#_" class="inline-flex flex-shrink-0 items-center px-5 py-3 w-full text-sm font-medium leading-4 text-white bg-gray-900 border border-gray-800 inset-shadow-xs inset-shadow-white/30 hover:bg-gray-800 focus:outline-none focus:ring-0 focus:ring-gray-800 focus:ring-offset-2 md:w-auto md:rounded-full md:focus:ring-2">Sign Up</a>
-                        </div>
-                    </div>
+                    ))}
                 </div>
 
-                <!-- Hamburger Toggle -->
-                <div class="flex absolute right-0 z-50 flex-col justify-center items-center w-10 h-10 bg-white rounded-full cursor-pointer hover:bg-gray-100 md:hidden" @click="showMenu = !showMenu">
-                    <svg x-show="!showMenu" class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
-                    </svg>
-                    <svg x-show="showMenu" class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
+                <!-- Theme Toggle & Mobile Menu Button -->
+                <div class="flex items-center space-x-2">
+                    <ThemeToggle />
+                    
+                    <!-- Mobile Menu Button -->
+                    <button
+                      @click="showMenu = !showMenu"
+                      type="button"
+                      aria-label="Toggle navigation menu"
+                      aria-expanded="false"
+                      x-bind:aria-expanded="showMenu"
+                      class="md:hidden inline-flex items-center justify-center w-10 h-10 p-2 rounded-lg transition-colors duration-200 bg-muted hover:bg-border focus-ring"
+                    >
+                        <svg 
+                          x-show="!showMenu" 
+                          class="w-5 h-5" 
+                          fill="none" 
+                          stroke="currentColor" 
+                          stroke-width="2" 
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                        <svg 
+                          x-show="showMenu" 
+                          class="w-5 h-5" 
+                          fill="none" 
+                          stroke="currentColor" 
+                          viewBox="0 0 24 24"
+                          aria-hidden="true"
+                        >
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                        </svg>
+                    </button>
                 </div>
             </div>
         </nav>
 
-        <div class="w-full h-px bg-gradient-to-r from-slate-50 dark:from-slate-900 via-slate-200 dark:via-slate-800 to-slate-300 dark:to-slate-700"></div>
+        <!-- Mobile Menu Overlay -->
+        <div 
+          x-show="showMenu"
+          x-transition:enter="transition ease-out duration-200"
+          x-transition:enter-start="opacity-0 scale-95"
+          x-transition:enter-end="opacity-1 scale-100"
+          x-transition:leave="transition ease-in duration-150"
+          x-transition:leave-start="opacity-1 scale-100"
+          x-transition:leave-end="opacity-0 scale-95"
+          class="md:hidden absolute top-full left-0 right-0 bg-background border border-border rounded-b-xl shadow-strong mx-6 p-4"
+          @click.outside="showMenu = false"
+        >
+            <div class="flex flex-col space-y-2">
+                {siteContent.navigation.menuItems.map(item => (
+                    <a 
+                      href={item.href} 
+                      @click="showMenu = false"
+                      class="text-foreground hover:text-primary hover:bg-muted transition-colors duration-200 font-medium rounded-lg px-3 py-3 text-left focus-ring"
+                    >
+                        {item.label}
+                    </a>
+                ))}
+            </div>
+        </div>
+
+        <!-- Navigation border -->
+        <div class="w-full h-px bg-gradient-to-r from-transparent via-border to-transparent"></div>
     </div>
 </section>

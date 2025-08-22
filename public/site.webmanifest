@@ -1,0 +1,27 @@
+{
+  "name": "Lila Fuches - Developer Content That Actually Works",
+  "short_name": "Lila Fuches",
+  "description": "We help companies build authentic developer relations through content that resonates, workshops that deliver value, and strategies that actually work.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["business", "developer", "education"],
+  "lang": "en-US",
+  "dir": "ltr"
+}

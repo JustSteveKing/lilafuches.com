@@ -1,0 +1,253 @@
+---
+import Text from "./Text.astro";
+
+interface Testimonial {
+  quote: string;
+  author: string;
+  company: string;
+  role: string;
+}
+
+interface Props {
+  testimonials: Testimonial[];
+  autoRotate?: boolean;
+  interval?: number;
+  class?: string;
+}
+
+const { 
+  testimonials, 
+  autoRotate = true, 
+  interval = 5000,
+  class: className = "" 
+} = Astro.props as Props;
+
+const testimonialId = `testimonial-${Math.random().toString(36).substr(2, 9)}`;
+---
+
+<div 
+  class={`bg-gradient-to-br from-slate-800/50 to-slate-900/50 rounded-xl p-8 border border-white/10 relative ${className}`} 
+  role="complementary"
+  data-testimonial-container={testimonialId}
+  data-auto-rotate={autoRotate}
+  data-interval={interval}
+  tabindex="0"
+  aria-label="Customer testimonials carousel"
+>
+  <!-- Screen reader announcements -->
+  <div class="sr-only" aria-live="polite" aria-atomic="true" id={`${testimonialId}-announcement`}></div>
+  
+  <!-- Testimonial Content -->
+  <div class="testimonial-content">
+    {testimonials.map((testimonial, index) => (
+      <div 
+        class={`testimonial-slide ${index === 0 ? 'active' : ''}`}
+        data-slide={index}
+      >
+        <div class="flex items-start mb-6">
+          <div class="text-4xl text-primary/40 mr-4 leading-none">"</div>
+          <Text class="text-lg italic leading-relaxed text-gray-300">
+            {testimonial.quote}
+          </Text>
+        </div>
+        <footer class="flex items-center">
+          <div>
+            <cite class="not-italic">
+              <div class="font-semibold text-white">{testimonial.author}</div>
+              <div class="text-sm text-gray-400">{testimonial.role}, {testimonial.company}</div>
+            </cite>
+          </div>
+        </footer>
+      </div>
+    ))}
+  </div>
+
+  <!-- Navigation Dots -->
+  {testimonials.length > 1 && (
+    <div class="flex justify-center mt-6 space-x-2" role="tablist" aria-label="Testimonial navigation">
+      {testimonials.map((_, index) => (
+        <button
+          class={`testimonial-dot w-2 h-2 rounded-full transition-all duration-300 ${
+            index === 0 ? 'bg-primary' : 'bg-gray-600 hover:bg-gray-500'
+          }`}
+          data-slide-to={index}
+          role="tab"
+          tabindex="0"
+          aria-selected={index === 0 ? 'true' : 'false'}
+          aria-label={`View testimonial ${index + 1}`}
+        ></button>
+      ))}
+    </div>
+  )}
+
+  <!-- Keyboard Instructions (hidden but available to screen readers) -->
+  <div class="sr-only">
+    Use arrow keys to navigate testimonials manually, or wait for automatic rotation every {Math.round(interval/1000)} seconds.
+  </div>
+
+  <!-- Progress Bar (for auto-rotate) -->
+  {autoRotate && testimonials.length > 1 && (
+    <div class="absolute bottom-0 left-0 right-0 h-1 bg-gray-700/30 rounded-b-xl overflow-hidden">
+      <div class="testimonial-progress h-full bg-primary/60 transition-all duration-100 ease-linear" style="width: 0%"></div>
+    </div>
+  )}
+</div>
+
+<style>
+  .testimonial-slide {
+    opacity: 0;
+    transform: translateX(20px);
+    transition: all 0.5s ease-in-out;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+  }
+
+  .testimonial-slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    position: relative;
+    padding: 0;
+  }
+
+  .testimonial-content {
+    position: relative;
+    min-height: 150px;
+  }
+
+  .testimonial-dot {
+    cursor: pointer;
+  }
+
+  .testimonial-progress {
+    width: 0%;
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const containers = document.querySelectorAll('[data-testimonial-container]');
+    
+    containers.forEach(container => {
+      const autoRotate = container.getAttribute('data-auto-rotate') === 'true';
+      const interval = parseInt(container.getAttribute('data-interval') || '5000');
+      const slides = container.querySelectorAll('.testimonial-slide');
+      const dots = container.querySelectorAll('.testimonial-dot');
+      const progressBar = container.querySelector('.testimonial-progress');
+      
+      let currentSlide = 0;
+      let rotationInterval: number | null = null;
+      let progressInterval: number | null = null;
+      let progressValue = 0;
+
+      function showSlide(index: number) {
+        // Hide all slides
+        slides.forEach((slide, i) => {
+          slide.classList.toggle('active', i === index);
+        });
+
+        // Update dots
+        dots.forEach((dot, i) => {
+          dot.classList.toggle('bg-primary', i === index);
+          dot.classList.toggle('bg-gray-600', i !== index);
+          dot.setAttribute('aria-selected', i === index ? 'true' : 'false');
+        });
+
+        currentSlide = index;
+        resetProgress();
+      }
+
+      function nextSlide() {
+        const next = (currentSlide + 1) % slides.length;
+        showSlide(next);
+      }
+
+      function resetProgress() {
+        progressValue = 0;
+        if (progressBar) {
+          (progressBar as HTMLElement).style.width = '0%';
+        }
+      }
+
+      function updateProgress() {
+        if (!progressBar || !autoRotate) return;
+        
+        progressValue += (100 / (interval / 100));
+        if (progressValue >= 100) {
+          progressValue = 100;
+        }
+        (progressBar as HTMLElement).style.width = progressValue + '%';
+      }
+
+      function startRotation() {
+        if (!autoRotate || slides.length <= 1) return;
+        
+        rotationInterval = window.setInterval(nextSlide, interval);
+        progressInterval = window.setInterval(updateProgress, 100);
+      }
+
+      function stopRotation() {
+        if (rotationInterval) {
+          window.clearInterval(rotationInterval);
+          rotationInterval = null;
+        }
+        if (progressInterval) {
+          window.clearInterval(progressInterval);
+          progressInterval = null;
+        }
+        resetProgress();
+      }
+
+      // Dot click handlers
+      dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+          stopRotation();
+          showSlide(index);
+          setTimeout(startRotation, 1000); // Resume after 1 second
+        });
+
+        // Keyboard navigation
+        dot.addEventListener('keydown', (e) => {
+          const keyboardEvent = e as KeyboardEvent;
+          if (keyboardEvent.key === 'Enter' || keyboardEvent.key === ' ') {
+            keyboardEvent.preventDefault();
+            stopRotation();
+            showSlide(index);
+            setTimeout(startRotation, 1000);
+          }
+        });
+      });
+
+      // Keyboard navigation for the container
+      container.addEventListener('keydown', (e) => {
+        const keyboardEvent = e as KeyboardEvent;
+        if (keyboardEvent.key === 'ArrowLeft') {
+          keyboardEvent.preventDefault();
+          const prev = currentSlide === 0 ? slides.length - 1 : currentSlide - 1;
+          stopRotation();
+          showSlide(prev);
+          setTimeout(startRotation, 1000);
+        } else if (keyboardEvent.key === 'ArrowRight') {
+          keyboardEvent.preventDefault();
+          const next = (currentSlide + 1) % slides.length;
+          stopRotation();
+          showSlide(next);
+          setTimeout(startRotation, 1000);
+        }
+      });
+
+      // Pause on hover/focus
+      container.addEventListener('mouseenter', stopRotation);
+      container.addEventListener('mouseleave', startRotation);
+      container.addEventListener('focusin', stopRotation);
+      container.addEventListener('focusout', startRotation);
+
+      // Start rotation
+      if (slides.length > 1) {
+        startRotation();
+      }
+    });
+  });
+</script>
