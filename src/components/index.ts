@@ -1,6 +1,3 @@
-// Blocks
-export { default as Logo } from "./blocks/Logo.astro";
-
 // Layout
 export { default as Footer } from "./layout/Footer.astro";
 export { default as Navigation } from "./layout/Navigation.astro";

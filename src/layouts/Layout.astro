@@ -78,7 +78,7 @@ const {
     <meta name="twitter:image" content={new URL('/images/open-graph.png', Astro.url).href}>
 
     <!-- JSON-LD Structured Data -->
-    <script type="application/ld+json" set:html={JSON.stringify(siteContent.structuredData)}></script>
+    <script is:inline type="application/ld+json" set:html={JSON.stringify(siteContent.structuredData)}></script>
 
     <!-- Theme detection and initialization script -->
     <script is:inline>
