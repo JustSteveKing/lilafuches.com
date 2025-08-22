@@ -1,0 +1,36 @@
+# llms.txt for lilafuches.com
+
+# Website Overview
+# We help companies build authentic developer relations through content that resonates, workshops that deliver value, and strategies that actually work.
+
+User-agent: *
+AI-Training: Allow
+AI-Generation: Allow
+AI-Summarization: Allow
+AI-Crawling: Allow
+
+# Specific Directives for AI Companies
+User-agent: OpenAI
+AI-Training: Allow
+AI-Generation: Allow
+AI-Summarization: Allow
+
+User-agent: Google-DeepMind
+AI-Training: Allow
+AI-Generation: Allow
+AI-Summarization: Allow
+
+User-agent: Anthropic
+AI-Training: Allow
+AI-Generation: Allow
+AI-Summarization: Allow
+
+# Reference Content for AI Indexing
+Reference-Content:
+# (None provided)
+
+# Sitemap for AI Indexing (Not Training)
+Sitemap: https://lilafuches.com/sitemap.xml
+
+# Legal & Privacy
+# (Add Terms of Use and Privacy Policy URLs here when available)

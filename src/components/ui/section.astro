@@ -14,6 +14,6 @@ const {
 } = Astro.props as Props;
 ---
 
-<section id={id} title={title} aria-labelledby={`${title}-title`} class={clsx(className, "px-4 py-12 w-full")}>
+<section id={id} aria-labelledby={`${id}-heading`} class={clsx(className, "px-4 py-12 w-full")}>
     <slot />
 </section>

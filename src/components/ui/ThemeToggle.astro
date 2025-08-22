@@ -7,7 +7,7 @@
   type="button"
   aria-label="Toggle dark mode"
   aria-describedby="theme-toggle-description"
-  class="inline-flex items-center justify-center w-10 h-10 p-2 rounded-lg transition-all duration-200 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 focus-ring"
+  class="inline-flex items-center justify-center w-10 h-10 p-2 rounded-lg transition-all duration-200 bg-gray-100 hover:bg-gray-200 dark:bg-gray-800 dark:hover:bg-gray-700 focus-ring relative z-10"
 >
   <!-- Sun icon (visible in dark mode) -->
   <svg
@@ -52,7 +52,11 @@
     const themeToggle = document.getElementById('theme-toggle');
     
     if (themeToggle) {
-      themeToggle.addEventListener('click', () => {
+      themeToggle.addEventListener('click', (e) => {
+        // Stop all event propagation
+        e.stopPropagation();
+        e.stopImmediatePropagation();
+        
         // Call the global toggleTheme function
         if (typeof (window as any).toggleTheme === 'function') {
           (window as any).toggleTheme();
@@ -63,7 +67,7 @@
         themeToggle.setAttribute('aria-label', 
           isDark ? 'Switch to light mode' : 'Switch to dark mode'
         );
-      });
+      }, true); // Use capture phase
       
       // Update initial aria-label
       const isDark = document.documentElement.classList.contains('dark');

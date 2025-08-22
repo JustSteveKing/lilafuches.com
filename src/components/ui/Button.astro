@@ -10,19 +10,19 @@ const sizes = {
 };
 
 const variants = {
-  primary: "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md hover:scale-[1.02]",
+  primary: "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md hover:scale-[1.018]",
   
-  secondary: "bg-background text-foreground border border-border shadow-sm hover:bg-muted hover:shadow-md hover:scale-[1.02]",
+  secondary: "bg-background text-foreground border border-border shadow-sm hover:bg-muted hover:shadow-md hover:scale-[1.018]",
   
-  accent: "bg-accent text-accent-foreground shadow-sm hover:bg-accent/90 hover:shadow-md hover:scale-[1.02]",
+  accent: "bg-accent text-accent-foreground shadow-sm hover:bg-accent/90 hover:shadow-md hover:scale-[1.018]",
   
-  outline: "bg-transparent text-foreground border border-border hover:bg-muted hover:shadow-sm hover:scale-[1.02]",
+  outline: "bg-transparent text-foreground border border-border hover:bg-muted hover:shadow-sm hover:scale-[1.018]",
   
-  ghost: "bg-transparent text-foreground hover:bg-muted hover:scale-[1.02]",
+  ghost: "bg-transparent text-foreground hover:bg-muted hover:scale-[1.018]",
   
   link: "bg-transparent text-primary underline-offset-4 hover:underline p-0 h-auto",
   
-  destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 hover:shadow-md hover:scale-[1.02]",
+  destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 hover:shadow-md hover:scale-[1.018]",
 };
 
 const classes = `${base} ${sizes[size as keyof typeof sizes]} ${variants[variant as keyof typeof variants] || variants.primary} ${className}`;
