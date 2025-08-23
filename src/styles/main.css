@@ -460,3 +460,45 @@ a:focus-visible {
     box-shadow: none !important;
   }
 }
+
+/* ============================================================================
+   HORIZONTAL OVERFLOW PREVENTION
+   ============================================================================ */
+
+/* Prevent horizontal scroll on all devices */
+html {
+  overflow-x: hidden;
+}
+
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Ensure all containers respect viewport width */
+* {
+  box-sizing: border-box;
+}
+
+/* Prevent elements from extending beyond viewport */
+.max-w-7xl {
+  max-width: min(80rem, calc(100vw - 2rem));
+}
+
+/* Mobile-specific fixes */
+@media (max-width: 640px) {
+  .glass-nav {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Ensure navigation doesn't cause overflow */
+  nav {
+    min-width: 0;
+  }
+  
+  /* Ensure flex items can shrink */
+  .flex > * {
+    min-width: 0;
+  }
+}

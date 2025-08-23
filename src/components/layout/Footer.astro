@@ -1,0 +1,37 @@
+---
+import { siteContent } from "@/utils/siteContent";
+import { Container, Logo } from "@/components";
+
+const date: Date = new Date();
+---
+
+<footer class="px-4 py-4 w-full relative mt-20 border-t border-border/50 bg-gradient-to-b from-background to-muted/20">
+    <!-- Subtle background decoration -->
+    <div class="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none" aria-hidden="true"></div>
+    
+    <Container>
+        <div class="relative py-12">
+            <!-- Main footer content -->
+            <div class="flex flex-col items-center space-y-6 text-center">
+                <!-- Logo and company info -->
+                <div class="flex flex-col items-center space-y-4">
+                    <Logo class="h-10 w-auto" />
+                    <div>
+                        <p class="text-sm text-muted-foreground font-medium">
+                            &copy; {siteContent.company.founded} - {date.getFullYear()} {siteContent.company.name} Ltd
+                        </p>
+                        <p class="text-xs text-muted-foreground/70">
+                            Company No. 12171927 • Registered in England & Wales
+                        </p>
+                        <p class="text-xs text-muted-foreground/70 mt-1">
+                            All rights reserved. Built with care.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom border with subtle gradient -->
+            <div class="mt-8 h-px bg-gradient-to-r from-transparent via-border/50 to-transparent"></div>
+        </div>
+    </Container>
+</footer>
