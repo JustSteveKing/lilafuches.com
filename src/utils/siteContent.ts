@@ -71,7 +71,7 @@ export const siteContent = {
   navigation: {
     menuItems: [
       { label: "Services", href: "#services" },
-      { label: "Content", href: "#content" },
+      { label: "Approach", href: "#approach" },
       { label: "About", href: "#about" },
     ],
   },
