@@ -39,7 +39,7 @@ export const siteContent = {
         ]
       },
       {
-        "@type": "Person", 
+        "@type": "Person",
         "name": "Amy McDougall",
         "jobTitle": "Operations Lead"
       }
@@ -194,7 +194,7 @@ GET /results           → 200 OK: "measurable"
         socialLinks: [
           { platform: "twitter", url: "https://twitter.com/JustSteveKing" },
           { platform: "github", url: "https://github.com/JustSteveKing" },
-          { platform: "linkedin", url: "#" },
+          { platform: "linkedin", url: "https://linkedin.com/in/steve-mcdougall" },
         ],
       },
       {
@@ -203,7 +203,7 @@ GET /results           → 200 OK: "measurable"
         role: "Co-Founder & Operations Lead",
         description: "The strategic backbone of Lila Fuches, Amy ensures seamless project delivery and client success. From content planning to client relations, she makes sure our strategies exceed expectations.",
         socialLinks: [
-          { platform: "linkedin", url: "#" },
+          { platform: "linkedin", url: "https://www.linkedin.com/in/amy-mcdougall-3a78b713a/" },
         ],
       },
     ],
@@ -223,14 +223,14 @@ GET /results           → 200 OK: "measurable"
       },
       {
         name: "Warp",
-        logo: "/images/clients/warp.svg", 
+        logo: "/images/clients/warp.svg",
         alt: "Warp terminal logo",
         website: "https://warp.dev?ref=lilafuches"
       },
       {
         name: "Hookdeck",
         logo: "/images/clients/hookdeck.svg",
-        alt: "Hookdeck webhook infrastructure logo", 
+        alt: "Hookdeck webhook infrastructure logo",
         website: "https://hookdeck.com?ref=lilafuches"
       },
       {
@@ -259,7 +259,7 @@ GET /results           → 200 OK: "measurable"
       role: "Chief Technology Officer",
       avatar: "https://github.com/peterjthomson.png"
     },
-    
+
     // Additional testimonials for future use
     alternateTestimonials: [
       {
@@ -330,7 +330,7 @@ GET /results           → 200 OK: "measurable"
         href: "https://twitter.com/JustSteveKing",
       },
       {
-        label: "GitHub", 
+        label: "GitHub",
         href: "https://github.com/JustSteveKing",
       },
       {
