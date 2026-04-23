@@ -1,5 +1,5 @@
 ---
-import { Card } from "@/components";
+import Card from "./Card.astro";
 
 interface Props {
     method: string;
@@ -51,11 +51,24 @@ const statusText = status.split(' ').slice(1).join(' ');
   <!-- Terminal Content -->
   <div class="p-4 space-y-2">
     <!-- Request Line -->
-    <div class="text-gray-300">
+    <div class="text-gray-300 flex items-center">
       <span class="text-gray-500">$</span>
-      <span class="ml-2">curl -X</span>
-      <span class={`ml-1 font-semibold ${colorClasses[color]}`}>{method}</span>
-      <span class="ml-1 text-blue-300">{endpoint}</span>
+      <div 
+        x-data="{ text: '', fullText: 'curl -X ' + $el.dataset.method + ' ' + $el.dataset.endpoint }" 
+        x-init="setTimeout(() => { 
+          let i = 0; 
+          let interval = setInterval(() => { 
+            text += fullText[i]; 
+            i++; 
+            if (i >= fullText.length) clearInterval(interval); 
+          }, 30); 
+        }, 500)"
+        data-method={method}
+        data-endpoint={endpoint}
+        class="ml-2 font-mono"
+      >
+        <span x-text="text">curl -X {method} {endpoint}</span><span class="animate-pulse border-r-2 border-gray-400 ml-0.5" x-show="!text || text.length < fullText.length">&nbsp;</span>
+      </div>
     </div>
     
     <!-- Response -->

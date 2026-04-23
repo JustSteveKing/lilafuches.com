@@ -9,43 +9,22 @@ interface Props {
 }
 
 const { title, description, class: className = "" } = Astro.props as Props;
-
-// Generate a subtle color based on the title hash for variety
-const colors = ['blue', 'green', 'purple', 'yellow'] as const;
-type ColorType = typeof colors[number];
-const titleHash = title.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-const colorIndex = titleHash % colors.length;
-const color: ColorType = colors[colorIndex];
-
-const colorClasses: Record<ColorType, { border: string; title: string; glow: string }> = {
-  blue: {
-    border: "border-l-blue-500/40",
-    title: "text-blue-400",
-    glow: "shadow-blue-500/10"
-  },
-  green: {
-    border: "border-l-green-500/40", 
-    title: "text-green-400",
-    glow: "shadow-green-500/10"
-  },
-  purple: {
-    border: "border-l-purple-500/40",
-    title: "text-purple-400", 
-    glow: "shadow-purple-500/10"
-  },
-  yellow: {
-    border: "border-l-yellow-500/40",
-    title: "text-yellow-400",
-    glow: "shadow-yellow-500/10"
-  }
-};
 ---
 
-<div class={`py-4 ${colorClasses[color].border} pl-4 ${colorClasses[color].glow} transition-all duration-300 hover:shadow-lg hover:${colorClasses[color].glow.replace('/10', '/20')} group ${className}`} role="article">
-  <Heading level={4} class={`text-lg font-semibold mb-2 ${colorClasses[color].title} drop-shadow-sm group-hover:brightness-110 transition-all duration-300`}>
-    {title}
-  </Heading>
-  <Text class="text-sm text-foreground/70 leading-relaxed group-hover:text-foreground/85 transition-colors duration-300">
-    {description}
-  </Text>
+<div class={`card group dark:bg-stone-900 dark:border-stone-800 ${className}`} role="article">
+  <div class="flex items-start space-x-3">
+    <div class="mt-1 h-5 w-5 flex-shrink-0 text-accent dark:text-orange-400 group-hover:scale-110 transition-transform duration-200">
+      <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+      </svg>
+    </div>
+    <div>
+      <Heading level={4} class="text-lg font-bold mb-1 text-stone-900 dark:text-stone-100 group-hover:text-stone-800 dark:group-hover:text-white transition-colors duration-200">
+        {title}
+      </Heading>
+      <Text class="text-sm text-stone-600 dark:text-stone-400 leading-relaxed group-hover:text-stone-700 dark:group-hover:text-stone-300 transition-colors duration-300">
+        {description}
+      </Text>
+    </div>
+  </div>
 </div>

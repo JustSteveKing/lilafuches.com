@@ -1,3 +1,6 @@
-// import type { Alpine } from 'alpinejs'
+import type { Alpine } from 'alpinejs'
+import intersect from '@alpinejs/intersect'
 
-export default () => {}
+export default (Alpine: Alpine) => {
+    Alpine.plugin(intersect)
+}

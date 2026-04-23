@@ -1,18 +1,12 @@
 ---
 const { class: className = "", ...rest } = Astro.props;
 ---
-<div class={`transition duration-500 ease-in-out transform opacity-0 scale-95 animate-fade-in ${className}`} {...rest}>
+<div 
+  class:list={[
+    "card",
+    className
+  ]}
+  {...rest}
+>
   <slot />
 </div>
-
-<style>
-@keyframes fade-in {
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-.animate-fade-in {
-  animation: fade-in 0.7s forwards;
-}
-</style>

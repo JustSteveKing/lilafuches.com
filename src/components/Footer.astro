@@ -1,37 +1,81 @@
 ---
 import { siteContent } from "@/utils/siteContent";
-import { Container, Logo } from "@/components";
+import Container from "./Container.astro";
+import Logo from "./Logo.astro";
+import { Icon } from "astro-icon/components";
 
 const date: Date = new Date();
+
+const iconMap: Record<string, string> = {
+  Twitter: "mdi:twitter",
+  GitHub: "mdi:github",
+  LinkedIn: "mdi:linkedin",
+  Contact: "mdi:email",
+};
 ---
 
-<footer class="px-4 py-4 w-full relative mt-20 border-t border-border/50 bg-gradient-to-b from-background to-muted/20">
-    <!-- Subtle background decoration -->
-    <div class="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-transparent to-purple-500/5 pointer-events-none" aria-hidden="true"></div>
-    
+<footer class="mt-32 border-t border-stone-200 dark:border-stone-800 bg-stone-50/50 dark:bg-stone-950/50">
     <Container>
-        <div class="relative py-12">
-            <!-- Main footer content -->
-            <div class="flex flex-col items-center space-y-6 text-center">
-                <!-- Logo and company info -->
-                <div class="flex flex-col items-center space-y-4">
-                    <Logo class="h-10 w-auto" />
-                    <div>
-                        <p class="text-sm text-muted-foreground font-medium">
-                            &copy; {siteContent.company.founded} - {date.getFullYear()} {siteContent.company.name} Ltd
-                        </p>
-                        <p class="text-xs text-muted-foreground/70">
-                            Company No. 12171927 • Registered in England & Wales
-                        </p>
-                        <p class="text-xs text-muted-foreground/70 mt-1">
-                            All rights reserved. Built with care.
-                        </p>
+        <div class="py-12">
+            <div class="flex flex-col items-center gap-y-12 md:flex-row md:justify-between md:items-start md:gap-y-0">
+                <!-- Left: Brand & Navigation -->
+                <div class="flex flex-col items-center md:items-start gap-y-6">
+                    <a href="/" class="focus-ring rounded-lg">
+                        <Logo class="h-7 w-auto text-stone-900 dark:text-stone-100" />
+                    </a>
+                    
+                    <nav class="flex flex-wrap justify-center md:justify-start gap-x-6 gap-y-2">
+                        {siteContent.navigation.menuItems.map(item => (
+                            <a href={item.href} class="text-[10px] font-black uppercase tracking-widest text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 transition-colors duration-200">
+                                {item.label}
+                            </a>
+                        ))}
+                    </nav>
+                </div>
+
+                <!-- Right: Social & Contact -->
+                <div class="flex flex-col items-center md:items-end gap-y-6">
+                    <div class="flex items-center space-x-5">
+                        {siteContent.footer.links.map(link => (
+                            <a 
+                                href={link.href} 
+                                target="_blank" 
+                                rel="noopener" 
+                                aria-label={link.label}
+                                class="text-stone-400 dark:text-stone-500 hover:text-stone-800 dark:hover:text-stone-200 transition-all duration-300 hover:scale-110"
+                            >
+                                <Icon name={iconMap[link.label] || "mdi:link"} class="h-5 w-5" />
+                            </a>
+                        ))}
                     </div>
+                    
+                    <a 
+                      href={`mailto:${siteContent.site.email}`}
+                      class="text-[10px] font-black uppercase tracking-widest text-stone-600 dark:text-stone-400 hover:text-stone-900 dark:hover:text-stone-100 border-b border-stone-300 dark:border-stone-700 pb-0.5"
+                    >
+                      {siteContent.site.email}
+                    </a>
                 </div>
             </div>
-            
-            <!-- Bottom border with subtle gradient -->
-            <div class="mt-8 h-px bg-gradient-to-r from-transparent via-border/50 to-transparent"></div>
+
+            <!-- Bottom: Legal -->
+            <div class="mt-16 pt-8 border-t border-stone-200/60 dark:border-stone-800/60 flex flex-col md:flex-row justify-between items-center gap-y-4 md:gap-y-0 text-[10px] font-bold uppercase tracking-widest text-stone-400 dark:text-stone-500">
+                <div class="flex flex-col items-center md:items-start gap-y-1">
+                    <p>
+                        &copy; {siteContent.company.founded} - {date.getFullYear()} {siteContent.company.name}
+                    </p>
+                    <p class="opacity-70">
+                        No. 12171927 • Registered in England & Wales
+                    </p>
+                </div>
+                
+                <div class="flex items-center gap-x-6">
+                    <a href="/sitemap.xml" class="hover:text-stone-700 dark:hover:text-stone-300 transition-colors">Sitemap</a>
+                    <span class="opacity-60">
+                        Built with Astro
+                    </span>
+                </div>
+            </div>
         </div>
     </Container>
 </footer>

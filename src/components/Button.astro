@@ -1,28 +1,28 @@
 ---
 const { variant = "primary", size = "md", href = undefined, class: className = "", ...rest } = Astro.props;
 
-const base = "inline-flex items-center justify-center font-semibold rounded-full transition-all duration-200 focus-ring animate-in fade-in disabled:opacity-50 disabled:cursor-not-allowed";
+const base = "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus-ring disabled:opacity-50 disabled:cursor-not-allowed";
 
 const sizes = {
-  sm: "px-4 py-2 text-sm h-9",
-  md: "px-6 py-3 text-base h-11",
-  lg: "px-8 py-4 text-lg h-12",
+  sm: "px-3 py-1.5 text-sm",
+  md: "px-5 py-2.5 text-base",
+  lg: "px-6 py-3 text-lg",
 };
 
 const variants = {
-  primary: "bg-primary text-primary-foreground shadow-sm hover:bg-primary/90 hover:shadow-md hover:scale-[1.018]",
+  primary: "bg-primary text-primary-foreground hover:brightness-110 active:scale-[0.98] shadow-sm",
   
-  secondary: "bg-background text-foreground border border-border shadow-sm hover:bg-muted hover:shadow-md hover:scale-[1.018]",
+  secondary: "bg-muted/50 text-foreground border border-border/60 hover:bg-muted active:scale-[0.98] shadow-sm",
   
-  accent: "bg-accent text-accent-foreground shadow-sm hover:bg-accent/90 hover:shadow-md hover:scale-[1.018]",
+  accent: "bg-accent text-accent-foreground hover:brightness-110 active:scale-[0.98] shadow-sm",
   
-  outline: "bg-transparent text-foreground border border-border hover:bg-muted hover:shadow-sm hover:scale-[1.018]",
+  outline: "bg-transparent text-foreground border border-border/80 hover:bg-muted/30 active:scale-[0.98]",
   
-  ghost: "bg-transparent text-foreground hover:bg-muted hover:scale-[1.018]",
+  ghost: "bg-transparent text-foreground hover:bg-muted/30 active:scale-[0.98]",
   
   link: "bg-transparent text-primary underline-offset-4 hover:underline p-0 h-auto",
   
-  destructive: "bg-destructive text-destructive-foreground shadow-sm hover:bg-destructive/90 hover:shadow-md hover:scale-[1.018]",
+  destructive: "bg-red-600 text-white hover:bg-red-700 active:scale-[0.98] shadow-sm",
 };
 
 const classes = `${base} ${sizes[size as keyof typeof sizes]} ${variants[variant as keyof typeof variants] || variants.primary} ${className}`;

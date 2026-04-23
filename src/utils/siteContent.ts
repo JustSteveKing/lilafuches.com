@@ -4,16 +4,16 @@
 export const siteContent = {
   // Site meta information
   site: {
-    title: "Lila Fuches - Developer Content That Actually Works",
-    description: "We're Steve 'The API Guy' McDougall and Amy, and we help companies build authentic developer relations through content that resonates, workshops that deliver value, and strategies that actually work.",
+    title: "Lila Fuches - Expert Engineering, Education, & Content",
+    description: "Led by a former CTO with 15+ years of experience, we provide high-level consulting, technical education, and results-driven developer content for Laravel, PHP, and API-focused companies.",
     year: new Date().getFullYear(),
     companyName: "Lila Fuches",
-    tagline: "Creating more engaging content",
+    tagline: "High-level expertise, approachably delivered.",
     email: "hello@lilafuches.com",
     url: "https://lilafuches.com",
-    keywords: "developer relations, devrel, technical content, API tutorials, developer workshops, technical writing, developer advocacy, Laravel, PHP, API design",
+    keywords: "fractional cto, api design, laravel development, php consulting, developer education, technical content, laravel certification, developer relations, devrel",
     author: "Steve McDougall & Amy McDougall",
-    themeColor: "#0f172a", // slate-900
+    themeColor: "#44403c", // stone-700
     twitterHandle: "@JustSteveKing",
   },
 
@@ -24,14 +24,14 @@ export const siteContent = {
     "name": "Lila Fuches",
     "url": "https://lilafuches.com",
     "logo": "https://lilafuches.com/images/logo.png",
-    "description": "We help companies build authentic developer relations through content that resonates, workshops that deliver value, and strategies that actually work.",
+    "description": "High-level engineering, education, and content services for the Laravel and API ecosystem.",
     "email": "hello@lilafuches.com",
     "foundingDate": "2019",
     "founder": [
       {
         "@type": "Person",
         "name": "Steve McDougall",
-        "jobTitle": "Technical Content Creator & API Expert",
+        "jobTitle": "Co-Founder & Technical Lead",
         "sameAs": [
           "https://x.com/JustSteveKing",
           "https://github.com/JustSteveKing",
@@ -41,24 +41,17 @@ export const siteContent = {
       {
         "@type": "Person",
         "name": "Amy McDougall",
-        "jobTitle": "Operations Lead"
+        "jobTitle": "Co-Founder & Operations Lead"
       }
     ],
     "areaServed": "Global",
     "serviceType": [
-      "Developer Relations",
+      "Fractional CTO",
+      "API Architecture",
+      "Laravel Development",
       "Technical Content Creation",
-      "Developer Workshops",
-      "API Documentation",
-      "Technical Writing"
-    ],
-    "knowsAbout": [
-      "API Design",
-      "Laravel",
-      "PHP",
-      "Developer Experience",
-      "Technical Writing",
-      "Developer Advocacy"
+      "Developer Education",
+      "Workshops"
     ]
   },
 
@@ -70,112 +63,56 @@ export const siteContent = {
   // Navigation
   navigation: {
     menuItems: [
-      { label: "Services", href: "#services" },
-      { label: "Approach", href: "#approach" },
+      { label: "Engineering", href: "#engineering" },
+      { label: "Content", href: "#content" },
+      { label: "Education", href: "#education" },
       { label: "About", href: "#about" },
     ],
   },
 
   // Hero section
   hero: {
-    badge: "Creating better developer content",
+    badge: "15+ Years of Engineering Excellence",
     title: {
-      main: "Developer Content That",
-      highlight: "Drives Results",
+      main: "Expert Guidance for",
+      highlight: "Scaling Teams & Tech",
     },
-    subtitle: "From bite-sized tutorials to in-depth workshops, we create technical content that gets developers excited - and helps your product grow. Build real developer engagement with content, workshops, and strategies that actually work.",
+    subtitle: "From Fractional CTO services and API architecture to high-impact developer content and certification training. We provide the senior-level expertise you need to grow your product and your team, without the overhead of a full-time executive hire.",
     primaryCTA: {
-      text: "Let's Talk",
-      href: "#contact",
+      text: "Book a Consultation",
+      href: "https://juststeveking.link/cal",
     },
     secondaryCTA: {
-      text: "See Our Clients",
-      href: "#clients",
-    },
-    codeSnippet: {
-      code: `GET /content           → 200 OK: "engaging"
-POST /workshops        → 201 Created: "hands-on"
-PATCH /strategy        → 204 No Content: "authentic"
-GET /results           → 200 OK: "measurable"
-`,
-      lang: 'shell',
-      theme: 'github-dark'
+      text: "View Our Expertise",
+      href: "#engineering",
     },
   },
 
-  // What We Do section
-  services: {
-    id: "services",
-    title: "What We Do",
-    subtitle: "Developer Relations is more than just writing docs. It's about building genuine connections through valuable content.",
+  // Three Pillars Section
+  pillars: {
+    title: "How We Help",
+    subtitle: "Three core areas of expertise, delivered with the precision of a CTO and the approachability of a boutique agency.",
     items: [
       {
-        title: "Written Content",
-        description: "Technical blogs, tutorials, and documentation that developers actually want to read.",
-        icon: "book",
+        id: "engineering",
+        title: "Consulting & Engineering",
+        description: "Fractional CTO services, contract development, and API architecture for companies that need senior leadership on a flexible basis. We help you build robust, scalable systems that last.",
+        features: ["Fractional CTO Services", "API Design & Architecture", "Contract Laravel/PHP Development", "Acquisition Due Diligence"],
+        icon: "mdi:rocket-launch",
       },
       {
-        title: "Video Content",
-        description: "Engaging video tutorials, course content, and technical walkthroughs.",
-        icon: "video",
+        id: "content",
+        title: "Content Creation",
+        description: "Results-driven technical content that resonates with developers. From tutorials to DevRel strategy, we help you build authentic authority in the developer community.",
+        features: ["Technical Blog Content", "DevRel Strategy & Audit", "Video Tutorials & Courses", "Documentation as a Service"],
+        icon: "mdi:fountain-pen-tip",
       },
       {
-        title: "Live Streams",
-        description: "Interactive coding sessions and Q&As that build community engagement.",
-        icon: "broadcast",
-      },
-      {
-        title: "Workshops",
-        description: "Hands-on training sessions that leave developers with practical skills.",
-        icon: "workshop",
-      },
-    ],
-  },
-
-  // Company approach section
-  approach: {
-    badge: "OUR APPROACH",
-    title: "We Speak Your Language",
-    subtitle: "As developers ourselves, we understand what the community needs. Our team combines deep technical expertise with proven content strategies.",
-    description: "We don't just create content – we craft experiences that developers actually want to engage with. From RESTful API tutorials to advanced architectural patterns, we help companies build authentic relationships with the developer community.",
-    highlights: [
-      {
-        title: "Developer-First Mindset",
-        description: "Every piece of content is created by developers, for developers",
-      },
-      {
-        title: "Technical Accuracy",
-        description: "We ensure all content is technically sound and up-to-date",
-      },
-      {
-        title: "Community Understanding",
-        description: "Deep knowledge of developer pain points and preferences",
-      },
-    ],
-    apiEndpoints: [
-      {
-        method: "GET",
-        endpoint: "/api/developers/engagement",
-        status: "200 OK",
-        color: "green",
-      },
-      {
-        method: "POST",
-        endpoint: "/api/content/technical-blogs",
-        status: "201 Created",
-        color: "yellow",
-      },
-      {
-        method: "PUT",
-        endpoint: "/api/workshops/hands-on-training",
-        status: "200 OK",
-        color: "blue",
-      },
-      {
-        method: "PATCH",
-        endpoint: "/api/devrel/strategy",
-        status: "204 No Content",
-        color: "purple",
+        id: "education",
+        title: "Education & Training",
+        description: "High-level training for engineering teams. We maintain the learning pathways for the Laravel Certification and run workshops that deliver immediate value.",
+        features: ["Laravel Certification Pathways", "Hands-on Technical Workshops", "Engineering Team Mentorship", "Custom Corporate Training"],
+        icon: "mdi:school",
       },
     ],
   },
@@ -183,14 +120,14 @@ GET /results           → 200 OK: "measurable"
   // About section / Team
   about: {
     id: "about",
-    title: "Meet The Team",
-    subtitle: "A dedicated team of developers and content strategists passionate about building better developer experiences",
+    title: "Meet The Founders",
+    subtitle: "A balanced partnership of technical leadership and operational excellence.",
     team: [
       {
         name: "Steve McDougall",
         avatar: "/images/steve.png",
         role: "Co-Founder & Technical Lead",
-        description: "Technical content strategist and developer advocate with years of experience building and teaching. Steve leads our technical content strategy and ensures everything we create resonates with developers.",
+        description: "With over 15 years in engineering, Steve has served as CTO, Engineering Manager, and Fractional CTO for multiple acquisitions. A minor influencer in the API space and a leader in the Laravel community, he ensures every technical project is delivered to the highest standard.",
         socialLinks: [
           { platform: "twitter", url: "https://twitter.com/JustSteveKing" },
           { platform: "github", url: "https://github.com/JustSteveKing" },
@@ -201,7 +138,7 @@ GET /results           → 200 OK: "measurable"
         name: "Amy McDougall",
         avatar: "/images/amy.png",
         role: "Co-Founder & Operations Lead",
-        description: "The strategic backbone of Lila Fuches, Amy ensures seamless project delivery and client success. From content planning to client relations, she makes sure our strategies exceed expectations.",
+        description: "The strategic force behind Lila Fuches, Amy ensures seamless project execution and client success. Her focus on operational excellence makes our high-level consulting approachable and affordable for businesses of all sizes.",
         socialLinks: [
           { platform: "linkedin", url: "https://www.linkedin.com/in/amy-mcdougall-3a78b713a/" },
         ],
@@ -209,102 +146,25 @@ GET /results           → 200 OK: "measurable"
     ],
   },
 
-  // Client showcase section
-  clients: {
-    id: "clients",
-    title: "Trusted by Industry Leaders",
-    subtitle: "We've helped companies of all sizes build better developer relationships and create content that drives results",
-    logos: [
-      {
-        name: "Permit.io",
-        logo: "/images/clients/permit.svg",
-        alt: "Permit.io authorization platform logo",
-        website: "https://permit.io?ref=lilafuches"
-      },
-      {
-        name: "Warp",
-        logo: "/images/clients/warp.svg",
-        alt: "Warp terminal logo",
-        website: "https://warp.dev?ref=lilafuches"
-      },
-      {
-        name: "Hookdeck",
-        logo: "/images/clients/hookdeck.svg",
-        alt: "Hookdeck webhook infrastructure logo",
-        website: "https://hookdeck.com?ref=lilafuches"
-      },
-      {
-        name: "Sevalla",
-        logo: "/images/clients/sevalla.svg",
-        alt: "Sevalla hosting platform logo",
-        website: "https://sevalla.com?ref=lilafuches"
-      },
-      {
-        name: "Tighten",
-        logo: "/images/clients/tighten.svg",
-        alt: "Tighten Co. logo",
-        website: "https://tighten.com?ref=lilafuches"
-      },
-      {
-        name: "Zuplo",
-        logo: "/images/clients/zuplo.svg",
-        alt: "Zuplo API management platform logo",
-        website: "https://zuplo.com?ref=lilafuches"
-      }
-    ],
-    testimonial: {
-      quote: "We came for the APIs but we stayed for the clean code, robust systems architecture and deep knowledge of Laravel conventions. The team made our code faster, more stable and easier to maintain ourselves in the future.",
-      author: "Peter Thomson",
-      company: "Icehouse Ventures",
-      role: "Chief Technology Officer",
-      avatar: "https://github.com/peterjthomson.png"
-    },
-
-    // Additional testimonials for future use
-    alternateTestimonials: [
-      {
-        quote: "The team was fantastic to work with. Their deep understanding of Laravel, both technically and culturally, made them the perfect partners to collaborate with.",
-        author: "Phil Leggetter",
-        company: "Hookdeck",
-        role: "Head of Developer Relations",
-        avatar: "https://github.com/leggetter.png"
-      },
-      {
-        quote: "Lila Fuches brings knowledge and passion to the community, with easy to follow content that adds real value to any company that works with them.",
-        author: "Steven Tey",
-        company: "Dub.co",
-        role: "Founder",
-        avatar: "https://github.com/steven-tey.png"
-      },
-      {
-        quote: "The team are awesome writers and communicators who can take complex problems and communicate them in a way that anyone can understand.",
-        author: "Eric Barnes",
-        company: "Laravel News",
-        role: "Founder/Editor",
-        avatar: "https://github.com/ericlbarnes.png"
-      }
-    ]
-  },
-
   // Statistics section
   statistics: {
-    title: "Why Developers Trust Us",
+    title: "Expertise by the Numbers",
     stats: [
       {
-        number: "100%",
-        label: "Developer-First Content Strategy",
+        number: "15+",
+        label: "Years Engineering Experience",
+      },
+      {
+        number: "4+",
+        label: "CTO & Leadership Roles",
       },
       {
         number: "1000+",
-        label: "Technical Articles & Tutorials Published",
+        label: "Technical Articles Published",
       },
       {
-        number: "100k+",
-        label: "Developers Reached Globally",
-      },
-      {
-        number: "15+",
-        label: "Years Combined Developer Experience",
+        number: "Global",
+        label: "Team Leadership Experience",
       },
     ],
   },
@@ -312,10 +172,10 @@ GET /results           → 200 OK: "measurable"
   // Call to action section
   cta: {
     id: "contact",
-    title: "Ready to Create Better Content?",
-    subtitle: "Let's create content that developers actually want to engage with.",
+    title: "Ready to Level Up Your Tech?",
+    subtitle: "Whether you need a Fractional CTO, a custom workshop, or high-impact content, we're here to help you scale effectively.",
     primaryButton: {
-      text: "Get In Touch",
+      text: "Book Your Free 15-Minute Intro",
       href: "https://juststeveking.link/cal",
     }
   },
@@ -323,7 +183,7 @@ GET /results           → 200 OK: "measurable"
   // Footer
   footer: {
     logo: "LF",
-    copyright: "© 2024 Lila Fuches. Building better DevRel.",
+    copyright: "© 2024 Lila Fuches. Professional engineering & consulting.",
     links: [
       {
         label: "Twitter",
@@ -335,7 +195,7 @@ GET /results           → 200 OK: "measurable"
       },
       {
         label: "LinkedIn",
-        href: "https://www.linkedin.com",
+        href: "https://www.linkedin.com/in/steve-mcdougall",
       },
       {
         label: "Contact",

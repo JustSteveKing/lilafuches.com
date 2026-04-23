@@ -1,6 +1,8 @@
 ---
-import { Heading, Text } from "@/components";
+import Heading from "./Heading.astro";
+import Text from "./Text.astro";
 import { Image } from "astro:assets";
+import { Icon } from "astro-icon/components";
 
 interface Props {
     name: string;
@@ -12,56 +14,28 @@ interface Props {
 
 const { name, avatar, role, description, socialLinks = [] } = Astro.props as Props;
 
-// Generate a unique color based on the name hash
-const colors = [
-  {
-    gradient: "from-blue-500 to-blue-600",
-    border: "hover:border-blue-500/50",
-    glow: "hover:shadow-blue-500/20",
-    accent: "text-blue-400",
-    roleGlow: "bg-blue-500/10 text-blue-400 border-blue-500/30"
-  },
-  {
-    gradient: "from-green-500 to-green-600", 
-    border: "hover:border-green-500/50",
-    glow: "hover:shadow-green-500/20",
-    accent: "text-green-400",
-    roleGlow: "bg-green-500/10 text-green-400 border-green-500/30"
-  },
-  {
-    gradient: "from-purple-500 to-purple-600",
-    border: "hover:border-purple-500/50", 
-    glow: "hover:shadow-purple-500/20",
-    accent: "text-purple-400",
-    roleGlow: "bg-purple-500/10 text-purple-400 border-purple-500/30"
-  },
-  {
-    gradient: "from-yellow-500 to-yellow-600",
-    border: "hover:border-yellow-500/50",
-    glow: "hover:shadow-yellow-500/20", 
-    accent: "text-yellow-400",
-    roleGlow: "bg-yellow-500/10 text-yellow-400 border-yellow-500/30"
-  }
-];
-
-const nameHash = name.split('').reduce((acc, char) => acc + char.charCodeAt(0), 0);
-const colorIndex = nameHash % colors.length;
-const color = colors[colorIndex];
+// Map platform names to icon names
+const iconMap: Record<string, string> = {
+  twitter: "mdi:twitter",
+  github: "mdi:github",
+  linkedin: "mdi:linkedin",
+  website: "mdi:web",
+};
 ---
 
-<article class={`glass ${color.border} ${color.glow} group hover:shadow-xl rounded-xl border border-border/50 p-8 flex flex-col items-center transition-all duration-300 hover:scale-[1.045]`}>
-  <figure class={`mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br ${color.gradient} overflow-hidden shadow-lg group-hover:shadow-xl transition-all duration-300 ring-2 ring-white/10 group-hover:ring-white/20`}>
-    <Image src={avatar} alt={name} height={80} width={80} loading="lazy" decoding="async" class="size-24 object-cover" />
+<article class="card flex flex-col items-center group dark:bg-stone-900 dark:border-stone-800">
+  <figure class="mb-6 h-28 w-28 overflow-hidden rounded-full border-4 border-stone-100 dark:border-stone-800 shadow-sm transition-transform duration-300 group-hover:scale-105">
+    <Image src={avatar} alt={name} height={112} width={112} loading="lazy" decoding="async" class="h-full w-full object-cover" />
   </figure>
-  <Heading level={3} class={`mb-2 text-2xl font-bold group-hover:${color.accent} transition-colors duration-300`}>{name}</Heading>
-  <div class={`mb-4 px-3 py-1 rounded-full border ${color.roleGlow} font-mono text-sm transition-all duration-300`}>
+  <Heading level={3} class="mb-1 text-2xl font-bold text-stone-900 dark:text-stone-100">{name}</Heading>
+  <div class="mb-4 text-sm font-bold uppercase tracking-wider text-accent dark:text-orange-400">
     {role}
   </div>
-  <Text class="mb-6 text-center group-hover:text-foreground/90 transition-colors duration-300">{description}</Text>
-  <nav class="flex space-x-4" aria-label={`Social links for ${name}`}>
-    {socialLinks.map((link: { url: string; platform: string }) => (
-      <a href={link.url} target="_blank" rel="noopener" aria-label={link.platform} class={`transition-all duration-300 text-gray-400 hover:${color.accent} hover:scale-110 font-medium`}>
-        {link.platform}
+  <Text class="mb-6 text-center text-stone-600 dark:text-stone-400 leading-relaxed">{description}</Text>
+  <nav class="flex items-center justify-center space-x-5" aria-label={`Social links for ${name}`}>
+    {socialLinks.map((link) => (
+      <a href={link.url} target="_blank" rel="noopener" aria-label={link.platform} class="text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 transition-all duration-300 hover:scale-110">
+        <Icon name={iconMap[link.platform] || "mdi:link"} class="h-5 w-5" />
       </a>
     ))}
   </nav>
