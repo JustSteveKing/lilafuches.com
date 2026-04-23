@@ -11,21 +11,21 @@ interface Props {
 const { number, label, index = 0 } = Astro.props as Props;
 ---
 
-<article 
-  class="card text-center group border-stone-200/60 dark:bg-stone-900 dark:border-stone-800"
+<article
+  class="card text-center group border-stone-200/60 bg-stone-50 dark:bg-stone-900 dark:border-stone-800"
   role="figure"
   aria-labelledby={`stat-label-${label.replace(/\s+/g, '-').toLowerCase()}`}
 >
-  <Heading 
-    level={3} 
+  <Heading
+    level={3}
     class="text-4xl font-black text-stone-800 dark:text-stone-100 transition-all duration-300 group-hover:text-stone-900 dark:group-hover:text-white group-hover:scale-105 mb-2"
     aria-label={`Statistic: ${number}`}
   >
     {number}
   </Heading>
-  
-  <Text 
-    id={`stat-label-${label.replace(/\s+/g, '-').toLowerCase()}`} 
+
+  <Text
+    id={`stat-label-${label.replace(/\s+/g, '-').toLowerCase()}`}
     role="caption"
     class="text-xs font-bold uppercase tracking-widest text-stone-500 dark:text-stone-500 group-hover:text-stone-600 dark:group-hover:text-stone-400 transition-colors duration-300"
   >
