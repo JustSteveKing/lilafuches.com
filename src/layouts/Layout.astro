@@ -82,36 +82,20 @@ const {
     <!-- JSON-LD Structured Data -->
     <script is:inline type="application/ld+json" set:html={JSON.stringify(siteContent.structuredData)}></script>
 
-    <!-- Theme detection and initialization script -->
+    <!-- Theme detection script (system preference only) -->
     <script is:inline>
-      // Prevent FOUC (Flash of Unstyled Content) with theme detection
       (function() {
-        const theme = (() => {
-          if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-            return localStorage.getItem('theme');
-          }
-          if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            return 'dark';
-          }
-          return 'light';
-        })();
-
-        if (theme === 'light') {
-          document.documentElement.classList.remove('dark');
-        } else {
+        if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
           document.documentElement.classList.add('dark');
-        }
-
-        // Store the theme
-        if (typeof localStorage !== 'undefined') {
-          localStorage.setItem('theme', theme);
+        } else {
+          document.documentElement.classList.remove('dark');
         }
       })();
     </script>
 
     <slot name="head" />
 </head>
-<body class="relative min-h-screen overflow-x-hidden font-sans antialiased bg-stone-50 dark:bg-stone-900 text-foreground transition-colors duration-300">
+<body class="relative min-h-screen overflow-x-hidden font-sans antialiased bg-background text-foreground transition-colors duration-300">
     <!-- Subtle noise texture overlay -->
     <div class="pointer-events-none fixed inset-0 z-50 opacity-[0.015] mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
 
@@ -124,39 +108,15 @@ const {
 
     <Footer />
 
-    <!-- Theme toggle functionality -->
-    <script>
-      // Theme toggle functionality
-      function toggleTheme() {
-        const currentTheme = localStorage.getItem('theme') || 'light';
-        const newTheme = currentTheme === 'light' ? 'dark' : 'light';
-
-        localStorage.setItem('theme', newTheme);
-
-        if (newTheme === 'dark') {
+    <script is:inline>
+      // Listen for system theme changes
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (e.matches) {
           document.documentElement.classList.add('dark');
         } else {
           document.documentElement.classList.remove('dark');
         }
-
-        // Dispatch custom event for components that need to react to theme changes
-        window.dispatchEvent(new CustomEvent('themeChanged', { detail: { theme: newTheme } }));
-      }
-
-      // Listen for system theme changes
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        if (!localStorage.getItem('theme')) {
-          const newTheme = e.matches ? 'dark' : 'light';
-          if (newTheme === 'dark') {
-            document.documentElement.classList.add('dark');
-          } else {
-            document.documentElement.classList.remove('dark');
-          }
-        }
       });
-
-      // Make toggleTheme available globally
-      (window as any).toggleTheme = toggleTheme;
     </script>
 </body>
 </html>

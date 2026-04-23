@@ -19,4 +19,4 @@ export { default as TeamMemberCard } from "./TeamMemberCard.astro";
 export { default as Testimonial } from "./Testimonial.astro";
 export { default as TestimonialGrid } from "./TestimonialGrid.astro";
 export { default as Text } from "./Text.astro";
-export { default as ThemeToggle } from "./ThemeToggle.astro";
+
