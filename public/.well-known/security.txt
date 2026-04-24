@@ -1,5 +1,4 @@
 Contact: mailto:hello@lilafuches.com
 Expires: 2026-12-31T23:59:59.000Z
-Encryption: https://lilafuches.com/pgp-key.txt
 Preferred-Languages: en
 Canonical: https://lilafuches.com/.well-known/security.txt
