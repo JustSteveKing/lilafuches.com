@@ -23,14 +23,14 @@ export default defineConfig({
 
   fonts: [
     {
-      name: "Inter",
-      cssVariable: "--font-inter",
+      name: "Bricolage Grotesque",
+      cssVariable: "--font-sans",
       provider: fontProviders.google(),
-      weights: [300, 400, 500, 600, 700],
+      weights: [200, 300, 400, 500, 600, 700, 800],
     },
     {
       name: "JetBrains Mono",
-      cssVariable: "--font-jetbrains-mono",
+      cssVariable: "--font-mono",
       provider: fontProviders.google(),
       weights: [400, 500, 600],
     },

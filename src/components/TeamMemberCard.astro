@@ -3,6 +3,7 @@ import Heading from "./Heading.astro";
 import Text from "./Text.astro";
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
+import Accent from "./Accent.astro";
 
 interface Props {
     name: string;
@@ -23,20 +24,36 @@ const iconMap: Record<string, string> = {
 };
 ---
 
-<article class="card flex flex-col items-center group bg-stone-100 dark:bg-stone-700 border-accent-400 dark:border-stone-800">
-  <figure class="mb-6 h-28 w-28 overflow-hidden rounded-full border-4 border-accent-400 dark:border-stone-800 shadow-sm transition-transform duration-300 group-hover:scale-105">
-    <Image src={avatar} alt={name} height={112} width={112} loading="lazy" decoding="async" class="h-full w-full object-cover" />
-  </figure>
-  <Heading level={3} class="mb-1 text-2xl font-bold text-stone-900 dark:text-stone-100">{name}</Heading>
-  <div class="mb-4 text-sm font-bold uppercase tracking-wider text-accent dark:text-orange-400">
-    {role}
+<article class="flex flex-col group p-12 md:p-16 h-full bg-background hover:bg-muted transition-colors">
+  <div class="flex flex-col gap-12">
+    <div class="flex flex-col md:flex-row items-start gap-12 border-b-2 border-border pb-12">
+      <div class="flex-shrink-0 relative">
+        <figure class="relative h-48 w-48 overflow-hidden border-4 border-border grayscale hover:grayscale-0 transition-all duration-300 contrast-125">
+          <Image src={avatar} alt={name} height={192} width={192} loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+        </figure>
+        <div class="absolute -bottom-4 -right-4 bg-accent text-accent-foreground px-3 py-1 font-mono text-[10px] font-black uppercase">
+          Founder
+        </div>
+      </div>
+      
+      <div class="flex-1 flex flex-col justify-end">
+        <Accent variant="mono" class="text-xs mb-4">{role}</Accent>
+        <Heading level={3} class="text-5xl font-black text-foreground tracking-tighter leading-[0.85] uppercase">{name}</Heading>
+      </div>
+    </div>
+    
+    <div class="flex-1 flex flex-col justify-between">
+      <Text class="mb-12 text-foreground leading-tight tracking-tight text-2xl font-bold uppercase italic">
+        {description}
+      </Text>
+      
+      <nav class="flex items-center gap-2" aria-label={`Social links for ${name}`}>
+        {socialLinks.map((link) => (
+          <a href={link.url} target="_blank" rel="noopener" aria-label={link.platform} class="border-2 border-border p-3 hover:bg-accent hover:text-accent-foreground transition-all duration-150">
+            <Icon name={iconMap[link.platform] || "mdi:link"} class="h-6 w-6" />
+          </a>
+        ))}
+      </nav>
+    </div>
   </div>
-  <Text class="mb-6 text-center text-stone-600 dark:text-stone-400 leading-relaxed">{description}</Text>
-  <nav class="flex items-center justify-center space-x-5" aria-label={`Social links for ${name}`}>
-    {socialLinks.map((link) => (
-      <a href={link.url} target="_blank" rel="noopener" aria-label={link.platform} class="text-stone-400 hover:text-stone-800 dark:hover:text-stone-200 transition-all duration-300 hover:scale-110">
-        <Icon name={iconMap[link.platform] || "mdi:link"} class="h-5 w-5" />
-      </a>
-    ))}
-  </nav>
 </article>

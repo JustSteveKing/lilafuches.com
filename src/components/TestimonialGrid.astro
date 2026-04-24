@@ -1,5 +1,6 @@
 ---
 import Text from "./Text.astro";
+import Accent from "./Accent.astro";
 
 interface Testimonial {
   quote: string;
@@ -26,136 +27,61 @@ const gridCols = {
   3: 'md:grid-cols-2 lg:grid-cols-3',
   4: 'md:grid-cols-2 lg:grid-cols-4'
 };
-
-// Generate unique colors for each testimonial
-const colors = [
-  {
-    accent: "text-blue-400",
-    border: "hover:border-blue-500/50",
-    glow: "hover:shadow-blue-500/20",
-    bg: "hover:bg-blue-500/5",
-    quoteMark: "text-blue-500/60 group-hover:text-blue-400"
-  },
-  {
-    accent: "text-green-400", 
-    border: "hover:border-green-500/50",
-    glow: "hover:shadow-green-500/20",
-    bg: "hover:bg-green-500/5",
-    quoteMark: "text-green-500/60 group-hover:text-green-400"
-  },
-  {
-    accent: "text-purple-400",
-    border: "hover:border-purple-500/50",
-    glow: "hover:shadow-purple-500/20", 
-    bg: "hover:bg-purple-500/5",
-    quoteMark: "text-purple-500/60 group-hover:text-purple-400"
-  },
-  {
-    accent: "text-yellow-400",
-    border: "hover:border-yellow-500/50",
-    glow: "hover:shadow-yellow-500/20",
-    bg: "hover:bg-yellow-500/5",
-    quoteMark: "text-yellow-500/60 group-hover:text-yellow-400"
-  }
-];
 ---
 
-<div class={`grid gap-6 ${gridCols[columns]} ${className}`} role="list" aria-label="Customer testimonials">
-  {testimonials.map((testimonial, index) => {
-    const colorIndex = index % colors.length;
-    const color = colors[colorIndex];
-    
-    return (
-      <article 
-        class={`glass rounded-xl border border-border/50 p-8 ${color.border} ${color.glow} ${color.bg} hover:shadow-xl transition-all duration-300 hover:scale-[1.02] group relative overflow-hidden`}
-        role="listitem"
-      >
-        {/* Subtle background gradient */}
-        <div class="absolute inset-0 opacity-0 group-hover:opacity-5 transition-opacity duration-300 bg-gradient-to-br from-current to-transparent pointer-events-none"></div>
+<div class={`grid gap-24 ${gridCols[columns]} ${className}`} role="list" aria-label="Customer testimonials">
+  {testimonials.map((testimonial) => (
+    <article 
+      class="flex flex-col group border-l-2 border-border/20 pl-8"
+      role="listitem"
+    >
+      <blockquote class="flex-1 flex flex-col">
+        <div class="flex-1">
+          <Text class="text-xl md:text-2xl font-bold text-foreground leading-tight tracking-tight mb-8 uppercase italic">
+            {testimonial.quote}
+          </Text>
+        </div>
         
-        <blockquote class="h-full flex flex-col relative z-10">
-          <div class="flex-1">
-            <div class="flex items-start mb-6">
-              <div class={`text-4xl ${color.quoteMark} mr-3 leading-none transition-all duration-300 transform group-hover:scale-110 font-serif`}>"</div>
-              <div class="flex-1">
-                <Text class="text-base leading-relaxed text-foreground/90 group-hover:text-foreground transition-colors duration-300 font-medium">
-                  {testimonial.quote}
-                </Text>
+        <footer class="mt-auto border-t border-border/10 pt-6">
+          <cite class="not-italic flex items-center gap-4">
+            {testimonial.avatar && (
+              <div class="flex-shrink-0 w-12 h-12 border border-border/20 overflow-hidden grayscale contrast-125 rounded">
+                <img 
+                  src={testimonial.avatar} 
+                  alt={`${testimonial.author}`}
+                  class="w-full h-full object-cover"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            )}
+            
+            <div class="flex-1 min-w-0">
+              <div class="font-black text-sm uppercase tracking-tight text-foreground">{testimonial.author}</div>
+              <div class="text-[10px] font-mono uppercase tracking-[0.2em] text-muted-foreground mt-1">
+                {testimonial.role} <span class="mx-2 text-accent">|</span> {testimonial.company}
               </div>
             </div>
-          </div>
-          
-          <footer class="mt-6 pt-6 border-t border-border/50 group-hover:border-border transition-colors duration-300">
-            <cite class="not-italic flex items-center gap-4">
-              {/* Avatar */}
-              {testimonial.avatar && (
-                <div class={`flex-shrink-0 w-12 h-12 rounded-full overflow-hidden border-2 border-white/20 group-hover:border-white/40 transition-all duration-300 ${color.border.replace('hover:', 'group-hover:')} shadow-lg`}>
-                  <img 
-                    src={testimonial.avatar} 
-                    alt={`${testimonial.author} avatar`}
-                    class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-              )}
-              
-              <div class="flex-1 min-w-0">
-                <div class="font-semibold text-foreground text-base group-hover:text-foreground transition-colors duration-300">{testimonial.author}</div>
-                <div class="text-sm text-muted-foreground group-hover:text-muted-foreground/80 transition-colors duration-300 mt-1">{testimonial.role}</div>
-                <div class={`text-sm font-semibold mt-2 ${color.accent} transition-colors duration-300`}>{testimonial.company}</div>
-              </div>
-            </cite>
-          </footer>
-        </blockquote>
-      </article>
-    );
-  })}
+          </cite>
+        </footer>
+      </blockquote>
+    </article>
+  ))}
 </div>
 
 <style>
-  /* Ensure equal height cards */
-  [role="list"] {
-    align-items: stretch;
-  }
-  
+  /* Staggered snappy animation on load */
   [role="listitem"] {
-    display: flex;
-    flex-direction: column;
-  }
-
-  blockquote {
-    height: 100%;
-  }
-
-  /* Staggered animation on load */
-  [role="listitem"] {
-    animation: fadeInUp 0.8s ease-out;
+    animation: reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     animation-fill-mode: both;
   }
 
   [role="listitem"]:nth-child(1) { animation-delay: 0.1s; }
   [role="listitem"]:nth-child(2) { animation-delay: 0.2s; }
   [role="listitem"]:nth-child(3) { animation-delay: 0.3s; }
-  [role="listitem"]:nth-child(4) { animation-delay: 0.4s; }
-  [role="listitem"]:nth-child(5) { animation-delay: 0.5s; }
-  [role="listitem"]:nth-child(6) { animation-delay: 0.6s; }
 
-  @keyframes fadeInUp {
-    from {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-
-  /* Respect reduced motion preferences */
-  @media (prefers-reduced-motion: reduce) {
-    [role="listitem"] {
-      animation: none;
-    }
+  @keyframes reveal {
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(0 0 0 0); }
   }
 </style>

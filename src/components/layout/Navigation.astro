@@ -1,5 +1,5 @@
 ---
-import { Logo, ThemeToggle } from "@/components";
+import { Button, Logo, ThemeToggle } from "@/components";
 import { siteContent } from "@/utils/siteContent";
 ---
 
@@ -27,17 +27,17 @@ import { siteContent } from "@/utils/siteContent";
                 <div class="hidden md:flex flex-1 justify-center items-center space-x-8">
                     {siteContent.navigation.menuItems.map((item, index) => {
                         const colors = [
-                            { text: "group-hover:text-blue-400", bg: "from-blue-500/15 to-blue-600/5", shadow: "group-hover:shadow-blue-500/20" },
-                            { text: "group-hover:text-green-400", bg: "from-green-500/15 to-green-600/5", shadow: "group-hover:shadow-green-500/20" },
-                            { text: "group-hover:text-purple-400", bg: "from-purple-500/15 to-purple-600/5", shadow: "group-hover:shadow-purple-500/20" },
-                            { text: "group-hover:text-yellow-400", bg: "from-yellow-500/15 to-yellow-600/5", shadow: "group-hover:shadow-yellow-500/20" }
+                            { text: "group-hover:text-engineering dark:group-hover:text-slate-50", bg: "from-engineering/15 to-engineering/5", shadow: "group-hover:shadow-engineering/20" },
+                            { text: "group-hover:text-content dark:group-hover:text-slate-50", bg: "from-content/15 to-content/5", shadow: "group-hover:shadow-content/20" },
+                            { text: "group-hover:text-education dark:group-hover:text-slate-50", bg: "from-education/15 to-education/5", shadow: "group-hover:shadow-education/20" },
+                            { text: "group-hover:text-accent-500 dark:group-hover:text-slate-50", bg: "from-accent-500/15 to-accent-600/5", shadow: "group-hover:shadow-accent-500/20" }
                         ];
                         const color = colors[index % colors.length];
 
                         return (
                             <a
                               href={item.href}
-                              class={`relative text-foreground transition-all duration-200 font-medium focus-ring rounded-lg px-3 py-2 group hover:bg-muted/50 ${color.text} ${color.shadow}`}
+                              class={`relative text-foreground transition-all duration-200 font-medium focus-ring rounded-lg px-3 py-2 group hover:bg-stone-100/50 dark:hover:bg-stone-800/50 ${color.text} ${color.shadow}`}
                             >
                                 <span class="relative z-10">{item.label}</span>
                                 <div class={`absolute inset-0 rounded-lg bg-gradient-to-r ${color.bg} opacity-0 group-hover:opacity-100 transition-opacity duration-200`}></div>
@@ -46,8 +46,14 @@ import { siteContent } from "@/utils/siteContent";
                     })}
                 </div>
 
-                <!-- Theme Toggle & Mobile Menu Button -->
+                <!-- Theme Toggle, CTA & Mobile Menu Button -->
                 <div class="flex items-center space-x-3">
+                    <div class="hidden sm:block">
+                        <Button variant="accent" size="sm" href={siteContent.hero.primaryCTA.href}>
+                            Book a Call
+                        </Button>
+                    </div>
+
                     <div @click.stop>
                         <ThemeToggle />
                     </div>
@@ -106,10 +112,10 @@ import { siteContent } from "@/utils/siteContent";
             <nav class="relative z-10 flex flex-col space-y-1" role="menu" aria-label="Mobile navigation menu">
                 {siteContent.navigation.menuItems.map((item, index) => {
                     const colors = [
-                        { text: "group-hover:text-blue-400", bg: "from-blue-500/15 to-blue-600/5", shadow: "group-hover:shadow-blue-500/10" },
-                        { text: "group-hover:text-green-400", bg: "from-green-500/15 to-green-600/5", shadow: "group-hover:shadow-green-500/10" },
-                        { text: "group-hover:text-purple-400", bg: "from-purple-500/15 to-purple-600/5", shadow: "group-hover:shadow-purple-500/10" },
-                        { text: "group-hover:text-yellow-400", bg: "from-yellow-500/15 to-yellow-600/5", shadow: "group-hover:shadow-yellow-500/10" }
+                        { text: "group-hover:text-engineering dark:group-hover:text-slate-50", bg: "from-engineering/15 to-engineering/5", shadow: "group-hover:shadow-engineering/10" },
+                        { text: "group-hover:text-content dark:group-hover:text-slate-50", bg: "from-content/15 to-content/5", shadow: "group-hover:shadow-content/10" },
+                        { text: "group-hover:text-education dark:group-hover:text-slate-50", bg: "from-education/15 to-education/5", shadow: "group-hover:shadow-education/10" },
+                        { text: "group-hover:text-accent-500 dark:group-hover:text-slate-50", bg: "from-accent-500/15 to-accent-600/5", shadow: "group-hover:shadow-accent-500/10" }
                     ];
                     const color = colors[index % colors.length];
 
@@ -118,7 +124,7 @@ import { siteContent } from "@/utils/siteContent";
                           href={item.href}
                           @click="showMenu = false"
                           role="menuitem"
-                          class={`relative text-foreground hover:bg-muted/50 transition-all duration-200 font-medium rounded-lg px-3 py-3 text-left focus-ring group ${color.text} ${color.shadow}`}
+                          class={`relative text-foreground hover:bg-stone-100/50 dark:hover:bg-stone-800/50 transition-all duration-200 font-medium rounded-lg px-3 py-3 text-left focus-ring group ${color.text} ${color.shadow}`}
                         >
                             <span class="relative z-10">{item.label}</span>
                             <div class={`absolute inset-0 rounded-lg bg-gradient-to-r ${color.bg} opacity-0 group-hover:opacity-100 transition-opacity duration-200`}></div>

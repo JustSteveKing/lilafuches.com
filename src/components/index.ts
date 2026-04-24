@@ -1,4 +1,5 @@
 // All Components (Alphabetically Ordered)
+export { default as Accent } from "./Accent.astro";
 export { default as ApiEndpointCard } from "./ApiEndpointCard.astro";
 export { default as Breadcrumb } from "./Breadcrumb.astro";
 export { default as Button } from "./Button.astro";

@@ -13,48 +13,63 @@ const {
     logo,
     alt,
     website,
-    color,
+    color: propColor,
     class: className = "",
 } = Astro.props as Props;
 
-// Generate hover styles based on client name
-const getHoverClasses = (clientName: string) => {
-    const lowerName = clientName.toLowerCase();
-    
-    switch (lowerName) {
-        case 'permit.io':
-            return 'hover:border-[#FF953F]/50 hover:shadow-[#FF953F]/20 hover:bg-[#FF953F]/5';
-        case 'warp':
-            return 'hover:border-gray-700/50 hover:shadow-gray-700/20 hover:bg-gray-700/5 dark:hover:border-gray-300/50 dark:hover:shadow-gray-300/20 dark:hover:bg-gray-300/5';
-        case 'hookdeck':
-            return 'hover:border-[#04C]/50 hover:shadow-[#04C]/20 hover:bg-[#04C]/5';
-        case 'sevalla':
-            return 'hover:border-[#F97316]/50 hover:shadow-[#F97316]/20 hover:bg-[#F97316]/5';
-        case 'tighten':
-            return 'hover:border-[#FFBC01]/50 hover:shadow-[#FFBC01]/20 hover:bg-[#FFBC01]/5';
-        case 'zuplo':
-            return 'hover:border-[#FF24BD]/50 hover:shadow-[#FF24BD]/20 hover:bg-[#FF24BD]/5';
-        default:
-            return 'hover:border-white/20 hover:shadow-white/10 hover:bg-white/8';
-    }
+// Brand color mapping for the glow effect
+const brandColors: Record<string, string> = {
+    'hookdeck': '#0044CC',
+    'permit.io': '#FF953F',
+    'sevalla': '#F97316',
+    'tighten': '#FFBC01',
+    'warp': '#202020',
+    'zuplo': '#FF24BD',
 };
 
-const hoverClasses = getHoverClasses(name);
+const brandColor = propColor || brandColors[name.toLowerCase()] || '#888';
 ---
 
 <a
     href={website}
     target="_blank"
     rel="noopener noreferrer"
-    class={`group flex items-center justify-center p-6 rounded-lg bg-white/5 border border-white/10 ${hoverClasses} transition-all duration-300 hover:scale-105 hover:shadow-xl ${className}`}
+    class={`group relative flex items-center justify-center p-4 transition-all duration-500 hover:scale-110 ${className}`}
     aria-label={`Visit ${name} website`}
     title={`Visit ${name} website.`}
 >
+    <!-- Background Glow -->
+    <div
+        class="absolute inset-0 opacity-0 group-hover:opacity-15 dark:group-hover:opacity-20 blur-2xl transition-opacity duration-500 rounded-full"
+        style={`background-color: ${brandColor}`}
+    ></div>
+
     <img
         src={logo}
         alt={alt}
-        class="h-8 w-auto opacity-50 transition-all duration-300 group-hover:opacity-80 group-hover:scale-110 logo-filter"
+        class="h-7 md:h-8 w-auto transition-all duration-500 logo-filter relative z-10"
+        style={`--brand-glow: ${brandColor}`}
         loading="lazy"
         decoding="async"
     />
 </a>
+
+<style>
+    .logo-filter {
+        filter: grayscale(1) opacity(0.5);
+    }
+
+    :global(.dark) .logo-filter {
+        /* Invert grayscale logos in dark mode so they are visible (white-ish) */
+        filter: grayscale(1) invert(1) brightness(1.5) opacity(0.4);
+    }
+
+    .group:hover .logo-filter {
+        filter: grayscale(0) opacity(1) drop-shadow(0 0 10px var(--brand-glow));
+    }
+
+    :global(.dark) .group:hover .logo-filter {
+        /* Remove inversion on hover to show original brand colors */
+        filter: grayscale(0) invert(0) brightness(1) opacity(1) drop-shadow(0 0 15px var(--brand-glow));
+    }
+</style>

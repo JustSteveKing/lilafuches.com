@@ -1,28 +1,28 @@
 ---
 const { variant = "primary", size = "md", href = undefined, class: className = "", ...rest } = Astro.props;
 
-const base = "inline-flex items-center justify-center font-medium rounded-lg transition-all duration-200 focus-ring disabled:opacity-50 disabled:cursor-not-allowed";
+const base = "inline-flex items-center justify-center font-bold uppercase tracking-widest border-2 border-border transition-all duration-200 focus-ring disabled:opacity-50 disabled:cursor-not-allowed select-none rounded-md";
 
 const sizes = {
-  sm: "px-3 py-1.5 text-sm",
-  md: "px-5 py-2.5 text-base",
-  lg: "px-6 py-3 text-lg",
+  sm: "px-4 py-2 text-xs",
+  md: "px-6 py-3 text-sm",
+  lg: "px-8 py-3.5 text-base",
 };
 
 const variants = {
-  primary: "bg-primary text-primary-foreground hover:brightness-110 active:scale-[0.98] shadow-sm",
+  primary: "bg-primary text-primary-foreground hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,0.1)] dark:hover:shadow-[3px_3px_0px_0px_rgba(255,255,255,0.1)]",
   
-  secondary: "bg-muted/50 text-foreground border border-border/60 hover:bg-muted active:scale-[0.98] shadow-sm",
+  secondary: "bg-background text-foreground hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_0px_rgba(0,0,0,0.1)] dark:hover:shadow-[3px_3px_0px_0px_rgba(255,255,255,0.1)]",
   
-  accent: "bg-accent text-accent-foreground hover:brightness-110 active:scale-[0.98] shadow-sm",
+  accent: "bg-accent text-accent-foreground border-accent hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-[3px_3px_0px_0px_rgba(255,87,34,0.2)]",
   
-  outline: "bg-transparent text-foreground border border-border/80 hover:bg-muted/30 active:scale-[0.98]",
+  outline: "bg-transparent text-foreground hover:bg-muted",
   
-  ghost: "bg-transparent text-foreground hover:bg-muted/30 active:scale-[0.98]",
+  ghost: "bg-transparent text-foreground border-transparent hover:border-border hover:bg-muted",
   
-  link: "bg-transparent text-primary underline-offset-4 hover:underline p-0 h-auto",
+  link: "bg-transparent text-primary underline-offset-4 hover:underline p-0 h-auto border-none",
   
-  destructive: "bg-red-600 text-white hover:bg-red-700 active:scale-[0.98] shadow-sm",
+  destructive: "bg-red-600 text-white border-red-700 hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]",
 };
 
 const classes = `${base} ${sizes[size as keyof typeof sizes]} ${variants[variant as keyof typeof variants] || variants.primary} ${className}`;

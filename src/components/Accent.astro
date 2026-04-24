@@ -1,0 +1,39 @@
+---
+import { clsx } from 'clsx';
+
+interface Props {
+  variant?: 'default' | 'engineering' | 'content' | 'education' | 'serif' | 'mono' | 'pillar';
+  class?: string;
+  [key: string]: any;
+}
+
+const { 
+  variant = 'default', 
+  class: className = '',
+  ...rest 
+} = Astro.props;
+
+const variants = {
+  default: "text-accent font-bold",
+  engineering: "font-bold underline decoration-engineering decoration-2 underline-offset-4",
+  content: "font-bold italic text-content",
+  education: "font-mono font-bold border-b-2 border-education",
+  serif: "font-serif italic text-foreground",
+  mono: "font-mono uppercase tracking-[0.2em] text-accent",
+  pillar: "text-accent font-black italic", 
+};
+
+// Handle the pillar variant which needs a dynamic color usually passed via class or style
+// but now we can also just use the variant name if preferred.
+const isColorVariant = ['engineering', 'content', 'education'].includes(variant);
+const style = isColorVariant ? { color: `var(--${variant})` } : {};
+
+const classes = clsx(
+  variants[variant as keyof typeof variants],
+  className
+);
+---
+
+<span class={classes} style={style} {...rest}>
+  <slot />
+</span>

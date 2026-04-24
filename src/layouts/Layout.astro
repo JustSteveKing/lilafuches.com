@@ -59,8 +59,8 @@ const {
     <link rel="manifest" href="/site.webmanifest">
 
     <!-- Fonts -->
-    <Font cssVariable="--font-inter" />
-    <Font cssVariable="--font-jetbrains-mono" />
+    <Font cssVariable="--font-sans" />
+    <Font cssVariable="--font-mono" />
 
     <!-- Open Graph & Facebook -->
     <meta property="og:title" content={title}>
@@ -95,9 +95,9 @@ const {
 
     <slot name="head" />
 </head>
-<body class="relative min-h-screen overflow-x-hidden font-sans antialiased bg-background text-foreground transition-colors duration-300">
-    <!-- Subtle noise texture overlay -->
-    <div class="pointer-events-none fixed inset-0 z-50 opacity-[0.015] mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
+<body class="relative min-h-screen overflow-x-hidden font-sans antialiased bg-background text-foreground selection:bg-accent selection:text-accent-foreground">
+    <!-- Stronger industrial noise texture overlay -->
+    <div class="pointer-events-none fixed inset-0 z-50 opacity-[0.03] mix-blend-multiply dark:mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.8%22 numOctaves=%224%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
 
     <SkipLink href="#main-content" />
     <Navigation />
