@@ -34,21 +34,14 @@ const brandColor = propColor || brandColors[name.toLowerCase()] || '#888';
     href={website}
     target="_blank"
     rel="noopener noreferrer"
-    class={`group relative flex items-center justify-center p-4 transition-all duration-500 hover:scale-110 ${className}`}
+    class={`group relative flex items-center justify-center p-4 transition-all duration-500 ${className}`}
     aria-label={`Visit ${name} website`}
     title={`Visit ${name} website.`}
 >
-    <!-- Background Glow -->
-    <div
-        class="absolute inset-0 opacity-0 group-hover:opacity-15 dark:group-hover:opacity-20 blur-2xl transition-opacity duration-500 rounded-full"
-        style={`background-color: ${brandColor}`}
-    ></div>
-
     <img
         src={logo}
         alt={alt}
-        class="h-7 md:h-8 w-auto transition-all duration-500 logo-filter relative z-10"
-        style={`--brand-glow: ${brandColor}`}
+        class="h-8 md:h-9 w-auto logo-filter relative z-10"
         loading="lazy"
         decoding="async"
     />
@@ -56,20 +49,19 @@ const brandColor = propColor || brandColors[name.toLowerCase()] || '#888';
 
 <style>
     .logo-filter {
-        filter: grayscale(1) opacity(0.5);
+        filter: grayscale(1) opacity(0.4);
+        transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
     :global(.dark) .logo-filter {
-        /* Invert grayscale logos in dark mode so they are visible (white-ish) */
-        filter: grayscale(1) invert(1) brightness(1.5) opacity(0.4);
+        filter: grayscale(1) invert(1) brightness(2) opacity(0.35);
     }
 
     .group:hover .logo-filter {
-        filter: grayscale(0) opacity(1) drop-shadow(0 0 10px var(--brand-glow));
+        filter: grayscale(0) opacity(1);
     }
 
     :global(.dark) .group:hover .logo-filter {
-        /* Remove inversion on hover to show original brand colors */
-        filter: grayscale(0) invert(0) brightness(1) opacity(1) drop-shadow(0 0 15px var(--brand-glow));
+        filter: grayscale(0) invert(1) hue-rotate(180deg) brightness(1.5) opacity(1);
     }
 </style>

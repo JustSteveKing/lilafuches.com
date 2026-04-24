@@ -14,19 +14,19 @@ const iconMap: Record<string, string> = {
 };
 ---
 
-<footer class="mt-32 border-t border-border bg-background">
+<footer class="mt-12 md:mt-32 border-t border-border/10 bg-background">
     <Container>
-        <div class="py-24">
-            <div class="grid md:grid-cols-12 gap-12">
+        <div class="py-16 md:py-24 px-4 md:px-0">
+            <div class="grid md:grid-cols-12 gap-16 md:gap-12">
                 <!-- Left: Brand & Navigation -->
                 <div class="md:col-span-6 flex flex-col items-start gap-y-12">
-                    <a href="/" class="focus-ring border border-border/20 p-4 hover:bg-accent/5 transition-all duration-300 rounded-lg">
+                    <a href="/" class="focus-ring border border-border/10 p-5 hover:bg-muted transition-all duration-500 rounded-2xl group">
                         <Logo class="h-8 w-auto text-foreground" />
                     </a>
                     
-                    <nav class="flex flex-col gap-y-3">
+                    <nav class="flex flex-col gap-y-4">
                         {siteContent.navigation.menuItems.map(item => (
-                            <a href={item.href} class="text-lg font-black uppercase tracking-[0.2em] text-foreground hover:text-accent transition-colors duration-200">
+                            <a href={item.href} class="text-xl md:text-lg font-bold uppercase tracking-[0.2em] text-foreground/70 hover:text-accent transition-colors duration-300">
                                 {item.label}
                             </a>
                         ))}
@@ -35,23 +35,23 @@ const iconMap: Record<string, string> = {
 
                 <!-- Right: Social & Contact -->
                 <div class="md:col-span-6 flex flex-col items-start md:items-end gap-y-12">
-                    <div class="grid grid-cols-2 gap-3 w-full md:w-auto">
+                    <div class="grid grid-cols-4 md:grid-cols-4 gap-3 w-full md:w-auto">
                         {siteContent.footer.links.map(link => (
                             <a 
                                 href={link.href} 
                                 target="_blank" 
                                 rel="noopener" 
                                 aria-label={link.label}
-                                class="flex items-center justify-center border border-border/20 p-5 hover:bg-accent hover:text-accent-foreground transition-all duration-300 rounded-lg"
+                                class="flex items-center justify-center bg-muted/50 text-muted-foreground hover:bg-accent hover:text-accent-foreground transition-all duration-500 rounded-full p-5 shadow-sm hover:shadow-md"
                             >
-                                <Icon name={iconMap[link.label] || "mdi:link"} class="h-6 w-6" />
+                                <Icon name={iconMap[link.label] || "mdi:link"} class="h-5 w-5 md:h-6 md:w-6" />
                             </a>
                         ))}
                     </div>
                     
                     <a 
                       href={`mailto:${siteContent.site.email}`}
-                      class="text-xl font-black uppercase tracking-tighter text-foreground hover:bg-accent hover:text-accent-foreground border border-border/20 p-4 transition-all duration-300 rounded-lg"
+                      class="text-xl md:text-2xl font-bold tracking-tight text-foreground hover:text-accent transition-all duration-300"
                     >
                       {siteContent.site.email}
                     </a>
@@ -59,19 +59,19 @@ const iconMap: Record<string, string> = {
             </div>
 
             <!-- Bottom: Legal -->
-            <div class="mt-24 pt-12 border-t border-border/10 flex flex-col md:flex-row justify-between items-start md:items-end gap-y-8 md:gap-y-0 text-[10px] font-black uppercase tracking-widest text-muted-foreground">
+            <div class="mt-20 md:mt-24 pt-10 md:pt-12 border-t border-border/10 flex flex-col md:flex-row justify-between items-start md:items-end gap-y-8 md:gap-y-0 text-[10px] font-medium uppercase tracking-[0.2em] text-muted-foreground/60">
                 <div class="flex flex-col items-start gap-y-2">
-                    <p>
+                    <p class="font-bold text-muted-foreground">
                         &copy; {siteContent.company.founded} — {date.getFullYear()} {siteContent.company.name}
                     </p>
-                    <p class="opacity-50">
+                    <p class="opacity-70">
                         No. 12171927 • Registered in England & Wales
                     </p>
                 </div>
                 
                 <div class="flex items-center gap-x-8">
                     <a href="/sitemap.xml" class="hover:text-foreground transition-colors">Sitemap</a>
-                    <span class="bg-foreground text-background px-3 py-1 rounded text-[9px]">
+                    <span class="bg-muted text-muted-foreground px-3 py-1 rounded-full text-[9px] font-bold">
                         Astro 6.0
                     </span>
                 </div>

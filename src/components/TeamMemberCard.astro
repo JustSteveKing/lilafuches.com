@@ -24,33 +24,33 @@ const iconMap: Record<string, string> = {
 };
 ---
 
-<article class="flex flex-col group p-12 md:p-16 h-full bg-background hover:bg-muted transition-colors">
-  <div class="flex flex-col gap-12">
-    <div class="flex flex-col md:flex-row items-start gap-12 border-b-2 border-border pb-12">
+<article class="flex flex-col group p-8 md:p-12 h-full bg-background hover:bg-muted/30 rounded-3xl border border-transparent hover:border-accent/20 transition-all duration-500">
+  <div class="flex flex-col gap-8">
+    <div class="flex flex-col md:flex-row items-center md:items-start gap-8 border-b border-border/30 pb-8">
       <div class="flex-shrink-0 relative">
-        <figure class="relative h-48 w-48 overflow-hidden border-4 border-border grayscale hover:grayscale-0 transition-all duration-300 contrast-125">
-          <Image src={avatar} alt={name} height={192} width={192} loading="lazy" decoding="async" class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105" />
+        <figure class="relative h-40 w-40 overflow-hidden rounded-full border border-border/20 transition-all duration-500">
+          <Image src={avatar} alt={name} height={160} width={160} loading="lazy" decoding="async" class="h-full w-full object-cover" />
         </figure>
-        <div class="absolute -bottom-4 -right-4 bg-accent text-accent-foreground px-3 py-1 font-mono text-[10px] font-black uppercase">
+        <div class="absolute bottom-0 right-0 bg-accent text-accent-foreground px-4 py-1.5 rounded-full font-mono text-xs font-semibold transform translate-y-1/4 translate-x-1/4">
           Founder
         </div>
       </div>
       
-      <div class="flex-1 flex flex-col justify-end">
-        <Accent variant="mono" class="text-xs mb-4">{role}</Accent>
-        <Heading level={3} class="text-5xl font-black text-foreground tracking-tighter leading-[0.85] uppercase">{name}</Heading>
+      <div class="flex-1 flex flex-col justify-center text-center md:text-left">
+        <Accent variant="mono" class="text-sm text-muted-foreground mb-2">{role}</Accent>
+        <Heading level={3} class="text-4xl font-bold text-foreground tracking-tight">{name}</Heading>
       </div>
     </div>
     
-    <div class="flex-1 flex flex-col justify-between">
-      <Text class="mb-12 text-foreground leading-tight tracking-tight text-2xl font-bold uppercase italic">
+    <div class="flex-1 flex flex-col justify-between items-center md:items-start text-center md:text-left">
+      <Text class="mb-10 text-muted-foreground leading-relaxed text-xl font-medium">
         {description}
       </Text>
       
-      <nav class="flex items-center gap-2" aria-label={`Social links for ${name}`}>
+      <nav class="flex items-center gap-3" aria-label={`Social links for ${name}`}>
         {socialLinks.map((link) => (
-          <a href={link.url} target="_blank" rel="noopener" aria-label={link.platform} class="border-2 border-border p-3 hover:bg-accent hover:text-accent-foreground transition-all duration-150">
-            <Icon name={iconMap[link.platform] || "mdi:link"} class="h-6 w-6" />
+          <a href={link.url} target="_blank" rel="noopener" aria-label={link.platform} class="bg-muted text-muted-foreground hover:bg-accent hover:text-accent-foreground rounded-full p-3 transition-all duration-300">
+            <Icon name={iconMap[link.platform] || "mdi:link"} class="h-5 w-5" />
           </a>
         ))}
       </nav>

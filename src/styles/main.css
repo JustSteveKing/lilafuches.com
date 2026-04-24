@@ -34,10 +34,10 @@
   --radius-xl: 0.75rem;
   --radius-2xl: 1rem;
 
-  /* Effects & Shadows - Refined Brutalist (slight transparency/offset) */
-  --shadow-soft: 3px 3px 0px 0px rgba(9, 9, 11, 0.1);
-  --shadow-strong: 6px 6px 0px 0px rgba(9, 9, 11, 0.15);
-  --shadow-accent: 4px 4px 0px 0px rgba(255, 87, 34, 0.2);
+  /* Effects & Shadows - Minimal */
+  --shadow-soft: none;
+  --shadow-strong: none;
+  --shadow-accent: none;
   
   /* Animations - Smooth but purposeful */
   --animate-fade-in: fadeIn 0.4s ease-out;
@@ -175,32 +175,31 @@ a, button, div, section, svg, path {
 .bg-accent { background-color: var(--accent); }
 .text-accent-foreground { color: var(--accent-foreground); }
 
-/* Refined Brutalist card utility */
+/* Subtle card utility */
 .card {
   background-color: var(--background);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
   padding: 2.5rem;
-  box-shadow: var(--shadow-soft);
-  transition: all 0.2s ease-out;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .card:hover {
-  transform: translate(-3px, -3px);
-  box-shadow: var(--shadow-strong);
+  border-color: var(--accent);
+  background-color: var(--muted);
 }
 
 /* Navigation */
 .glass-nav {
   background: var(--background);
   opacity: 0.98;
-  backdrop-filter: blur(8px);
-  border-bottom: 1.5px solid var(--border);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border);
 }
 
 .dark .glass-nav {
   background: var(--background);
-  border-bottom: 2px solid var(--border);
+  border-bottom: 1px solid var(--border);
 }
 
 /* ============================================================================

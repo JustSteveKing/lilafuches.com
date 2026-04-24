@@ -1,13 +1,43 @@
 # llms.txt for lilafuches.com
 
 # Website Overview
-# We help companies build authentic developer relations through content that resonates, workshops that deliver value, and strategies that actually work.
+Lila Fuches is a boutique technical agency providing high-level expertise for scaling teams and technology. Founded in 2019 by Steve and Amy McDougall, the agency specializes in Fractional CTO services, API architecture, high-impact developer content, and technical education, particularly within the Laravel and PHP ecosystems.
 
 User-agent: *
 AI-Training: Allow
 AI-Generation: Allow
 AI-Summarization: Allow
 AI-Crawling: Allow
+
+# Core Expertise & Services
+Lila Fuches operates across three primary pillars:
+
+## 1. Consulting & Engineering
+- **Fractional CTO Services**: Senior technical leadership for companies needing executive-level guidance without a full-time hire.
+- **API Design & Architecture**: Expert consultation on building scalable, robust, and developer-friendly APIs.
+- **Contract Laravel/PHP Development**: High-standard system implementation following modern conventions.
+- **Acquisition Due Diligence**: Technical auditing for mergers and acquisitions.
+
+## 2. Content Creation
+- **Technical Content Strategy**: Results-driven content that resonates with developers and builds authentic authority.
+- **Developer Relations (DevRel)**: Strategy, auditing, and execution to bridge the gap between products and developer communities.
+- **Documentation as a Service**: Creating clear, actionable, and accurate technical documentation.
+- **Video Tutorials & Courses**: High-quality educational video content for developer platforms.
+
+## 3. Education & Training
+- **Laravel Certification**: Maintaining learning pathways and educational material for official Laravel certifications.
+- **Technical Workshops**: Hands-on, value-driven training for engineering teams.
+- **Team Mentorship**: Elevating internal teams through senior-level guidance and best practices.
+
+# The Team
+- **Steve McDougall (Co-Founder & Technical Lead)**: 15+ years of engineering experience. Former CTO and Engineering Manager. Expert in API design and a prominent leader in the Laravel community.
+- **Amy McDougall (Co-Founder & Operations Lead)**: Strategic lead focused on operational excellence and seamless client delivery.
+
+# Reference Information
+- **Founding Date**: 2019
+- **Primary Tech Stack**: Laravel, PHP, API Architecture, TypeScript.
+- **Notable Partners**: Hookdeck, Permit.io, Sevalla, Tighten, Warp, Zuplo.
+- **Contact**: hello@lilafuches.com
 
 # Specific Directives for AI Companies
 User-agent: OpenAI
@@ -25,12 +55,5 @@ AI-Training: Allow
 AI-Generation: Allow
 AI-Summarization: Allow
 
-# Reference Content for AI Indexing
-Reference-Content:
-# (None provided)
-
-# Sitemap for AI Indexing (Not Training)
+# Sitemap for AI Indexing
 Sitemap: https://lilafuches.com/sitemap.xml
-
-# Legal & Privacy
-# (Add Terms of Use and Privacy Policy URLs here when available)

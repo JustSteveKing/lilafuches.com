@@ -240,6 +240,34 @@ export const siteContent = {
     ],
   },
 
+  // Principles / Values
+  principles: {
+    title: "How We Work",
+    subtitle: "Built on principles that ensure your project succeeds beyond our engagement.",
+    items: [
+      {
+        title: "Senior-First Involvement",
+        description: "You work directly with founders. No 'junior-handover' after the contract is signed.",
+        icon: "mdi:account-star",
+      },
+      {
+        title: "Future-Proof Thinking",
+        description: "We build for the team you'll have in two years, not just the code you need today.",
+        icon: "mdi:clock-fast",
+      },
+      {
+        title: "Clear Communication",
+        description: "Zero jargon. Just honest, actionable engineering advice and status updates.",
+        icon: "mdi:message-text-fast",
+      },
+      {
+        title: "Community Deep-Roots",
+        description: "Our solutions are informed by our leadership roles in the Laravel and API ecosystems.",
+        icon: "mdi:account-group",
+      },
+    ],
+  },
+
   // About section / Team
   about: {
     id: "about",
