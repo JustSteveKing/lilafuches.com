@@ -10,12 +10,12 @@ const svgs = import.meta.glob<string>("../assets/clients/*.svg", {
 const logo = (name: string) => svgs[`../assets/clients/${name}.svg`] ?? "";
 ---
 
-<ul class="grid grid-cols-2 items-center gap-x-10 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
+<ul class="grid grid-cols-2 items-center gap-x-8 gap-y-8 sm:grid-cols-4 lg:grid-cols-7 lg:gap-x-6">
   {clients.map((client) => (
-    <li>
+    <li class="max-sm:last:odd:col-span-2">
       <a
         href={client.href}
-        class="client-logo flex h-9 items-center justify-center opacity-50 transition-opacity hover:opacity-90 [&_svg]:h-full [&_svg]:max-h-8 [&_svg]:w-auto [&_svg]:max-w-full"
+        class="client-logo flex h-9 items-center justify-center opacity-50 transition-opacity hover:opacity-90 [&_svg]:h-full [&_svg]:max-h-7 [&_svg]:w-auto [&_svg]:max-w-full"
         aria-label={client.name}
         set:html={logo(client.logo)}
       />

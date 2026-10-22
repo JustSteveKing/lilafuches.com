@@ -106,6 +106,7 @@ export const testimonials: Testimonial[] = [
 // `logo` names an SVG in src/assets/clients/, inlined so it can take the text colour.
 export const clients = [
   { name: "Hookdeck", logo: "hookdeck", href: "https://hookdeck.com" },
+  { name: "Mozilla", logo: "mozilla", href: "https://www.mozilla.org" },
   { name: "Permit.io", logo: "permit", href: "https://permit.io" },
   { name: "Sevalla", logo: "sevalla", href: "https://sevalla.com" },
   { name: "Tighten", logo: "tighten", href: "https://tighten.com" },
