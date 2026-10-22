@@ -1,27 +1,30 @@
 {
-  "name": "Lila Fuches - Developer Content That Actually Works",
+  "name": "Lila Fuches",
   "short_name": "Lila Fuches",
-  "description": "We help companies build authentic developer relations through content that resonates, workshops that deliver value, and strategies that actually work.",
+  "description": "A small technical agency for Laravel and API-focused companies: engineering, content and education.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0f172a",
-  "theme_color": "#0f172a",
-  "orientation": "portrait-primary",
+  "background_color": "#f8f4ec",
+  "theme_color": "#f8f4ec",
   "icons": [
     {
       "src": "/favicon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
     },
     {
       "src": "/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
   ],
-  "categories": ["business", "developer", "education"],
-  "lang": "en-US",
+  "categories": [
+    "business",
+    "developer",
+    "education"
+  ],
+  "lang": "en-GB",
   "dir": "ltr"
 }

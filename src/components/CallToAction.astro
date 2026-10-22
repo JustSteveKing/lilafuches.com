@@ -1,0 +1,52 @@
+---
+import Arrow from "./Arrow.astro";
+import { site } from "../data/site";
+
+interface Props {
+  title?: string;
+  accent?: string;
+  body?: string;
+}
+
+const {
+  title = "Tell us what you're",
+  accent = "trying to get done.",
+  body = "Start with a free fifteen-minute call. If we're not the right fit, we'll say so, and we'll usually know someone who is.",
+} = Astro.props;
+---
+
+<section class="shell py-20 md:py-28">
+  <div class="relative overflow-hidden rounded-[1.75rem] bg-ink px-6 py-14 text-paper md:px-14 md:py-20">
+    <svg
+      class="pointer-events-none absolute -right-16 -bottom-24 h-[26rem] w-auto text-lilac opacity-25 md:-right-6"
+      viewBox="0 0 229 268"
+      aria-hidden="true"
+    >
+      <g transform="translate(0 -27)">
+        <rect height="219" rx="31" stroke="currentColor" stroke-width="22" width="207" x="11" y="38" fill="none"></rect>
+        <path d="m52 69h22v158h-22z" fill="currentColor"></path>
+        <path d="m52 206h98v21h-98zm41-137h23v122h-23z" fill="currentColor"></path>
+        <path d="m93 69h85v21h-85zm0 62h83v20h-83z" fill="currentColor"></path>
+      </g>
+    </svg>
+
+    <div class="relative max-w-2xl">
+      <h2 class="text-4xl leading-[1.05] md:text-6xl">
+        {title} <span class="italic text-lilac-wash">{accent}</span>
+      </h2>
+      <p class="mt-6 max-w-xl text-lg text-paper/75">{body}</p>
+      <div class="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
+        <a
+          href={site.booking}
+          class="group inline-flex items-center gap-3 rounded-full bg-fox px-6 py-3.5 font-medium text-fox-ink transition hover:brightness-110"
+        >
+          Book a free intro call
+          <Arrow class="size-4 transition-transform group-hover:translate-x-1" />
+        </a>
+        <a href={`mailto:${site.email}`} class="link-quiet text-paper/80 hover:text-paper">
+          or email {site.email}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

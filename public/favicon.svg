@@ -6,9 +6,9 @@
         <path d="m93 69h85v21h-85zm0 62h83v20h-83z" fill="currentColor" />
     </g>
     <style>
-        svg { color: #09090b; }
+        svg { color: #6b4fa3; }
         @media (prefers-color-scheme: dark) {
-            svg { color: #fafafa; }
+            svg { color: #b9a2e8; }
         }
     </style>
 </svg>

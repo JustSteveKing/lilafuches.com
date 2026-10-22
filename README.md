@@ -1,46 +1,27 @@
-# Astro Starter Kit: Basics
+# lilafuches.com
+
+The website for Lila Fuches, a small technical agency: engineering, content and education for Laravel and API-focused companies.
+
+Built with Astro 7 and Tailwind CSS 4, as a fully static site with no client-side JavaScript framework.
+
+## Working on it
 
 ```sh
-npm create astro@latest -- --template basics
+bun install
+bun run dev        # http://localhost:4321
+bun run build      # static output in dist/
+bunx astro check   # type-check .astro files
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## Where things live
 
-## 🚀 Project Structure
+- `src/content/services/` holds one Markdown file per service. Each becomes a page at `/<filename>`, and the home page lists them in `order`. The front matter is validated by `src/content.config.ts`.
+- `src/data/site.ts` holds everything else: site details, navigation, founders, testimonials, client logos, principles and the numbers on the About page.
+- `src/styles/global.css` holds the brand: colour tokens for light and dark, type, and the few shared component classes.
+- `src/assets/clients/` holds client logos, which are inlined so they can be shown in one ink colour in either theme.
 
-Inside of your Astro project, you'll see the following folders and files:
+Testimonials are quoted verbatim. Don't edit someone else's words, and confirm permission before adding a client logo.
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
+## The brand
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+"Lila" is lilac and "Fuchs" is fox. The palette is warm paper and aubergine ink, with lilac as the brand colour and fox orange kept for the main action on a page. Type is Newsreader for display, Schibsted Grotesk for text and JetBrains Mono for labels, loaded through Astro's font API.

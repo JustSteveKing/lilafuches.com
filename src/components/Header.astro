@@ -1,0 +1,72 @@
+---
+import Logo from "./Logo.astro";
+import { nav, site } from "../data/site";
+
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const current = (href: string) => path === href || path.startsWith(`${href}/`);
+---
+
+<header class="relative z-20 border-b border-rule">
+  <div class="shell flex h-18 items-center justify-between gap-6">
+    <a href="/" class="shrink-0" aria-label={`${site.name}, home`}>
+      <Logo />
+    </a>
+
+    <nav aria-label="Main" class="hidden md:block">
+      <ul class="flex items-center gap-8 text-[0.95rem]">
+        {nav.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              aria-current={current(item.href) ? "page" : undefined}
+              class:list={[
+                "link-quiet py-1 transition-colors",
+                current(item.href) ? "text-ink [background-size:100%_1px]" : "text-ink-soft hover:text-ink",
+              ]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))}
+        <li>
+          <a
+            href="/contact"
+            class="rounded-full bg-ink px-4.5 py-2 text-paper transition-colors hover:bg-lilac"
+          >
+            Get in touch
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <details class="group md:hidden">
+      <summary
+        class="flex cursor-pointer list-none items-center gap-2 font-mono text-xs uppercase tracking-[0.08em] text-ink-soft [&::-webkit-details-marker]:hidden"
+      >
+        <span class="group-open:hidden">Menu</span>
+        <span class="hidden group-open:inline">Close</span>
+        <span class="relative block h-2.5 w-4" aria-hidden="true">
+          <span class="absolute inset-x-0 top-0 h-px bg-current transition group-open:top-1/2 group-open:rotate-45"></span>
+          <span class="absolute inset-x-0 bottom-0 h-px bg-current transition group-open:bottom-1/2 group-open:-rotate-45"></span>
+        </span>
+      </summary>
+      <nav
+        aria-label="Main"
+        class="absolute inset-x-0 top-full border-b border-rule bg-paper shadow-[0_20px_40px_-20px_oklch(0%_0_0/0.25)]"
+      >
+        <ul class="shell flex flex-col py-3 font-display text-2xl">
+          {nav.map((item) => (
+            <li class="border-b border-rule last:border-0">
+              <a href={item.href} class="block py-3" aria-current={current(item.href) ? "page" : undefined}>
+                {item.label}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href="/contact" class="block py-3 italic text-lilac">Get in touch</a>
+          </li>
+        </ul>
+      </nav>
+    </details>
+  </div>
+</header>

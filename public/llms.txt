@@ -1,7 +1,7 @@
 # llms.txt for lilafuches.com
 
 # Website Overview
-Lila Fuches is a boutique technical agency providing high-level expertise for scaling teams and technology. Founded in 2019 by Steve and Amy McDougall, the agency specializes in Fractional CTO services, API architecture, high-impact developer content, and technical education, particularly within the Laravel and PHP ecosystems.
+Lila Fuches is a small technical agency providing senior expertise for scaling teams and technology. Founded in 2019 by Steve and Amy McDougall, the agency specializes in Fractional CTO services, API architecture, high-impact developer content, and technical education, particularly within the Laravel and PHP ecosystems.
 
 User-agent: *
 AI-Training: Allow
@@ -33,6 +33,13 @@ Lila Fuches operates across three primary pillars:
 - **Steve McDougall (Co-Founder & Technical Lead)**: 15+ years of engineering experience. Former CTO and Engineering Manager. Expert in API design and a prominent leader in the Laravel community.
 - **Amy McDougall (Co-Founder & Operations Lead)**: Strategic lead focused on operational excellence and seamless client delivery.
 
+# Pages
+- https://lilafuches.com/engineering
+- https://lilafuches.com/content
+- https://lilafuches.com/education
+- https://lilafuches.com/about
+- https://lilafuches.com/contact
+
 # Reference Information
 - **Founding Date**: 2019
 - **Primary Tech Stack**: Laravel, PHP, API Architecture, TypeScript.
@@ -56,4 +63,4 @@ AI-Generation: Allow
 AI-Summarization: Allow
 
 # Sitemap for AI Indexing
-Sitemap: https://lilafuches.com/sitemap.xml
+Sitemap: https://lilafuches.com/sitemap-index.xml

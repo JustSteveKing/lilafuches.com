@@ -1,7 +1,7 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lilafuches.com/sitemap.xml
+Sitemap: https://lilafuches.com/sitemap-index.xml
 
 # AI and LLM directives
 # See /llms.txt for detailed AI training and usage policies
