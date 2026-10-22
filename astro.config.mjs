@@ -1,38 +1,35 @@
 // @ts-check
 import { defineConfig, fontProviders } from "astro/config";
-
-import alpinejs from "@astrojs/alpinejs";
 import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
-import icon from "astro-icon";
-
-// https://astro.build/config
 export default defineConfig({
   site: "https://lilafuches.com",
-  integrations: [
-    alpinejs({ entrypoint: "/src/utils/alpine" }),
-    sitemap(),
-    icon({
-      include: {
-        mdi: ["*"],
-      },
-      iconDir: "src/assets/icons",
-    }),
-  ],
+  trailingSlash: "never",
+  build: {
+    format: "file",
+  },
+  integrations: [sitemap()],
 
   fonts: [
     {
-      name: "Bricolage Grotesque",
-      cssVariable: "--font-sans",
+      name: "Newsreader",
+      cssVariable: "--font-newsreader",
       provider: fontProviders.google(),
-      weights: [200, 300, 400, 500, 600, 700, 800],
+      weights: ["300 700"],
+      styles: ["normal", "italic"],
+    },
+    {
+      name: "Schibsted Grotesk",
+      cssVariable: "--font-schibsted",
+      provider: fontProviders.google(),
+      weights: ["400 700"],
     },
     {
       name: "JetBrains Mono",
-      cssVariable: "--font-mono",
+      cssVariable: "--font-jetbrains",
       provider: fontProviders.google(),
-      weights: [400, 500, 600],
+      weights: [400, 500],
     },
   ],
 

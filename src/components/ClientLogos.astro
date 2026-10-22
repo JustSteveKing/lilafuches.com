@@ -1,0 +1,24 @@
+---
+import { clients } from "../data/site";
+
+const svgs = import.meta.glob<string>("../assets/clients/*.svg", {
+  query: "?raw",
+  import: "default",
+  eager: true,
+});
+
+const logo = (name: string) => svgs[`../assets/clients/${name}.svg`] ?? "";
+---
+
+<ul class="grid grid-cols-2 items-center gap-x-10 gap-y-8 sm:grid-cols-3 lg:grid-cols-6">
+  {clients.map((client) => (
+    <li>
+      <a
+        href={client.href}
+        class="client-logo flex h-9 items-center justify-center opacity-50 transition-opacity hover:opacity-90 [&_svg]:h-full [&_svg]:max-h-8 [&_svg]:w-auto [&_svg]:max-w-full"
+        aria-label={client.name}
+        set:html={logo(client.logo)}
+      />
+    </li>
+  ))}
+</ul>

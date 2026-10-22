@@ -1,0 +1,53 @@
+---
+import Base from "../layouts/Base.astro";
+import Arrow from "../components/Arrow.astro";
+import { site } from "../data/site";
+
+const routes = [
+  {
+    label: "Book a call",
+    title: "A free fifteen-minute intro",
+    body: "The quickest way to find out whether we can help. Pick a time that suits you and tell us a little about what you're working on.",
+    href: site.booking,
+    action: "Choose a time",
+  },
+  {
+    label: "Email",
+    title: site.email,
+    body: "Better if you'd rather write it down first, or you have a brief, an RFP or a codebase you'd like us to look at.",
+    href: `mailto:${site.email}`,
+    action: "Write to us",
+  },
+];
+---
+
+<Base title="Contact" description="Book a free fifteen-minute intro call with Lila Fuches, or email hello@lilafuches.com.">
+  <section class="shell pt-16 pb-20 md:pt-24 md:pb-28">
+    <p class="label rise" style="--i:0"><b>Contact</b> Talk to the founders</p>
+    <h1 class="rise mt-8 max-w-4xl text-[3rem] leading-[1] sm:text-6xl lg:text-[5.5rem]" style="--i:1">
+      Tell us what you're <span class="accent">trying to get done.</span>
+    </h1>
+    <p class="rise mt-8 max-w-2xl text-lg leading-relaxed text-ink-soft md:text-xl" style="--i:2">
+      Every enquiry is read by Steve or Amy. If we're not the right fit, we'll say so, and we'll usually know someone
+      who is.
+    </p>
+
+    <div class="mt-16 grid gap-6 md:grid-cols-2">
+      {routes.map((r, i) => (
+        <a
+          href={r.href}
+          class="rise group flex flex-col rounded-2xl border border-rule-strong p-8 transition hover:border-lilac hover:bg-paper-sunk md:p-10"
+          style={`--i:${i + 3}`}
+        >
+          <span class="font-mono text-xs uppercase tracking-[0.08em] text-lilac">{r.label}</span>
+          <span class="mt-4 font-display text-3xl break-words md:text-4xl">{r.title}</span>
+          <span class="mt-4 leading-relaxed text-ink-soft">{r.body}</span>
+          <span class="mt-8 inline-flex items-center gap-2 font-medium group-hover:text-fox">
+            {r.action}
+            <Arrow class="size-4 transition-transform group-hover:translate-x-1" />
+          </span>
+        </a>
+      ))}
+    </div>
+  </section>
+</Base>
