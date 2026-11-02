@@ -11,12 +11,12 @@
   --paper-sunk: oklch(94.4% 0.016 85);
   --ink: oklch(21% 0.035 305);
   --ink-soft: oklch(42% 0.03 305);
-  --ink-faint: oklch(58% 0.02 305);
+  --ink-faint: oklch(50% 0.02 305);
   --rule: oklch(21% 0.035 305 / 0.14);
   --rule-strong: oklch(21% 0.035 305 / 0.32);
   --lilac: oklch(52% 0.13 300);
   --lilac-wash: oklch(91% 0.045 300);
-  --fox: oklch(64% 0.18 45);
+  --fox: oklch(57% 0.17 45);
   --fox-ink: oklch(99% 0.01 85);
   color-scheme: light;
 }

@@ -16,7 +16,7 @@ const year = new Date().getFullYear();
       <p class="font-mono text-xs uppercase tracking-[0.08em] text-ink-faint">Pages</p>
       <ul class="mt-4 space-y-2">
         {nav.map((item) => (
-          <li><a href={item.href} class="link-quiet">{item.label}</a></li>
+          <li><a href={item.href} class="link-quiet inline-block">{item.label}</a></li>
         ))}
       </ul>
     </div>
@@ -24,15 +24,17 @@ const year = new Date().getFullYear();
     <div>
       <p class="font-mono text-xs uppercase tracking-[0.08em] text-ink-faint">Talk to us</p>
       <ul class="mt-4 space-y-2">
-        <li><a href={`mailto:${site.email}`} class="link-quiet">{site.email}</a></li>
-        <li><a href={site.booking} class="link-quiet">Book an intro call</a></li>
-        <li><a href={site.linkedin} class="link-quiet">LinkedIn</a></li>
+        <li><a href={`mailto:${site.email}`} class="link-quiet inline-block">{site.email}</a></li>
+        <li><a href={site.booking} class="link-quiet inline-block">Book an intro call</a></li>
+        <li><a href={site.linkedin} class="link-quiet inline-block">LinkedIn</a></li>
       </ul>
     </div>
   </div>
 
-  <div class="shell flex flex-col gap-2 border-t border-rule py-6 font-mono text-xs text-ink-faint sm:flex-row sm:justify-between">
-    <p>&copy; {year} {site.legalName}.</p>
-    <p>Founded {site.founded}. Working with teams everywhere.</p>
+  <div class="shell">
+    <div class="flex flex-col gap-2 border-t border-rule py-6 font-mono text-xs text-ink-faint sm:flex-row sm:justify-between">
+      <p>&copy; {year} {site.legalName}.</p>
+      <p>Founded {site.founded}. Working with teams everywhere.</p>
+    </div>
   </div>
 </footer>

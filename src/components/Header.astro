@@ -9,7 +9,7 @@ const current = (href: string) => path === href || path.startsWith(`${href}/`);
 
 <header class="relative z-20 border-b border-rule">
   <div class="shell flex h-18 items-center justify-between gap-6">
-    <a href="/" class="shrink-0" aria-label={`${site.name}, home`}>
+    <a href="/" class="flex shrink-0" aria-label={`${site.name}, home`}>
       <Logo />
     </a>
 
@@ -42,7 +42,7 @@ const current = (href: string) => path === href || path.startsWith(`${href}/`);
 
     <details class="group md:hidden">
       <summary
-        class="flex cursor-pointer list-none items-center gap-2 font-mono text-xs uppercase tracking-[0.08em] text-ink-soft [&::-webkit-details-marker]:hidden"
+        class="flex h-11 cursor-pointer list-none items-center gap-2 font-mono text-xs uppercase tracking-[0.08em] text-ink-soft [&::-webkit-details-marker]:hidden"
       >
         <span class="group-open:hidden">Menu</span>
         <span class="hidden group-open:inline">Close</span>
