@@ -6,6 +6,7 @@ import { founders, numbers, principles, site } from "../data/site";
 
 <Base
   title="About"
+  ogImage="/images/og/about.png"
   description="Lila Fuches was founded in 2019 by Steve and Amy McDougall: technical leadership paired with operational care, for Laravel and API-focused companies."
 >
   <section class="shell pt-16 pb-16 md:pt-24 md:pb-24">
@@ -59,7 +60,7 @@ import { founders, numbers, principles, site } from "../data/site";
           <p class="mt-4 leading-relaxed text-ink-soft">{f.bio}</p>
           <ul class="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-sm">
             {f.links.map((l) => (
-              <li><a href={l.href} class="link-quiet">{l.label}</a></li>
+              <li><a href={l.href} class="link-quiet inline-block py-0.5">{l.label}</a></li>
             ))}
           </ul>
         </article>

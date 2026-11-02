@@ -13,7 +13,8 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "images": "bun scripts/og.mjs"
   },
   "type": "module"
 }

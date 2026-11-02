@@ -26,10 +26,10 @@ const quote = testimonials.find((t) => t.pillar === service.id);
 const number = String(data.order).padStart(2, "0");
 ---
 
-<Base title={data.title} description={data.description}>
+<Base title={data.title} description={data.description} ogImage={`/images/og/${service.id}.png`}>
   <section class="shell pt-16 pb-16 md:pt-24 md:pb-24">
     <nav aria-label="Breadcrumb" class="rise font-mono text-xs uppercase tracking-[0.08em] text-ink-faint" style="--i:0">
-      <a href="/" class="link-quiet hover:text-ink">Home</a>
+      <a href="/" class="link-quiet inline-block py-1 hover:text-ink">Home</a>
       <span class="mx-2" aria-hidden="true">/</span>
       <span class="text-lilac">{number} {data.short}</span>
     </nav>

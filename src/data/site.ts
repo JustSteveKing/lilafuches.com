@@ -12,7 +12,7 @@ export const site = {
   email: "hello@lilafuches.com",
   booking: "https://juststeveking.link/cal",
   linkedin: "https://www.linkedin.com/company/lilafuches/",
-  ogImage: "/images/open-graph.png",
+  ogImage: "/images/og/home.png",
 };
 
 export const nav = [
@@ -26,6 +26,7 @@ export type Founder = {
   name: string;
   role: string;
   photo: string;
+  avatar: string;
   bio: string;
   links: { label: string; href: string }[];
 };
@@ -34,7 +35,8 @@ export const founders: Founder[] = [
   {
     name: "Steve McDougall",
     role: "Co-founder, technical lead",
-    photo: "/images/steve.png",
+    photo: "/images/steve-1120.webp",
+    avatar: "/images/steve-112.webp",
     bio: "Steve has spent more than fifteen years in engineering, as a CTO, an engineering manager, and a fractional CTO through more than one acquisition. He's known in the Laravel community and the API space for writing and teaching, and he does the technical work on every engagement himself.",
     links: [
       { label: "GitHub", href: "https://github.com/JustSteveKing" },
@@ -45,7 +47,8 @@ export const founders: Founder[] = [
   {
     name: "Amy McDougall",
     role: "Co-founder, operations lead",
-    photo: "/images/amy.png",
+    photo: "/images/amy-1024.webp",
+    avatar: "/images/amy-112.webp",
     bio: "Amy runs how the work actually gets done: scoping, scheduling, keeping everyone informed, and making sure a project ends with the client better off than when it started. She's the reason senior-level help from us stays approachable and affordable.",
     links: [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/amy-mcdougall-3a78b713a/" },
@@ -70,7 +73,7 @@ export const testimonials: Testimonial[] = [
     name: "Peter Thomson",
     role: "Chief Technology Officer",
     company: "Icehouse Ventures",
-    avatar: "https://github.com/peterjthomson.png",
+    avatar: "https://github.com/peterjthomson.png?size=96",
     pillar: "engineering",
   },
   {
@@ -79,7 +82,7 @@ export const testimonials: Testimonial[] = [
     name: "Phil Leggetter",
     role: "Head of Developer Relations",
     company: "Hookdeck",
-    avatar: "https://github.com/leggetter.png",
+    avatar: "https://github.com/leggetter.png?size=96",
     pillar: "content",
   },
   {
@@ -88,7 +91,7 @@ export const testimonials: Testimonial[] = [
     name: "Steven Tey",
     role: "Founder",
     company: "Dub.co",
-    avatar: "https://github.com/steven-tey.png",
+    avatar: "https://github.com/steven-tey.png?size=96",
     pillar: "content",
   },
   {
@@ -97,7 +100,7 @@ export const testimonials: Testimonial[] = [
     name: "Eric Barnes",
     role: "Founder/Editor",
     company: "Laravel News",
-    avatar: "https://github.com/ericlbarnes.png",
+    avatar: "https://github.com/ericlbarnes.png?size=96",
     pillar: "education",
   },
 ];

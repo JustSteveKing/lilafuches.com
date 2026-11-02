@@ -26,7 +26,7 @@ const [featured, ...quotes] = testimonials;
       <div class="rise mt-10 flex flex-wrap items-center gap-x-8 gap-y-4" style="--i:3">
         <a
           href={site.booking}
-          class="group inline-flex items-center gap-3 rounded-full bg-fox px-6 py-3.5 font-medium text-fox-ink transition hover:brightness-110"
+          class="group inline-flex items-center gap-3 rounded-full bg-fox px-6 py-3.5 font-medium text-fox-ink transition hover:brightness-90"
         >
           Book a free intro call
           <Arrow class="size-4 transition-transform group-hover:translate-x-1" />
@@ -39,7 +39,7 @@ const [featured, ...quotes] = testimonials;
       <div class="flex -space-x-3">
         {founders.map((f) => (
           <img
-            src={f.photo}
+            src={f.avatar}
             alt={f.name}
             width="56"
             height="56"
@@ -51,7 +51,7 @@ const [featured, ...quotes] = testimonials;
       <p class="mt-2 text-[0.95rem] leading-relaxed text-ink-soft">
         Steve and Amy McDougall. The people you speak to first are the people who do the work.
       </p>
-      <a href="/about" class="mt-4 inline-flex items-center gap-2 text-sm text-lilac">
+      <a href="/about" class="mt-3 inline-flex items-center gap-2 py-1 text-sm text-lilac">
         <span class="link-quiet">About us</span>
         <Arrow class="size-3.5" />
       </a>
